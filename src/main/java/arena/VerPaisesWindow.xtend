@@ -18,7 +18,7 @@ class VerPaisesWindow extends Window<VerPaises>{
 	}
 	
 	override createContents(Panel mainPanel) {
-		// Como setear un error panel con 2 líneas
+		// Como setear un error panel con 2 lï¿½neas
 		new ErrorsPanel(mainPanel, "Paises Disponibles\n")
 		
 		new TextBox(mainPanel) => [
