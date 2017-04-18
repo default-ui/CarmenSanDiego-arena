@@ -6,6 +6,7 @@
 	<packaging>jar</packaging>
 
 	<build>
+	<pluginManagment>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
@@ -25,6 +26,8 @@
 				</executions>
 			</plugin>
 		</plugins>
+		</pluginManagment>
+		
 	</build>
 
 	<dependencies>
@@ -50,7 +53,12 @@
 			<artifactId>arena-xtend</artifactId>
 			<version>3.6.1</version>
 		</dependency>
+		<dependency>
+			<groupId>ar.edu.unq.ui.default</groupId>
+			<artifactId>dominio</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 	</dependencies>
-
+	
 </project>

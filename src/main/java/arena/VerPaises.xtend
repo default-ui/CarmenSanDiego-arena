@@ -15,8 +15,8 @@ class VerPaises {
 	Pais paisSeleccionado
 	
 	new(){
-		this.mapa.generarMapamundiAleatorio()
-		this.paises = mapa.paises
+		mapa.generarMapamundiAleatorio()
+		paises = mapa.paises
 	}
 	
 	@Dependencies("paisSeleccionado")
@@ -30,6 +30,6 @@ class VerPaises {
 	
 	@Dependencies("paisSeleccionado")
 	def Boolean getValorEnabled() {
-		paisSeleccionado != null
+		paisSeleccionado !== null
 	}
 }
