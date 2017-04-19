@@ -1,12 +1,9 @@
 package arena
 
-import carmenSanDiego.Caso
+import appModel.CarmenSanDiegoAppModel
 import carmenSanDiego.Pais
-import carmenSanDiego.Sexo
-import carmenSanDiego.Villano
 import components.CustomSimpleWindow
 import components.Titulo
-import java.util.ArrayList
 import org.uqbar.arena.Application
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.HorizontalLayout
@@ -20,11 +17,11 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class ResolviendoCasoWindow extends CustomSimpleWindow<Caso>{
+class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
-	new(WindowOwner parent, Caso model) {
+	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
-		title = "Resolviendo: Robo de " + model.objeto
+		title = "Resolviendo: Robo de " + model.juego.caso.objeto
 	}
 	
 	override addActions(Panel actionsPanel) {
@@ -47,7 +44,7 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<Caso>{
 
 		new Titulo(mainPanel, "Destinos Fallidos")
 		new List<Pais>(mainPanel) => [
-				(items <=> "planDeEscape").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "juego.caso.planDeEscape").adapter = new PropertyAdapter(Pais, "nombre")
 //				value <=> "paisSeleccionado"
 			]
 
@@ -105,10 +102,7 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<Caso>{
 class ResolviendoCasoApp extends Application{
 	
 	override protected createMainWindow() {
-		var villano = new Villano("El Gato", Sexo.Masculino)	
-	
-		new ResolviendoCasoWindow(this, new Caso(villano, "Zircon", new ArrayList<Pais>, new Pais("Argentina")))
-		
+		new ResolviendoCasoWindow(this, new CarmenSanDiegoAppModel)		
 	}
 	
 	def static main(String[] args) {
