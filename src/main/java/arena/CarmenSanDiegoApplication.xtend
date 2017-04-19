@@ -2,6 +2,7 @@ package arena
 
 import org.uqbar.arena.Application
 import appModel.CarmenSanDiegoAppModel
+import utils.DummyData
 
 /**
  * Punto de entrada de la aplicación
@@ -9,6 +10,7 @@ import appModel.CarmenSanDiegoAppModel
 class CarmenSanDiegoApplication extends Application {
 	
 	override protected createMainWindow() {
+		
 		new MenuAccionesWindow(this, new CarmenSanDiegoAppModel)
 	}
 	

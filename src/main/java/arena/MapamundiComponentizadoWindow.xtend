@@ -1,6 +1,5 @@
 package arena
 
-import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import components.Titulo
@@ -17,10 +16,11 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.graphics.Image
+import appModel.CarmenSanDiegoAppModel
 
-class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
+class MapamundiComponentizadoWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 
-	new(WindowOwner parent, MapamundiAppModel model) {
+	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 	}
 
@@ -85,7 +85,7 @@ class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 		
 		new Label(paisCompletoPanel)=>[
 			foreground = Color.WHITE
-			background = Color.GRAY
+			background = Color.BLACK
 			value <=> "paisSeleccionado.nombre"
 			fontSize = 17
 		]
