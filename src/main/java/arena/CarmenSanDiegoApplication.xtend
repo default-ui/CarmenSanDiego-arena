@@ -3,6 +3,9 @@ package arena
 import org.uqbar.arena.Application
 import appModel.CarmenSanDiegoAppModel
 
+/**
+ * Punto de entrada de la aplicación
+ */
 class CarmenSanDiegoApplication extends Application {
 	
 	override protected createMainWindow() {

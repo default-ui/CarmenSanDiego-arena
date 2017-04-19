@@ -6,7 +6,11 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.graphics.Image
 
+/**
+ * Ventana de menu principal de la aplicación
+ */
 class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
 	new(WindowOwner owner, CarmenSanDiegoAppModel model) {
@@ -32,6 +36,15 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	}
 	
 	override createFormPanel(Panel mainPanel) {
+		
+		new Label(mainPanel) => [
+			
+			bindImageToProperty("pathImagenIntro", [ imagePath |
+				new Image(imagePath)
+			])
+			
+		]
+		
 		new Label(mainPanel).text = "¿Qué haremos ahora, Detective?"
 	}
 	
