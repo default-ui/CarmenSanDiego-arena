@@ -1,28 +1,23 @@
 package arena
 
-import components.LabeledCheckBox
-import components.LabeledSelector
-import components.LabeledTextBox
+import appModel.MapamundiAppModel
 import ar.edu.seguidorCarrera.view.components.Titulo
-import java.text.SimpleDateFormat
-import java.util.Date
+import carmenSanDiego.Lugar
+import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import appModel.MapamundiAppModel
-import carmenSanDiego.Pais
-import carmenSanDiego.Lugar
+import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.widgets.tables.Column
+import java.awt.Color
 
 class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 
@@ -57,9 +52,10 @@ class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 		new Titulo(panelDeListadoDePaises, "Paises")
 		new List<Pais>(panelDeListadoDePaises) => [
 				(items <=> "mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
-				height = 150
+				height = 290
 				width = 150
 				value <=> "paisSeleccionado"
+				
 			]
 			
 		new Button(panelDeListadoDePaises) =>[
@@ -79,11 +75,15 @@ class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 	def crearEdicionDePaisSeleccionado(Panel owner) {
 		val Panel paisCompletoPanel = new Panel(owner)
 		paisCompletoPanel.layout = new VerticalLayout
-
+		
+		
 		new Label(paisCompletoPanel)=>[
+			foreground = Color.WHITE
+			background = Color.GRAY
 			value <=> "paisSeleccionado.nombre"
-			fontSize = 13
+			fontSize = 17
 		]
+		
 		/**
 		new LabeledCheckBox(materiaCompletaPanel)
 			.setText("Aprobo:")
@@ -106,17 +106,19 @@ class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 		crearListadoDeCaracteristicasDePaisSeleccionado(paisCompletoPanel)
 	}
 	
+	
 	def crearListadoDeCaracteristicasDePaisSeleccionado(Panel owner) {
 		val panelDeConexiones = new Panel(owner)
 		val Panel panelDeCaracteristicas = new Panel(owner)
 		val panelDeLugares = new Panel(owner)
 
+		
 		new Titulo(panelDeCaracteristicas, "Caracteristicas")
 		new List<String>(panelDeCaracteristicas) => [
 				items <=> "paisSeleccionado.caracteristicas"
-				height = 50
+				height = 60
 				width = 400
-				//value <=> "paisSeleccionado.caracteristicas"
+				value <=> "paisSeleccionado.caracteristicas"
 			]	
 			
 		new Titulo(panelDeConexiones, "Conexiones")
@@ -136,4 +138,5 @@ class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 			]	
 		}
 		
-		}
+		
+}

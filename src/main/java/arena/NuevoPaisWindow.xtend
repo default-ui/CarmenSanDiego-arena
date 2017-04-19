@@ -1,9 +1,19 @@
 package arena
 import org.uqbar.arena.windows.Dialog
-class NuevoPaisWindow {
+import org.uqbar.arena.widgets.Panel
+import appModel.CrearPaisAppModel
+import org.uqbar.arena.windows.WindowOwner
+import carmenSanDiego.Pais
+
+class NuevoPaisWindow extends Dialog<CrearPaisAppModel> {
 	
-	new(SeguidorWindow window, Object object) {
+	new(WindowOwner owner, CrearPaisAppModel model) {
+		super(owner, model)
+	}
+	
+	override protected createFormPanel(Panel mainPanel) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
+	
 	
 }
