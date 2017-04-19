@@ -7,6 +7,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.graphics.Image
+import appModel.MapamundiAppModel
 
 /**
  * Ventana de menu principal de la aplicación
@@ -27,6 +28,7 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 
 		new Button(actionsPanel) => [
 			caption = "Mapamundi"
+			//onClick [ | new MapamundiComponentizadoWindow(this, new MapamundiAppModel.mapa).open ]
 		]
 
 		new Button(actionsPanel) => [

@@ -16,6 +16,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.graphics.Image
 
 class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 
@@ -35,7 +36,14 @@ class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 		this.title = "Mapamundi"
 		mainPanel.layout = new VerticalLayout
 		
-		new Titulo(mainPanel, "Mapamundi", 20)
+		new Label(mainPanel) => [
+			
+			bindImageToProperty("pathImagenMapamundi", [ imagePath |
+				new Image(imagePath)
+			])
+			
+		]
+		//new Titulo(mainPanel, "Mapamundi", 20)
 
 		//Agregamos el contenido
 		val Panel contentPanel = new Panel(mainPanel)
