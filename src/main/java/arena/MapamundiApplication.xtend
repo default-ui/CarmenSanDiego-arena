@@ -8,7 +8,7 @@ class MapamundiApplication extends Application {
 	
 	override protected createMainWindow() {
 		val model = new MapamundiAppModel => [
-			mapa = new DummyData().crearMapamundiDummy
+			mapa = DummyData.crearMapamundiDummy()
 			paisSeleccionado = mapa.paises.get(5)
 		]
 		new MapamundiComponentizadoWindow(this, model) 
