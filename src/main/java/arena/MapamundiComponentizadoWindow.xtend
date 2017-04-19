@@ -1,9 +1,10 @@
 package arena
 
 import appModel.MapamundiAppModel
-import ar.edu.seguidorCarrera.view.components.Titulo
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
+import components.Titulo
+import java.awt.Color
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.VerticalLayout
@@ -15,9 +16,6 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.widgets.tables.Table
-import org.uqbar.arena.widgets.tables.Column
-import java.awt.Color
 
 class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
 
