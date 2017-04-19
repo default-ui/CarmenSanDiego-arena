@@ -1,0 +1,139 @@
+package arena
+
+import components.LabeledCheckBox
+import components.LabeledSelector
+import components.LabeledTextBox
+import ar.edu.seguidorCarrera.view.components.Titulo
+import java.text.SimpleDateFormat
+import java.util.Date
+import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.List
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
+
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import appModel.MapamundiAppModel
+import carmenSanDiego.Pais
+import carmenSanDiego.Lugar
+
+class MapamundiComponentizadoWindow extends SimpleWindow<MapamundiAppModel> {
+
+	new(WindowOwner parent, MapamundiAppModel model) {
+		super(parent, model)
+	}
+
+	override protected addActions(Panel actionsPanel) {
+		//no queremos usar este template default
+	}
+
+	override protected createFormPanel(Panel mainPanel) {
+		//no queremos usar este template default
+	} 
+
+	override createMainTemplate(Panel mainPanel) {
+		this.title = "Mapamundi"
+		mainPanel.layout = new VerticalLayout
+		
+		new Titulo(mainPanel, "Mapamundi", 20)
+
+		//Agregamos el contenido
+		val Panel contentPanel = new Panel(mainPanel)
+		contentPanel.layout = new ColumnLayout(2)
+		this.crearListadoDePaises(contentPanel)
+		this.crearEdicionDePaisSeleccionado(contentPanel)
+	}
+
+	def crearListadoDePaises(Panel owner) {
+		val Panel panelDeListadoDePaises = new Panel(owner)
+
+		new Titulo(panelDeListadoDePaises, "Paises")
+		new List<Pais>(panelDeListadoDePaises) => [
+				(items <=> "mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
+				height = 150
+				width = 150
+				value <=> "paisSeleccionado"
+			]
+			
+		new Button(panelDeListadoDePaises) =>[
+			caption = "Eliminar"
+			//onClick [ | new NuevaMateriaWindow(this, this.modelObject.carrera).open ]
+		] 
+		new Button(panelDeListadoDePaises) =>[
+			caption = "Editar"
+			//onClick [ | new NuevaMateriaWindow(this, this.modelObject.carrera).open ]
+		] 
+		new Button(panelDeListadoDePaises) =>[
+			caption = "Nuevo"
+			//onClick [ | new NuevaMateriaWindow(this, this.modelObject.carrera).open ]
+		] 
+	}
+
+	def crearEdicionDePaisSeleccionado(Panel owner) {
+		val Panel paisCompletoPanel = new Panel(owner)
+		paisCompletoPanel.layout = new VerticalLayout
+
+		new Label(paisCompletoPanel)=>[
+			value <=> "paisSeleccionado.nombre"
+			fontSize = 13
+		]
+		/**
+		new LabeledCheckBox(materiaCompletaPanel)
+			.setText("Aprobo:")
+			.bindValueToProperty("materiaSeleccionada.estaAprobada")
+		
+		new LabeledTextBox(materiaCompletaPanel)
+			.setText("Año de cursada:")
+			.bindValueToProperty("materiaSeleccionada.anioCursada")
+		
+		new LabeledTextBox(materiaCompletaPanel)
+			.setText("Profesor de cursada:")
+			.bindValueToProperty("materiaSeleccionada.profesor")
+		
+		new LabeledSelector(materiaCompletaPanel)=>[
+			text = "Ubicación:"
+			bindItemsToProperty("ubicacionesPosibles")
+			bindValueToProperty("materiaSeleccionada.ubicacion")
+		]
+		**/
+		crearListadoDeCaracteristicasDePaisSeleccionado(paisCompletoPanel)
+	}
+	
+	def crearListadoDeCaracteristicasDePaisSeleccionado(Panel owner) {
+		val panelDeConexiones = new Panel(owner)
+		val Panel panelDeCaracteristicas = new Panel(owner)
+		val panelDeLugares = new Panel(owner)
+
+		new Titulo(panelDeCaracteristicas, "Caracteristicas")
+		new List<String>(panelDeCaracteristicas) => [
+				items <=> "paisSeleccionado.caracteristicas"
+				height = 50
+				width = 400
+				//value <=> "paisSeleccionado.caracteristicas"
+			]	
+			
+		new Titulo(panelDeConexiones, "Conexiones")
+		new List<Pais>(panelDeConexiones) => [
+				(items <=> "paisSeleccionado.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
+				height = 50
+				width = 400
+				//value <=> "paisSeleccionado.caracteristicas"
+			]
+		
+		new Titulo(panelDeLugares, "Lugares de interes")
+		new List<Pais>(panelDeLugares) => [
+				(items <=> "paisSeleccionado.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
+				height = 50
+				width = 400
+				//value <=> "paisSeleccionado.caracteristicas"
+			]	
+		}
+		
+		}
