@@ -77,24 +77,22 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 		
 	}
 	
+	/**
+	 * Genera el listado de botones para ver los lugares
+	 */
 	def private armarLugaresPanel(Panel containerPanel) {
 		
 		val lugaresPanel = new GroupPanel(containerPanel)
 		lugaresPanel.layout = new VerticalLayout
 		lugaresPanel.setTitle('Lugares')
 		
-		new Button(lugaresPanel) => [
-			caption = "Biblioteca"
-			setAsDefault 
-		]
-
-		new Button(lugaresPanel) => [
-			caption = "Club"
-		]
-
-		new Button(lugaresPanel) => [
-			caption = "Embajada"
-		]
+		for(lugar : modelObject.juego.paisActual.lugares) {
+			
+			new Button(lugaresPanel) => [
+				caption = lugar.nombre
+			]
+			
+		}
 		
 	}	
 }
