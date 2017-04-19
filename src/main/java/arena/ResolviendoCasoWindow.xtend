@@ -16,6 +16,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import components.LabeledLabel
 
 class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -29,8 +30,10 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
 	override createFormPanel(Panel mainPanel) {
 		
-		new Label(mainPanel).text = "Estás en: LALALA"
-		
+		new LabeledLabel(mainPanel) => [
+			text = 'Estás en: '
+			bindValueToProperty('juego.paisActual.nombre')
+		]
 
 		val upperPanel = new Panel(mainPanel)
 		upperPanel.layout = new HorizontalLayout
@@ -59,8 +62,9 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 		new Button(accionesPanel) => [
 			caption = "Orden De Arresto"
 		]
-		new Label(accionesPanel) => [
-			text = "Orden emitida para: lalala"
+		new LabeledLabel(accionesPanel) => [
+			text = 'Orden emitida para: '
+			bindValueToProperty('juego.ordenDeArrestoString')
 		]
 
 		new Button(accionesPanel) => [
