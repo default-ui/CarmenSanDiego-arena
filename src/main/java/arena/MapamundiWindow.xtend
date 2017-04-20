@@ -17,6 +17,7 @@ import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.graphics.Image
 import appModel.CarmenSanDiegoAppModel
+import org.uqbar.commons.model.UserException
 
 class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 
@@ -66,13 +67,20 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 			
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Eliminar"
-			onClick [ | modelObject.mapa.eliminarPais(modelObject.paisSeleccionado.nombre) ]
+			onClick [ | 
+				if (this.modelObject.paisSeleccionado==null) {
+					throw new UserException("Debe seleccionar un país a eliminar");
+				}
+				modelObject.mapa.eliminarPais(modelObject.paisSeleccionado.nombre)
+			]
 		] 
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Editar"
 			onClick [ |
+				if (this.modelObject.paisSeleccionado==null) {
+					throw new UserException("Debe seleccionar un país a editar");
+				}
 				this.modelObject.temp=this.modelObject.paisSeleccionado
-				//this.modelObject.mapa.eliminarPais(this.modelObject.paisSeleccionado.nombre)
 				this.modelObject.nuevoPaisNombre=this.modelObject.temp.nombre
 				new NuevoPaisWindow(this, this.modelObject).open
 			]
@@ -99,25 +107,6 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 			fontSize = 17
 		]
 		
-		/**
-		new LabeledCheckBox(materiaCompletaPanel)
-			.setText("Aprobo:")
-			.bindValueToProperty("materiaSeleccionada.estaAprobada")
-		
-		new LabeledTextBox(materiaCompletaPanel)
-			.setText("Año de cursada:")
-			.bindValueToProperty("materiaSeleccionada.anioCursada")
-		
-		new LabeledTextBox(materiaCompletaPanel)
-			.setText("Profesor de cursada:")
-			.bindValueToProperty("materiaSeleccionada.profesor")
-		
-		new LabeledSelector(materiaCompletaPanel)=>[
-			text = "Ubicación:"
-			bindItemsToProperty("ubicacionesPosibles")
-			bindValueToProperty("materiaSeleccionada.ubicacion")
-		]
-		**/
 		crearListadoDeCaracteristicasDePaisSeleccionado(paisCompletoPanel)
 	}
 	

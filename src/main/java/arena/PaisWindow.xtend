@@ -17,6 +17,7 @@ import components.Titulo
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.bindings.PropertyAdapter
 import carmenSanDiego.Lugar
+import org.uqbar.commons.model.UserException
 
 class NuevoPaisWindow extends Dialog<CarmenSanDiegoAppModel> {
 
@@ -95,10 +96,15 @@ class NuevoPaisWindow extends Dialog<CarmenSanDiegoAppModel> {
 		new Button(mainPanel)=>[
 			caption = "Aceptar"
 			onClick [ |
-				this.modelObject.mapa.eliminarPais(this.modelObject.temp.nombre)
-				this.modelObject.agregarPais()
-				this.modelObject.paisSeleccionado=this.modelObject.temp
-				this.close
+				if (this.modelObject.nuevoPaisNombre=="") {
+					throw new UserException("Debe seleccionar un nombre para el país");
+				} else {
+					this.modelObject.mapa.eliminarPais(this.modelObject.temp.nombre)
+					this.modelObject.agregarPais()
+					this.modelObject.paisSeleccionado=this.modelObject.temp
+					this.close
+				}
+					
 			]
 		]
 		
