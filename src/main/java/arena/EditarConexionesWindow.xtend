@@ -21,6 +21,8 @@ import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.widgets.TextBox
 import components.LabeledSelector
 import org.uqbar.arena.bindings.PropertyAdapter
+import Exceptions.NoSeleccionadoException
+import Exceptions.ConexionExistenteException
 
 class EditarConexionesWindow extends Dialog<CarmenSanDiegoAppModel>{
 	
@@ -63,7 +65,13 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Eliminar"
 			setAsDefault 
-			onClick [ | this.modelObject.eliminarConexion() ]
+			onClick [ | 
+				if(this.modelObject.conexion==null){
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
+				}
+				this.modelObject.eliminarConexion()
+			]
 			]
 			
 		val Panel panelDeConexiones2 = new Panel(mainPanel)	
@@ -78,6 +86,14 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Agregar"
 			onClick [ |
+			if(this.modelObject.conexion==null){
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
+				}
+			if (this.modelObject.temp.conexiones.contains(this.modelObject.conexion)){
+				new ConexionExistenteException().mostrarError
+				throw new Exception();
+			}
 			this.modelObject.agregarConexion()
 			]
 		]	

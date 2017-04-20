@@ -1,32 +1,30 @@
 package arena
 
+import Exceptions.NombreDePaisNoIngresado
+import appModel.CarmenSanDiegoAppModel
+import carmenSanDiego.Lugar
+import carmenSanDiego.Pais
+import components.Titulo
+import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.graphics.Image
+import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
-import appModel.CrearPaisAppModel
-import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.widgets.Button
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import appModel.CarmenSanDiegoAppModel
-import org.uqbar.arena.bindings.NotNullObservable
-import carmenSanDiego.Pais
-import org.uqbar.arena.graphics.Image
-import components.Titulo
-import org.uqbar.arena.widgets.List
-import org.uqbar.arena.bindings.PropertyAdapter
-import carmenSanDiego.Lugar
-import org.uqbar.commons.model.UserException
 
-class NuevoPaisWindow extends Dialog<CarmenSanDiegoAppModel> {
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+
+class PaisWindow extends Dialog<CarmenSanDiegoAppModel> {
 
 	new(WindowOwner owner, CarmenSanDiegoAppModel model) {
 		super(owner, model)
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
-		title = "Nuevo Pais"
 		mainPanel.layout = new VerticalLayout 
 		
 		new Label(mainPanel) => [
@@ -97,7 +95,8 @@ class NuevoPaisWindow extends Dialog<CarmenSanDiegoAppModel> {
 			caption = "Aceptar"
 			onClick [ |
 				if (this.modelObject.nuevoPaisNombre=="") {
-					throw new UserException("Debe seleccionar un nombre para el país");
+					new NombreDePaisNoIngresado().mostrarError
+					throw new Exception();
 				} else {
 					this.modelObject.mapa.eliminarPais(this.modelObject.temp.nombre)
 					this.modelObject.agregarPais()

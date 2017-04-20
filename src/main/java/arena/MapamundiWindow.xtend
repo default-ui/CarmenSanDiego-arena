@@ -18,6 +18,7 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.graphics.Image
 import appModel.CarmenSanDiegoAppModel
 import org.uqbar.commons.model.UserException
+import Exceptions.NoSeleccionadoException
 
 class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 
@@ -69,7 +70,8 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 			caption = "Eliminar"
 			onClick [ | 
 				if (this.modelObject.paisSeleccionado==null) {
-					throw new UserException("Debe seleccionar un país a eliminar");
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
 				}
 				modelObject.mapa.eliminarPais(modelObject.paisSeleccionado.nombre)
 			]
@@ -78,11 +80,12 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 			caption = "Editar"
 			onClick [ |
 				if (this.modelObject.paisSeleccionado==null) {
-					throw new UserException("Debe seleccionar un país a editar");
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
 				}
 				this.modelObject.temp=this.modelObject.paisSeleccionado
 				this.modelObject.nuevoPaisNombre=this.modelObject.temp.nombre
-				new NuevoPaisWindow(this, this.modelObject).open
+				new PaisWindow(this, this.modelObject).open
 			]
 		] 
 		new Button(panelDeListadoDePaises) =>[
@@ -90,7 +93,7 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 			onClick [ | 
 				this.modelObject.temp= new Pais("temp")
 				this.modelObject.nuevoPaisNombre=""
-				new NuevoPaisWindow(this, this.modelObject).open
+				new PaisWindow(this, this.modelObject).open
 			]
 		] 
 	}

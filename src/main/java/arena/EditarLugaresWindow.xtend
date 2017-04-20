@@ -22,6 +22,8 @@ import org.uqbar.arena.widgets.TextBox
 import components.LabeledSelector
 import org.uqbar.arena.bindings.PropertyAdapter
 import carmenSanDiego.Lugar
+import Exceptions.LugarExistenteException
+import Exceptions.NoSeleccionadoException
 
 class EditarLugaresWindow extends Dialog<CarmenSanDiegoAppModel>{
 
@@ -65,7 +67,13 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Eliminar"
 			setAsDefault 
-			onClick [ | this.modelObject.eliminarLugar() ]
+			onClick [ | 
+				if (this.modelObject.lugar==null) {
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
+				}
+				this.modelObject.eliminarLugar()
+			]
 			]
 			
 		val Panel panelDeLugares2 = new Panel(mainPanel)	
@@ -80,7 +88,15 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Agregar"
 			onClick [ |
-			this.modelObject.agregarLugar()
+				if(this.modelObject.lugar==null){
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
+				}
+				if (this.modelObject.temp.lugarExiste(this.modelObject.lugar.nombre)){
+					new LugarExistenteException().mostrarError
+					throw new Exception()
+				}
+				this.modelObject.agregarLugar()
 			]
 		]	
 }
