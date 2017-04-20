@@ -66,7 +66,7 @@ class MapamundiComponentizadoWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 			
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Eliminar"
-			//onClick [ | new NuevaMateriaWindow(this, this.modelObject.carrera).open ]
+			onClick [ | modelObject.mapa.eliminarPais(modelObject.paisSeleccionado.nombre) ]
 		] 
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Editar"
@@ -74,7 +74,10 @@ class MapamundiComponentizadoWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 		] 
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Nuevo"
-			//onClick [ | new NuevaMateriaWindow(this, this.modelObject.carrera).open ]
+			onClick [ | 
+				this.modelObject.temp= new Pais("temp")
+				new NuevoPaisWindow(this, this.modelObject).open
+			]
 		] 
 	}
 

@@ -14,8 +14,8 @@ import org.uqbar.arena.graphics.Image
  */
 class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
-	new(WindowOwner owner, CarmenSanDiegoAppModel model) {
-		super(owner, model)
+	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+		super(parent, model)
 		title = "¿Dónde Está Carmen SanDiego?"
 	}
 	
