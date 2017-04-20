@@ -1,24 +1,16 @@
 package arena
 
-import org.uqbar.arena.windows.SimpleWindow
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Panel
-import carmenSanDiego.Caso
-import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.widgets.Label
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.Application
-import carmenSanDiego.Villano
-import carmenSanDiego.Sexo
-import java.util.ArrayList
-import carmenSanDiego.Pais
-import ar.edu.seguidorCarrera.view.components.Titulo
-import org.uqbar.arena.widgets.List
-import org.uqbar.arena.windows.Dialog
 import appModel.CarmenSanDiegoAppModel
 import org.uqbar.arena.graphics.Image
+import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.List
+import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.windows.Dialog
+import org.uqbar.arena.windows.WindowOwner
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class EditarCaracteristicasWindow extends Dialog<CarmenSanDiegoAppModel>{
 	
