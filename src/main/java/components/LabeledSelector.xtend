@@ -13,7 +13,6 @@ class LabeledSelector<T> extends AbstractLabeledWidget {
 	
 	def bindItemsToProperty(String property){
 		selector.bindItemsToProperty(property)
-		this
 	}
 	
 	override createWidget(AbstractLabeledWidget widget) {
