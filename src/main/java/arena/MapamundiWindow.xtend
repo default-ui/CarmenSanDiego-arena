@@ -18,7 +18,7 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.graphics.Image
 import appModel.CarmenSanDiegoAppModel
 
-class MapamundiComponentizadoWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
+class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
@@ -70,12 +70,18 @@ class MapamundiComponentizadoWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 		] 
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Editar"
-			//onClick [ | new NuevaMateriaWindow(this, this.modelObject.carrera).open ]
+			onClick [ |
+				this.modelObject.temp=this.modelObject.paisSeleccionado
+				//this.modelObject.mapa.eliminarPais(this.modelObject.paisSeleccionado.nombre)
+				this.modelObject.nuevoPaisNombre=this.modelObject.temp.nombre
+				new NuevoPaisWindow(this, this.modelObject).open
+			]
 		] 
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Nuevo"
 			onClick [ | 
 				this.modelObject.temp= new Pais("temp")
+				this.modelObject.nuevoPaisNombre=""
 				new NuevoPaisWindow(this, this.modelObject).open
 			]
 		] 

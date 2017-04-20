@@ -95,8 +95,9 @@ class NuevoPaisWindow extends Dialog<CarmenSanDiegoAppModel> {
 		new Button(mainPanel)=>[
 			caption = "Aceptar"
 			onClick [ |
-				
+				this.modelObject.mapa.eliminarPais(this.modelObject.temp.nombre)
 				this.modelObject.agregarPais()
+				this.modelObject.paisSeleccionado=this.modelObject.temp
 				this.close
 			]
 		]

@@ -28,7 +28,7 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 
 		new Button(actionsPanel) => [
 			caption = "Mapamundi"
-			onClick [ | new MapamundiComponentizadoWindow(this, this.modelObject).open ]
+			onClick [ | new MapamundiWindow(this, this.modelObject).open ]
 		]
 
 		new Button(actionsPanel) => [

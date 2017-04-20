@@ -24,6 +24,7 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import carmenSanDiego.Lugar
 
 class EditarLugaresWindow extends Dialog<CarmenSanDiegoAppModel>{
+
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
