@@ -22,6 +22,7 @@ class InicioDeJuegoWindow extends SimpleWindow<Caso>{
 	
 	new(WindowOwner parent, Caso model) {
 		super(parent, model)
+		// esto seguro no se hace asi, pero como se hace entonces?
 		title = "Robo de: " + model.objeto
 	}
 	
