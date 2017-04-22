@@ -15,18 +15,24 @@ import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
 import Exceptions.NoSeleccionadoException
 import components.VillanoCaracteristicasList
+import components.CustomSimpleWindow
+import org.uqbar.arena.windows.Dialog
 
-class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
+class EditarHobbiesWindow extends Dialog<CarmenSanDiegoAppModel>{
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 	}
 	
-	override protected addActions(Panel actionsPanel) {
-		// No se usa
+	override addActions(Panel actionsPanel) {
+		new Button(actionsPanel) => [
+			caption = "Aceptar"
+			setAsDefault 
+			onClick [ | this.close ]
+			]
 	}
 	
-	override protected createFormPanel(Panel mainPanel) {
+	override createFormPanel(Panel mainPanel) {
 		////////// TITULO
 			new Label(mainPanel) => [
 			bindImageToProperty("pathImagenHobbies", [ imagePath |
@@ -72,12 +78,7 @@ class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 				}
 				this.modelObject.agregarHobbie
 			]
-			]
-		///////// BOTON ACEPTAR
-			new Button(mainPanel) => [
-				caption = "Aceptar"
-				onClick(| this.close)
-			]			
+			]		
 	}
 	
 }

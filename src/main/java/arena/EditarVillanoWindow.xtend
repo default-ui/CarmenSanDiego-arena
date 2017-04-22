@@ -11,7 +11,7 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
 import components.VillanoCaracteristicasList
-import org.uqbar.arena.windows.SimpleWindow
+
 
 class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -38,31 +38,38 @@ class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 			bindItemsToProperty("gender")
 			bindValueToProperty("villanoTemp.sexo")
 		]
-	/////Senas particulares
-		labelButtonAndList("Señas particulares:", "Editar señas particulares", new EditarSenasParticularesWindow(this, modelObject), 
-						   "Señas", mainPanel, "villanoTemp.senasParticulares")
-	//// Hobbies
-		labelButtonAndList("Hobbies:", "Editar hobbies", new EditarHobbiesWindow(this, modelObject), "Hobbie", mainPanel, "villanoTemp.hobbies")
-		
-	}
-	
-	def labelButtonAndList(String labelText, String buttonCaption, SimpleWindow window, String listTitle, Panel mainP, String listContents){
-	//////// Panel	
-		var horPanel = new Panel(mainP)
-		horPanel.layout = new HorizontalLayout
+	////Senas 
+	///// Hor panel
+		var senaPanel = new Panel(mainPanel)
+		senaPanel.layout = new HorizontalLayout
 	///////// Label
-		new Label(horPanel).text = labelText
+		new Label(senaPanel).text = "Señas particulares:"
 	/////// Button
-		new Button(horPanel) => [
-			caption = buttonCaption
-			onClick[| window.open]
+		new Button(senaPanel) => [
+			caption = "Editar señas particulares"
+			onClick[| new EditarSenasParticularesWindow(this, modelObject).open]
 		] 
 	////// List label
-		new Label(mainP).text = listTitle
-	///// list
-		new VillanoCaracteristicasList(mainP, listContents)
+		new Label(mainPanel).text = "Señas"
+	///// Senas list
+		new VillanoCaracteristicasList(mainPanel,"villanoTemp.senasParticulares" )
+	//// Hobbies 
+	///// Hor panel
+		var hobbiePanel = new Panel(mainPanel)
+		hobbiePanel.layout = new HorizontalLayout
+	///////// Label
+		new Label(hobbiePanel).text = "Hobbies:"
+	/////// Button
+		new Button(hobbiePanel) => [
+			caption = "Editar hobbies"
+			onClick[| new EditarHobbiesWindow(this, modelObject).open]
+		] 
+	////// List label
+		new Label(mainPanel).text = "Hobbie"
+	///// hobbie list
+		new VillanoCaracteristicasList(mainPanel,"villanoTemp.hobbies" )
+		
 	}
-	
 	
  /////////////////////////////
  // ESTO VUELA ES SOLO PARA PRUEBAS

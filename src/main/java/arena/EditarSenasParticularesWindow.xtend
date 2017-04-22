@@ -14,18 +14,24 @@ import Exceptions.DatoNoIngresado
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
 import components.VillanoCaracteristicasList
+import components.CustomSimpleWindow
+import org.uqbar.arena.windows.Dialog
 
-class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
+class EditarSenasParticularesWindow extends Dialog<CarmenSanDiegoAppModel>{
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 	}
 	
-	override protected addActions(Panel actionsPanel) {
-		// No se usa
+	override  addActions(Panel actionsPanel) {
+		new Button(actionsPanel) => [
+			caption = "Aceptar"
+			setAsDefault 
+			onClick [ | this.close ]
+			]
 	}
 	
-	override protected createFormPanel(Panel mainPanel) {
+	override  createFormPanel(Panel mainPanel) {
 		////////// TITULO
 			new Label(mainPanel) => [
 			bindImageToProperty("pathImagenSenas", [ imagePath |
@@ -62,15 +68,9 @@ class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 					throw new Exception()
 				}
 				modelObject.agregarSena
-			]
+				]
 
-			]
-		///////// BOTON ACEPTAR
-			new Button(mainPanel) => [
-				caption = "Aceptar"
-				//firePropertyChange
-				onClick(| this.close)
-			]			
+			]		
 	}
 	
 }

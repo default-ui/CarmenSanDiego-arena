@@ -7,7 +7,7 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.Application
 
-class ExpedienteResolverMisterioWindow extends ExpedienteWindow{
+class ExpedienteEditableWindow extends ExpedienteWindow{
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
@@ -24,6 +24,9 @@ class ExpedienteResolverMisterioWindow extends ExpedienteWindow{
 		// Editar villano button
 		new Button(editableLeftPanel) => [
 			caption = "Editar"
+			onClick[|
+				new EditarVillanoWindow(this, modelObject, "Expediente - Editar villano").open
+			]
 		]
 		
 	}
@@ -40,7 +43,7 @@ class VilExpApp extends Application{
 	
 	override protected createMainWindow() {
 		var appModel  = new CarmenSanDiegoAppModel
-		new ExpedienteResolverMisterioWindow(this, appModel)
+		new ExpedienteEditableWindow(this, appModel)
 		
 	}
 	

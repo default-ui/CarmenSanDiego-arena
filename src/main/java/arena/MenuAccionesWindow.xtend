@@ -33,6 +33,7 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 
 		new Button(actionsPanel) => [
 			caption = "Expedientes"
+			onClick [ | new ExpedienteEditableWindow(this, this.modelObject).open ]
 		]
 
 	}
