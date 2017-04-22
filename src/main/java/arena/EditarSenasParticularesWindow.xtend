@@ -10,8 +10,9 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.layout.HorizontalLayout
-import Exceptions.NoSeleccionadoException
 import Exceptions.DatoNoIngresado
+import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.graphics.Image
 
 class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -25,7 +26,12 @@ class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 	
 	override protected createFormPanel(Panel mainPanel) {
 		////////// TITULO
-			var title = "Editar señas particulares"
+			new Label(mainPanel) => [
+			bindImageToProperty("pathImagenSenas", [ imagePath |
+				new Image(imagePath)
+			])
+			
+		]
 			new Label(mainPanel).text = "Seña"
 		////////// LISTA
 			val list = new org.uqbar.arena.widgets.List<String>(mainPanel) => [
@@ -34,23 +40,22 @@ class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 			]
 		//////// BOTON ELIMINAR
 			new Button(mainPanel) => [
+			var senaSelec = new NotNullObservable("villanoCaracSeleccionada")
+			bindEnabled(senaSelec)
 			caption = "Eliminar"
-			onClick [ | 
-				if(this.modelObject.villanoCaracSeleccionada==null){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
-				}
-			this.modelObject.eliminarSena
+			onClick(|this.modelObject.eliminarSena)
+
 			]
 		///////PANEL HORIZONTAL
 			var textBoxPanel = new Panel(mainPanel).layout =  new HorizontalLayout
 		/////// TEXTBOX
 			new TextBox(textBoxPanel) => [
-					value <=> "inputValue"
-					width = 100
+				value <=> "inputValue"
+				width = 100
 			]
 		///// BOTON AGREGAR
 			new Button(textBoxPanel) => [
+
 			caption = "Agregar"
 			width = 100
 			onClick[|
@@ -60,13 +65,14 @@ class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 				}
 				modelObject.agregarSena
 			]
+
 			]
 		///////// BOTON ACEPTAR
 			new Button(mainPanel) => [
 				caption = "Aceptar"
-				//onClick(|)
-			]	
-		]		
+				//firePropertyChange
+				onClick(| this.close)
+			]			
 	}
 	
 }

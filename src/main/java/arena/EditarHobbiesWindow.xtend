@@ -11,7 +11,8 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.layout.HorizontalLayout
 import Exceptions.DatoNoIngresado
-import Exceptions.NoSeleccionadoException
+import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.graphics.Image
 
 class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -25,7 +26,12 @@ class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
 	override protected createFormPanel(Panel mainPanel) {
 		////////// TITULO
-			var title = "Editar hobbies"
+			new Label(mainPanel) => [
+			bindImageToProperty("pathImagenHobbies", [ imagePath |
+				new Image(imagePath)
+			])
+			
+		]
 			new Label(mainPanel).text = "Hobbie"
 		////////// LISTA
 			val list = new org.uqbar.arena.widgets.List<String>(mainPanel) => [
@@ -34,14 +40,13 @@ class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 			value <=> "villanoCaracSeleccionada"
 			]
 		//////// BOTON ELIMINAR
+			
 			new Button(mainPanel) => [
+			var senaSelec = new NotNullObservable("villanoCaracSeleccionada")
 			caption = "Eliminar"
-			onClick[|
-			if(this.modelObject.villanoCaracSeleccionada==null){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
-				}
-			this.modelObject.eliminarHobbie]
+			onClick(|this.modelObject.eliminarHobbie)
+			bindEnabled(senaSelec)
+
 			]
 		///////PANEL HORIZONTAL
 			var textBoxPanel = new Panel(mainPanel).layout =  new HorizontalLayout
@@ -65,7 +70,7 @@ class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		///////// BOTON ACEPTAR
 			new Button(mainPanel) => [
 				caption = "Aceptar"
-		//		onClick(| this.aceptar)
+				onClick(| this.close)
 			]			
 	}
 	
