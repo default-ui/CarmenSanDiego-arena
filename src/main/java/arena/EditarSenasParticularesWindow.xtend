@@ -10,6 +10,8 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.layout.HorizontalLayout
+import Exceptions.NoSeleccionadoException
+import Exceptions.DatoNoIngresado
 
 class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -28,14 +30,17 @@ class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 		////////// LISTA
 			val list = new org.uqbar.arena.widgets.List<String>(mainPanel) => [
 			items <=> "villanoTemp.senasParticulares"
-			
 			value <=> "villanoCaracSeleccionada"
 			]
 		//////// BOTON ELIMINAR
 			new Button(mainPanel) => [
 			caption = "Eliminar"
-			//TODO: ver que hacer con el error
-			onClick(|this.modelObject.eliminarSena)
+			onClick [ | 
+				if(this.modelObject.villanoCaracSeleccionada==null){
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
+				}
+			this.modelObject.eliminarSena
 			]
 		///////PANEL HORIZONTAL
 			var textBoxPanel = new Panel(mainPanel).layout =  new HorizontalLayout
@@ -48,13 +53,20 @@ class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 			new Button(textBoxPanel) => [
 			caption = "Agregar"
 			width = 100
-			onClick(|this.modelObject.agregarSena)
+			onClick[|
+				if (this.modelObject.inputValue=="" || this.modelObject.inputValue==null) {
+					new DatoNoIngresado().mostrarError
+					throw new Exception()
+				}
+				modelObject.agregarSena
+			]
 			]
 		///////// BOTON ACEPTAR
 			new Button(mainPanel) => [
 				caption = "Aceptar"
-		//		onClick(| this.aceptar)
-			]			
+				//onClick(|)
+			]	
+		]		
 	}
 	
 }

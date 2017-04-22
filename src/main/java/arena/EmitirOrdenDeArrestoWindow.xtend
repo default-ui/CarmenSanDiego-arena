@@ -11,6 +11,8 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.widgets.Selector
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	

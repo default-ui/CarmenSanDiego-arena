@@ -11,6 +11,8 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import Exceptions.NoSeleccionadoException
+import Exceptions.DatoNoIngresado
 
 class EditarCaracteristicasWindow extends Dialog<CarmenSanDiegoAppModel>{
 	
@@ -51,7 +53,13 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Eliminar"
 			setAsDefault 
-			onClick [ | this.modelObject.eliminarCaracteristica() ]
+			onClick [ | 
+				if(this.modelObject.caracteristica==null || this.modelObject.caracteristica=="" ){
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
+				}
+				this.modelObject.eliminarCaracteristica()
+			]
 			]
 			
 		new Label(mainPanel).text = ""
@@ -63,6 +71,10 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Agregar"
 			onClick [ |
+			if (this.modelObject.nuevoPaisNombre=="") {
+					new DatoNoIngresado().mostrarError
+					throw new Exception();
+				}
 			this.modelObject.agregarCaracteristica()
 			]
 		]	

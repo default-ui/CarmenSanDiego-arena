@@ -10,6 +10,8 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.layout.HorizontalLayout
+import Exceptions.DatoNoIngresado
+import Exceptions.NoSeleccionadoException
 
 class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -34,8 +36,12 @@ class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		//////// BOTON ELIMINAR
 			new Button(mainPanel) => [
 			caption = "Eliminar"
-			//TODO: ver que hacer con el error
-			onClick(|this.modelObject.eliminarHobbie)
+			onClick[|
+			if(this.modelObject.villanoCaracSeleccionada==null){
+					new NoSeleccionadoException().mostrarError
+					throw new Exception();
+				}
+			this.modelObject.eliminarHobbie]
 			]
 		///////PANEL HORIZONTAL
 			var textBoxPanel = new Panel(mainPanel).layout =  new HorizontalLayout
@@ -48,7 +54,13 @@ class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 			new Button(textBoxPanel) => [
 			caption = "Agregar"
 			width = 100
-			onClick(|this.modelObject.agregarHobbie)
+			onClick[|
+				if (this.modelObject.inputValue=="" || this.modelObject.inputValue==null) {
+					new DatoNoIngresado().mostrarError
+					throw new Exception()
+				}
+				this.modelObject.agregarHobbie
+			]
 			]
 		///////// BOTON ACEPTAR
 			new Button(mainPanel) => [
