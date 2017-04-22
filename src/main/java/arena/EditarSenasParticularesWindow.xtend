@@ -10,6 +10,7 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.bindings.NotNullObservable
 
 class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -33,27 +34,29 @@ class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 			]
 		//////// BOTON ELIMINAR
 			new Button(mainPanel) => [
+			var senaSelec = new NotNullObservable("villanoCaracSeleccionada")
+			bindEnabled(senaSelec)
 			caption = "Eliminar"
-			//TODO: ver que hacer con el error
 			onClick(|this.modelObject.eliminarSena)
 			]
 		///////PANEL HORIZONTAL
 			var textBoxPanel = new Panel(mainPanel).layout =  new HorizontalLayout
 		/////// TEXTBOX
 			new TextBox(textBoxPanel) => [
-					value <=> "inputValue"
-					width = 100
+				value <=> "inputValue"
+				width = 100
 			]
 		///// BOTON AGREGAR
 			new Button(textBoxPanel) => [
-			caption = "Agregar"
-			width = 100
-			onClick(|this.modelObject.agregarSena)
+				caption = "Agregar"
+				width = 100
+				onClick(|this.modelObject.agregarSena)
 			]
 		///////// BOTON ACEPTAR
 			new Button(mainPanel) => [
 				caption = "Aceptar"
-		//		onClick(| this.aceptar)
+				//firePropertyChange
+				onClick(| this.close)
 			]			
 	}
 	
