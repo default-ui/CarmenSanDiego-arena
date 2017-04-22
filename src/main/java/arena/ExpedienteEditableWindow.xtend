@@ -6,6 +6,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.Application
+import carmenSanDiego.Villano
 
 class ExpedienteEditableWindow extends ExpedienteWindow{
 	
@@ -20,6 +21,10 @@ class ExpedienteEditableWindow extends ExpedienteWindow{
 		// Nuevo villano button
 		new Button(editableLeftPanel) => [
 			caption = "Nuevo"
+			onClick[|
+				this.modelObject.villanoTemp = new Villano("")
+				new EditarVillanoWindow(this, modelObject, "Expediente - Nuevo villano").open
+			]
 		]
 		// Editar villano button
 		new Button(editableLeftPanel) => [

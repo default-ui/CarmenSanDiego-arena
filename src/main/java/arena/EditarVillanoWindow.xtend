@@ -22,7 +22,14 @@ class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	}
 	
 	override addActions(Panel actionsPanel) {
-		//throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		new Button(actionsPanel) => [
+			caption = "Aceptar"
+			onClick[|
+				if(modelObject.esNuevoVillano)
+					this.modelObject.agregarVillano
+				this.close
+			]
+		]
 	}
 	
 	override createFormPanel(Panel mainPanel) {
