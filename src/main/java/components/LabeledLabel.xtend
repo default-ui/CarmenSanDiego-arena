@@ -2,9 +2,11 @@ package components
 
 import org.uqbar.arena.widgets.Container
 import org.uqbar.arena.widgets.Label
+import org.eclipse.xtend.lib.annotations.Accessors
 
 class LabeledLabel extends AbstractLabeledWidget {
 	
+	@Accessors
 	Label label
 	
 	new(Container container) {

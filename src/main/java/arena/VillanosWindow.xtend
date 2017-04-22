@@ -16,6 +16,7 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import components.LabeledLabel
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.widgets.tables.Table
 
 class VillanosWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
@@ -24,6 +25,7 @@ class VillanosWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 		title = windowTitle
+		
 	}
 	
 	override addActions(Panel actionsPanel) {
@@ -33,37 +35,48 @@ class VillanosWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
 	override createFormPanel(Panel mainPanel) {
 		mainPanel.layout = new ColumnLayout(2)
-		mainPanel.width  = 100
+		mainPanel.width  = 400
 		editableLeftPanel = new Panel(mainPanel)
-		//var editableLeftPanel = new Panel(mainPanel)
 		var rightPanel = new Panel(mainPanel)
-		rightPanel.width = 100
-		editableLeftPanel.width = 100
-	///////// Left panel
+///////// Left panel
 	////// titulo
 		new Titulo(editableLeftPanel, "Villano")
 	//////// lista
-		new List<Villano>(editableLeftPanel) => [
-			(items <=> "juego.expediente.villanos").adapter = new PropertyAdapter(Villano, "nombre")
-			value <=> "villanoTemp"
-			//height = 300
-		]
+		villanoList(editableLeftPanel, "juego.expediente.villanos", "nombre", "villanoTemp")
 	////// right panel
 	////// nombreLabel
-			labeledLabel(rightPanel, "Nombre: ", "villanoTemp.nombre")
+		new LabeledLabel(rightPanel) => [
+			text = "Nombre:"
+			bindValueToProperty("villanoTemp.nombre")
+			label.fontSize = 10
+			]
 	////// sexo label
-			labeledLabel(rightPanel, "Sexo: ", "villanoTemp.sexo")
-	
+		new LabeledLabel(rightPanel) => [
+			text = "Sexo:"
+			bindValueToProperty("villanoTemp.sexo")
+			label.fontSize = 10
+			]
+	/////////senas particulares
+		new Label(rightPanel).text = "Señas pasrticulares:"
+		caracteristicasList(rightPanel, "villanoTemp.senasParticulares" )
+	////////// hobbbies
+		new Label(rightPanel).text = "Hobbies:"
+		caracteristicasList(rightPanel, "villanoTemp.hobbies" )
+	}
 		
-		
+	def villanoList(Panel panel, String item, String propertyAdapter, String listValue){
+			new List<Villano>(panel) => [
+			(items <=> item).adapter = new PropertyAdapter(Villano, propertyAdapter)
+			value <=> listValue
+			height = 300
+		]
 	}
 	
-	def labeledLabel(Panel panel, String textL1, String valueL2){
-		var panelL = new Panel(panel)
-		panelL.layout = new HorizontalLayout
-		new Label(panelL).text = textL1
-		new Label(panelL) => [
-			value <=> valueL2
+	def caracteristicasList(Panel panel, String item){
+			new List<Villano>(panel) => [
+			items <=> item
+			height = 100
+			width = 100
 		]
 	}
 
