@@ -5,21 +5,18 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import appModel.CarmenSanDiegoAppModel
 import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.Application
 import components.Titulo
 import org.uqbar.arena.widgets.List
 import carmenSanDiego.Villano
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.apache.log4j.config.PropertyGetter.PropertyCallback
 import org.uqbar.arena.bindings.PropertyAdapter
 import components.LabeledLabel
 import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.tables.Table
 import org.eclipse.xtend.lib.annotations.Accessors
+import components.VillanoCaracteristicasList
 
-class VillanosWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
+class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
 	@Accessors
 	Panel editableLeftPanel
@@ -88,10 +85,11 @@ class VillanosWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 			]
 	/////////senas particulares
 		new Label(rightPanel).text = "Señas pasrticulares:"
-		caracteristicasList(rightPanel, "villanoTemp.senasParticulares" )
+		new VillanoCaracteristicasList(rightPanel, "villanoTemp.senasParticulares")
 	////////// hobbbies
 		new Label(rightPanel).text = "Hobbies:"
-		caracteristicasList(rightPanel, "villanoTemp.hobbies" )
+		//caracteristicasList(rightPanel, "villanoTemp.hobbies" )
+		new VillanoCaracteristicasList(rightPanel, "villanoTemp.hobbies")
 	}
 	
 //	override showOn(Object builder) {
@@ -104,7 +102,7 @@ class VilApp extends Application{
 	
 	override protected createMainWindow() {
 		var appModel  = new CarmenSanDiegoAppModel
-		new VillanosWindow(this, appModel)
+		new ExpedienteWindow(this, appModel)
 		
 	}
 	

@@ -14,6 +14,7 @@ import Exceptions.DatoNoIngresado
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
 import Exceptions.NoSeleccionadoException
+import components.VillanoCaracteristicasList
 
 class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -35,11 +36,8 @@ class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		]
 			new Label(mainPanel).text = "Hobbie"
 		////////// LISTA
-			val list = new org.uqbar.arena.widgets.List<String>(mainPanel) => [
-			items <=> "villanoTemp.hobbies"
+			new VillanoCaracteristicasList(mainPanel, "villanoTemp.hobbies")
 			
-			value <=> "villanoCaracSeleccionada"
-			]
 		//////// BOTON ELIMINAR
 			
 			new Button(mainPanel) => [

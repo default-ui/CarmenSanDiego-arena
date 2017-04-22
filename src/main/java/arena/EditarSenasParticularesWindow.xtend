@@ -13,6 +13,7 @@ import org.uqbar.arena.layout.HorizontalLayout
 import Exceptions.DatoNoIngresado
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
+import components.VillanoCaracteristicasList
 
 class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -34,10 +35,7 @@ class EditarSenasParticularesWindow extends SimpleWindow<CarmenSanDiegoAppModel>
 		]
 			new Label(mainPanel).text = "Seña"
 		////////// LISTA
-			val list = new org.uqbar.arena.widgets.List<String>(mainPanel) => [
-			items <=> "villanoTemp.senasParticulares"
-			value <=> "villanoCaracSeleccionada"
-			]
+			new VillanoCaracteristicasList(mainPanel, "villanoTemp.senasParticulares")
 		//////// BOTON ELIMINAR
 			new Button(mainPanel) => [
 			var senaSelec = new NotNullObservable("villanoCaracSeleccionada")
