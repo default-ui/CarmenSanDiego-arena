@@ -13,6 +13,7 @@ import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import Exceptions.NoSeleccionadoException
 import Exceptions.DatoNoIngresado
+import org.uqbar.arena.bindings.NotNullObservable
 
 class EditarCaracteristicasWindow extends Dialog<CarmenSanDiegoAppModel>{
 	
@@ -52,13 +53,21 @@ override protected createFormPanel(Panel mainPanel) {
 			
 		new Button(mainPanel) => [
 			caption = "Eliminar"
-			setAsDefault 
+			/*Estas dos lineas son para que el boton se bloquee cuando no tenga nada mas que eliminar o no selecciona nada 
+			 * No se muy bien que hacen porque no estan documentadas en ningun lado pero lo vi en el ejemplo de 
+			 * los celulares
+			 * */
+			///////////////////////
+			var caracSelec = new NotNullObservable("caracteristicaAEliminar")
+			bindEnabled(caracSelec)
+			////////////////////////// 
 			onClick [ | 
-				if(this.modelObject.caracteristica==null || this.modelObject.caracteristica=="" ){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
-				}
+//				if(this.modelObject.caracteristica==null || this.modelObject.caracteristica=="" ){
+//					new NoSeleccionadoException().mostrarError
+//					throw new Exception();
+//				}
 				this.modelObject.eliminarCaracteristica()
+				
 			]
 			]
 			
@@ -71,7 +80,7 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Agregar"
 			onClick [ |
-			if (this.modelObject.nuevoPaisNombre=="") {
+			if (this.modelObject.caracteristica=="" || this.modelObject.caracteristica == null) {
 					new DatoNoIngresado().mostrarError
 					throw new Exception();
 				}

@@ -13,6 +13,7 @@ import org.uqbar.arena.layout.HorizontalLayout
 import Exceptions.DatoNoIngresado
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
+import Exceptions.NoSeleccionadoException
 
 class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -46,8 +47,15 @@ class EditarHobbiesWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 			caption = "Eliminar"
 			onClick(|this.modelObject.eliminarHobbie)
 			bindEnabled(senaSelec)
-
 			]
+//			onClick[|
+// 				if(this.modelObject.villanoCaracSeleccionada==null){
+// 				new NoSeleccionadoException().mostrarError
+// 					throw new Exception();
+// 				}
+// 				this.modelObject.eliminarHobbie]
+//
+//			]
 		///////PANEL HORIZONTAL
 			var textBoxPanel = new Panel(mainPanel).layout =  new HorizontalLayout
 		/////// TEXTBOX
