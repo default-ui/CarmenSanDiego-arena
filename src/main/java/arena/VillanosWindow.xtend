@@ -17,9 +17,11 @@ import components.LabeledLabel
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.tables.Table
+import org.eclipse.xtend.lib.annotations.Accessors
 
 class VillanosWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
+	@Accessors
 	Panel editableLeftPanel
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
@@ -34,6 +36,34 @@ class VillanosWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	}
 	
 	override createFormPanel(Panel mainPanel) {
+		mainPanel.layout = new ColumnLayout(2)
+		mainPanel.width  = 400
+		createMainPanelVillanos(mainPanel)
+	}
+		
+	def villanoList(Panel panel, String item, String propertyAdapter, String listValue){
+			new List<Villano>(panel) => [
+			(items <=> item).adapter = new PropertyAdapter(Villano, propertyAdapter)
+			value <=> listValue
+			height = 300
+		]
+	}
+	
+	def caracteristicasList(Panel panel, String item){
+			new List<Villano>(panel) => [
+			items <=> item
+			height = 100
+			width = 100
+		]
+	}
+
+	def windowTitle(){
+		//// TODO factorizarlo en el appmodel porque estoy segura que s eusa en otro lado
+		"Resolviendo: Robo de " + modelObject.juego.obtenerObjeto + " - Expedientes"
+		
+	}
+	
+	def createMainPanelVillanos(Panel mainPanel){
 		mainPanel.layout = new ColumnLayout(2)
 		mainPanel.width  = 400
 		editableLeftPanel = new Panel(mainPanel)
@@ -63,28 +93,6 @@ class VillanosWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		new Label(rightPanel).text = "Hobbies:"
 		caracteristicasList(rightPanel, "villanoTemp.hobbies" )
 	}
-		
-	def villanoList(Panel panel, String item, String propertyAdapter, String listValue){
-			new List<Villano>(panel) => [
-			(items <=> item).adapter = new PropertyAdapter(Villano, propertyAdapter)
-			value <=> listValue
-			height = 300
-		]
-	}
-	
-	def caracteristicasList(Panel panel, String item){
-			new List<Villano>(panel) => [
-			items <=> item
-			height = 100
-			width = 100
-		]
-	}
-
-	def windowTitle(){
-		//// TODO factorizarlo en el appmodel porque estoy segura que s eusa en otro lado
-		"Resolviendo: Robo de " + modelObject.juego.obtenerObjeto + " - Expedientes"
-		
-	}
 	
 //	override showOn(Object builder) {
 //		throw new UnsupportedOperationException("TODO: auto-generated method stub")
@@ -96,8 +104,6 @@ class VilApp extends Application{
 	
 	override protected createMainWindow() {
 		var appModel  = new CarmenSanDiegoAppModel
-		//var vil = appModel.expediente.villanos.get(0)
-		//appModel.villanoTemp = vil 
 		new VillanosWindow(this, appModel)
 		
 	}
