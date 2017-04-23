@@ -36,6 +36,7 @@ class LugarWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 				modelObject.juego.proximoPais,
 				modelObject.juego.ordenDeArresto
 			)
+			height = 150
 		]
 		
 		new Button(mainPanel) => [
