@@ -5,7 +5,6 @@ import appModel.CarmenSanDiegoAppModel
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import components.LabeledTextBox
-import org.uqbar.arena.Application
 import components.LabeledSelector
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Label

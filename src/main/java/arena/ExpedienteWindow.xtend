@@ -5,7 +5,6 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import appModel.CarmenSanDiegoAppModel
 import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.Application
 import components.Titulo
 import org.uqbar.arena.widgets.List
 import carmenSanDiego.Villano

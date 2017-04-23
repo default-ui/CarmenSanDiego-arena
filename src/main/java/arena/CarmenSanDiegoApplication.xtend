@@ -2,7 +2,6 @@ package arena
 
 import org.uqbar.arena.Application
 import appModel.CarmenSanDiegoAppModel
-import utils.DummyData
 
 /**
  * Punto de entrada de la aplicación

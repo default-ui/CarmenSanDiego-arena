@@ -2,8 +2,6 @@ package arena
 
 import org.uqbar.arena.Application
 import appModel.LugaresModel
-import carmenSanDiego.Lugar
-import carmenSanDiego.Caso
 import carmenSanDiego.Biblioteca
 import utils.DummyData
 

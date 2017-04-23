@@ -11,7 +11,6 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import Exceptions.NoSeleccionadoException
 import Exceptions.DatoNoIngresado
 import org.uqbar.arena.bindings.NotNullObservable
 

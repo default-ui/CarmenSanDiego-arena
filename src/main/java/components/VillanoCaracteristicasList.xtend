@@ -8,7 +8,7 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.bindings.PropertyAdapter
 
 /*
- * Lista de caracteristicas de villamnos (hobbies o senas particulares). Se factorizan porque se usan en varias
+ * Lista de caracteristicas de villanos (hobbies o senas particulares). Se factorizan porque se usan en varias
  * vistas.
  */
 
