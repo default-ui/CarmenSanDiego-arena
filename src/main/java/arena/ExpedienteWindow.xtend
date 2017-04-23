@@ -15,6 +15,7 @@ import components.LabeledLabel
 import org.uqbar.arena.widgets.Label
 import org.eclipse.xtend.lib.annotations.Accessors
 import components.VillanoCaracteristicasList
+import org.uqbar.arena.graphics.Image
 
 class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
@@ -25,6 +26,7 @@ class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		super(parent, model)
 		title = windowTitle
 		
+		
 	}
 	
 	override addActions(Panel actionsPanel) {
@@ -34,7 +36,7 @@ class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
 	override createFormPanel(Panel mainPanel) {
 		mainPanel.layout = new ColumnLayout(2)
-		mainPanel.width  = 400
+		mainPanel.width  = 600
 		createMainPanelVillanos(mainPanel)
 	}
 		
@@ -62,7 +64,8 @@ class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	
 	def createMainPanelVillanos(Panel mainPanel){
 		mainPanel.layout = new ColumnLayout(2)
-		mainPanel.width  = 400
+		mainPanel.width  = 600
+		
 		editableLeftPanel = new Panel(mainPanel)
 		var rightPanel = new Panel(mainPanel)
 ///////// Left panel

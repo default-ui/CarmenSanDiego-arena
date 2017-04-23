@@ -17,8 +17,8 @@ import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.graphics.Image
 import appModel.CarmenSanDiegoAppModel
-import org.uqbar.commons.model.UserException
 import Exceptions.NoSeleccionadoException
+import org.uqbar.arena.Application
 
 class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 
@@ -143,7 +143,21 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 				width = 400
 				//value <=> "paisSeleccionado.caracteristicas"
 			]	
-		}
-		
-		
+		}	
+}
+
+/***********
+ * PRUEBA***
+ ***********/
+ 
+class MapamundiApp extends Application{
+	
+	override protected createMainWindow() {
+		new MapamundiWindow(this, new CarmenSanDiegoAppModel)		
+	}
+	
+	def static main(String[] args) {
+		new MapamundiApp().start
+	}
+	
 }

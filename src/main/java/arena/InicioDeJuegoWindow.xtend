@@ -13,24 +13,28 @@ import carmenSanDiego.Villano
 import carmenSanDiego.Sexo
 import java.util.ArrayList
 import carmenSanDiego.Pais
+import java.awt.Color
+import appModel.CarmenSanDiegoAppModel
 
-class InicioDeJuegoWindow extends SimpleWindow<Caso>{
+class InicioDeJuegoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
 	// deberia ser un dialog??
 	// que feo que es el error viewer panel, no se puede sacar???
 	
 	
-	new(WindowOwner parent, Caso model) {
+	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 		// esto seguro no se hace asi, pero como se hace entonces?
-		title = "Robo de: " + model.objeto
+		title = "Robo de: " + modelObject.juego.caso.objeto
 	}
 	
 	override protected addActions(Panel actionsPanel) {
 		new Button(actionsPanel) => [
 			caption = "Aceptar el caso"
 			setAsDefault 
-			//onClick [ | "resolverMisterio" ]
+			onClick [ | 
+				new ResolviendoCasoWindow(this, this.modelObject).open
+			]
 			
 			]
 	}
@@ -40,28 +44,10 @@ class InicioDeJuegoWindow extends SimpleWindow<Caso>{
 		editorPanel.layout = new VerticalLayout
 		new Label(editorPanel).text = "Detective, tenemos un caso para usted!"
 		new Label(editorPanel) =>[
-			value <=> "reporte"
+			text= modelObject.juego.caso.generarReporte
 			width = 400
 			height = 150
 		]
 	}	
 }
 
-/***********
- * PRUEBA***
- ***********/
- 
-class InicioDeJuegoApp extends Application{
-	
-	override protected createMainWindow() {
-		var villano = new Villano("El Gato", Sexo.Masculino)	
-	
-		new InicioDeJuegoWindow(this, new Caso(villano, "Zircon", new ArrayList<Pais>, new Pais("Argentina")))
-		
-	}
-	
-	def static main(String[] args) {
-		new InicioDeJuegoApp().start
-	}
-	
-}

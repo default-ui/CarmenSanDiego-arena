@@ -23,6 +23,10 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		
 		new Button(actionsPanel) => [
 			caption = "Resolver Misterio"
+			onClick [ | 
+				modelObject.juego.crearCaso()
+				new InicioDeJuegoWindow(this, this.modelObject).open 
+			]
 			setAsDefault
 		]
 

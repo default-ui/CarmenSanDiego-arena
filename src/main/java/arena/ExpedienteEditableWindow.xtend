@@ -7,6 +7,8 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.Application
 import carmenSanDiego.Villano
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.graphics.Image
 
 class ExpedienteEditableWindow extends ExpedienteWindow{
 	
@@ -16,7 +18,8 @@ class ExpedienteEditableWindow extends ExpedienteWindow{
 	
 	override createFormPanel(Panel mainPanel){
 		mainPanel.layout = new ColumnLayout(2)
-		mainPanel.width  = 400
+		mainPanel.width  = 500
+		
 		createMainPanelVillanos(mainPanel)
 		// Nuevo villano button
 		new Button(editableLeftPanel) => [

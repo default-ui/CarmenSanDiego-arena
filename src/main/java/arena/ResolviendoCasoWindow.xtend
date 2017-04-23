@@ -41,13 +41,17 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 		armarAccionesPanel(upperPanel)
 		armarLugaresPanel(upperPanel)
 
-		new Label(mainPanel).text = "Recorrido Criminal:"
-		
-		new Label(mainPanel).text = "LALALA < LA < LALALA"
+		new Titulo(mainPanel, "Recorrido Criminal")
+		new List<Pais>(mainPanel) => [
+				modelObject.juego.getRecorrido()
+				(items <=> "juego.recorrido").adapter = new PropertyAdapter(Pais, "nombre")
+//				value <=> "paisSeleccionado"
+			]
 
 		new Titulo(mainPanel, "Destinos Fallidos")
 		new List<Pais>(mainPanel) => [
-				(items <=> "juego.caso.planDeEscape").adapter = new PropertyAdapter(Pais, "nombre")
+				modelObject.juego.getFallidos()
+				(items <=> "juego.fallidos").adapter = new PropertyAdapter(Pais, "nombre")
 //				value <=> "paisSeleccionado"
 			]
 
@@ -69,6 +73,8 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 
 		new Button(accionesPanel) => [
 			caption = "Viajar"
+			
+			new PaisWindow(this, this.modelObject).open
 		]
 
 		new Button(accionesPanel) => [

@@ -16,6 +16,7 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import Exceptions.DemasiadosLugaresException
 
 class EditarLugaresWindow extends Dialog<CarmenSanDiegoAppModel>{
 
@@ -80,6 +81,10 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Agregar"
 			onClick [ |
+				if(this.modelObject.temp.lugares.size()>=3){
+					new DemasiadosLugaresException().mostrarError
+					throw new Exception();
+				}
 				if(this.modelObject.lugar==null){
 					new NoSeleccionadoException().mostrarError
 					throw new Exception();
