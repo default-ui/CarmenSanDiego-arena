@@ -1,17 +1,17 @@
 package arena
 
-import org.uqbar.arena.windows.SimpleWindow
-import appModel.LugaresModel
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.widgets.Label
+import appModel.CarmenSanDiegoAppModel
 import components.Titulo
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 
-class LugarWindow extends SimpleWindow<LugaresModel> {
+class LugarWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 	
-	new(WindowOwner parent, LugaresModel model) {
+	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 	}
 	
@@ -24,15 +24,24 @@ class LugarWindow extends SimpleWindow<LugaresModel> {
 	}
 	
 	override createMainTemplate(Panel mainPanel) {
-		this.title = "Resolviendo: Robo del " + modelObject.caso.objeto
+		this.title = "Resolviendo: Robo del " + modelObject.juego.caso.objeto
 		mainPanel.layout = new VerticalLayout
 		
-		new Titulo(mainPanel, "Estas visitando: " + modelObject.lugar.nombre)
+		new Titulo(mainPanel, "Estas visitando: " + modelObject.lugarAbierto.nombre)
 
-		//TODO pedir la pista del ocupante del pais actual.
 		new Label(mainPanel) => [
-			value <=> "juego"
+			text = modelObject.juego.pedirPista(
+				modelObject.lugarAbierto, 
+				modelObject.juego.caso.responsable,
+				modelObject.juego.proximoPais,
+				modelObject.juego.ordenDeArresto
+			)
 		]
 		
+		new Button(mainPanel) => [
+			caption = "Continuar"
+			setAsDefault 
+			onClick [ | this.close ]
+			]
 	}
 }
