@@ -29,7 +29,7 @@ class InicioDeJuegoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 				new ResolviendoCasoWindow(this, this.modelObject).open
 			]
 			
-			]
+		]
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
