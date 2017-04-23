@@ -45,20 +45,3 @@ class ExpedienteEditableWindow extends ExpedienteWindow{
 	
 }
 
-//////////////TODO: ESTO VUELAAAAAAAAAAAAAAAA
-
-class VilExpApp extends Application{
-	
-	override protected createMainWindow() {
-		var appModel  = new CarmenSanDiegoAppModel
-		new ExpedienteEditableWindow(this, appModel)
-		
-	}
-	
-	def static main(String[] args) {
-		new VilExpApp().start
-	}
-	
-
-	
-	}

@@ -33,68 +33,47 @@ class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	}
 	
 	override createFormPanel(Panel mainPanel) {
-	//// Label nombre
+	/// Label nombre
 		new LabeledTextBox(mainPanel) => [
 			text = "Nombre:"
 			bindValueToProperty("villanoTemp.nombre")
 		]
-	//// Label Sexo
-	///TODO: no sabia como traerme un enum desde el dominio a traves del appModel. No se si es la mejor solucion
+	/// Label Sexo
 		new LabeledSelector(mainPanel) => [
 			text = "Sexo:"
 			bindItemsToProperty("gender")
 			bindValueToProperty("villanoTemp.sexo")
 		]
-	////Senas 
-	///// Hor panel
+	/// Senas 
+	///// Horizontal panel
 		var senaPanel = new Panel(mainPanel)
 		senaPanel.layout = new HorizontalLayout
-	///////// Label
+	///// Label
 		new Label(senaPanel).text = "Señas particulares:"
-	/////// Button
+	///// Button
 		new Button(senaPanel) => [
 			caption = "Editar señas particulares"
 			onClick[| new EditarSenasParticularesWindow(this, modelObject).open]
 		] 
-	////// List label
+	//// List label
 		new Label(mainPanel).text = "Señas"
-	///// Senas list
+	//// Senas list
 		new VillanoCaracteristicasList(mainPanel,"villanoTemp.senasParticulares" )
-	//// Hobbies 
-	///// Hor panel
+	/// Hobbies 
+	//// Horizontal panel
 		var hobbiePanel = new Panel(mainPanel)
 		hobbiePanel.layout = new HorizontalLayout
-	///////// Label
+	//// Label
 		new Label(hobbiePanel).text = "Hobbies:"
-	/////// Button
+	//// Button
 		new Button(hobbiePanel) => [
 			caption = "Editar hobbies"
 			onClick[| new EditarHobbiesWindow(this, modelObject).open]
 		] 
-	////// List label
+	//// List label
 		new Label(mainPanel).text = "Hobbie"
-	///// hobbie list
+	//// Hobbie list
 		new VillanoCaracteristicasList(mainPanel,"villanoTemp.hobbies" )
-		
 	}
-	
- /////////////////////////////
- // ESTO VUELA ES SOLO PARA PRUEBAS
- 
+
 }
- 
-class EditarVilApp extends Application{
-	
-	override protected createMainWindow() {
-		var appModel  = new CarmenSanDiegoAppModel
-		var vil = appModel.expediente.villanos.get(0)
-		appModel.villanoTemp = vil 
-		new EditarVillanoWindow(this, appModel, "Expediente - Editar Villano")
-		
-	}
-	
-	def static main(String[] args) {
-		new EditarVilApp().start
-	}
-	}
-	

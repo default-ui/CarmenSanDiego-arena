@@ -53,19 +53,9 @@ override protected createFormPanel(Panel mainPanel) {
 			
 		new Button(mainPanel) => [
 			caption = "Eliminar"
-			/*Estas dos lineas son para que el boton se bloquee cuando no tenga nada mas que eliminar o no selecciona nada 
-			 * No se muy bien que hacen porque no estan documentadas en ningun lado pero lo vi en el ejemplo de 
-			 * los celulares
-			 * */
-			///////////////////////
 			var caracSelec = new NotNullObservable("caracteristicaAEliminar")
 			bindEnabled(caracSelec)
-			////////////////////////// 
 			onClick [ | 
-//				if(this.modelObject.caracteristica==null || this.modelObject.caracteristica=="" ){
-//					new NoSeleccionadoException().mostrarError
-//					throw new Exception();
-//				}
 				this.modelObject.eliminarCaracteristica()
 				
 			]

@@ -26,12 +26,10 @@ class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		super(parent, model)
 		title = windowTitle
 		
-		
 	}
 	
 	override addActions(Panel actionsPanel) {
-		//throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	
+		// no se usa
 	}
 	
 	override createFormPanel(Panel mainPanel) {
@@ -39,8 +37,40 @@ class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		mainPanel.width  = 600
 		createMainPanelVillanos(mainPanel)
 	}
+			
+	def createMainPanelVillanos(Panel mainPanel){
+		mainPanel.layout = new ColumnLayout(2)
+		mainPanel.width  = 600
 		
-	def villanoList(Panel panel, String item, String propertyAdapter, String listValue){
+		editableLeftPanel = new Panel(mainPanel)
+		var rightPanel = new Panel(mainPanel)
+	/// Left panel
+	//// Titulo
+		new Titulo(editableLeftPanel, "Villano")
+	//// Lista
+		villanoList(editableLeftPanel, "juego.expediente.villanos", "nombre", "villanoTemp")
+	/// Right panel
+	//// Nombre
+		new LabeledLabel(rightPanel) => [
+			text = "Nombre:"
+			bindValueToProperty("villanoTemp.nombre")
+			label.fontSize = 10
+			]
+	//// Sexo
+		new LabeledLabel(rightPanel) => [
+			text = "Sexo:"
+			bindValueToProperty("villanoTemp.sexo")
+			label.fontSize = 10
+			]
+	//// Senas particulares
+		new Label(rightPanel).text = "Señas pasrticulares:"
+		new VillanoCaracteristicasList(rightPanel, "villanoTemp.senasParticulares")
+	//// Hobbbies
+		new Label(rightPanel).text = "Hobbies:"
+		new VillanoCaracteristicasList(rightPanel, "villanoTemp.hobbies")
+	}
+
+		def villanoList(Panel panel, String item, String propertyAdapter, String listValue){
 			new List<Villano>(panel) => [
 			(items <=> item).adapter = new PropertyAdapter(Villano, propertyAdapter)
 			value <=> listValue
@@ -62,57 +92,5 @@ class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		
 	}
 	
-	def createMainPanelVillanos(Panel mainPanel){
-		mainPanel.layout = new ColumnLayout(2)
-		mainPanel.width  = 600
-		
-		editableLeftPanel = new Panel(mainPanel)
-		var rightPanel = new Panel(mainPanel)
-///////// Left panel
-	////// titulo
-		new Titulo(editableLeftPanel, "Villano")
-	//////// lista
-		villanoList(editableLeftPanel, "juego.expediente.villanos", "nombre", "villanoTemp")
-	////// right panel
-	////// nombreLabel
-		new LabeledLabel(rightPanel) => [
-			text = "Nombre:"
-			bindValueToProperty("villanoTemp.nombre")
-			label.fontSize = 10
-			]
-	////// sexo label
-		new LabeledLabel(rightPanel) => [
-			text = "Sexo:"
-			bindValueToProperty("villanoTemp.sexo")
-			label.fontSize = 10
-			]
-	/////////senas particulares
-		new Label(rightPanel).text = "Señas pasrticulares:"
-		new VillanoCaracteristicasList(rightPanel, "villanoTemp.senasParticulares")
-	////////// hobbbies
-		new Label(rightPanel).text = "Hobbies:"
-		//caracteristicasList(rightPanel, "villanoTemp.hobbies" )
-		new VillanoCaracteristicasList(rightPanel, "villanoTemp.hobbies")
-	}
-	
-//	override showOn(Object builder) {
-//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-//	}
 	
 }
-
-class VilApp extends Application{
-	
-	override protected createMainWindow() {
-		var appModel  = new CarmenSanDiegoAppModel
-		new ExpedienteWindow(this, appModel)
-		
-	}
-	
-	def static main(String[] args) {
-		new VilApp().start
-	}
-	
-
-	
-	}

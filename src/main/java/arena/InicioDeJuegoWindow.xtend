@@ -44,7 +44,7 @@ class InicioDeJuegoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		editorPanel.layout = new VerticalLayout
 		new Label(editorPanel).text = "Detective, tenemos un caso para usted!"
 		new Label(editorPanel) =>[
-			text= modelObject.juego.caso.generarReporte
+			text= modelObject.juego.caso.reporte
 			width = 400
 			height = 150
 		]
