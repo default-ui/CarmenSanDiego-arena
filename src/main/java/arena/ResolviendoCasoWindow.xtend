@@ -98,6 +98,10 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 			
 			new Button(lugaresPanel) => [
 				caption = lugar.nombre
+				onClick [ | 
+					modelObject.setLugarAbierto(lugar)
+					new LugarWindow(this, this.modelObject).open
+				]
 			]
 			
 		}
