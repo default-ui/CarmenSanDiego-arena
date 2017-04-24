@@ -25,8 +25,8 @@ class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppMod
 			caption = "Emitir Orden De Arresto"
 			setAsDefault
 			onClick [
-				var nuevaOrdenDeArresto = new OrdenDeArresto(modelObject.villanoDeNuevaOrdenDeArresto)
-				modelObject.juego.ordenDeArresto = nuevaOrdenDeArresto
+				modelObject.juego.ordenDeArresto = new OrdenDeArresto(modelObject.villanoDeNuevaOrdenDeArresto)
+				this.close
 			]
 		]
 	}

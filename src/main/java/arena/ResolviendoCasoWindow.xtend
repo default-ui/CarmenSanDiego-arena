@@ -17,8 +17,9 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import components.LabeledLabel
+import org.uqbar.arena.windows.SimpleWindow
 
-class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
+class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
@@ -29,8 +30,7 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	}
 	
 	override createFormPanel(Panel mainPanel) {
-		
-		new LabeledLabel(mainPanel) => [
+		new Label(mainPanel) => [
 			text = 'Estás en: '
 			bindValueToProperty('juego.paisActual.nombre')
 		]
@@ -43,6 +43,7 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 
 		new Titulo(mainPanel, "Recorrido Criminal")
 		new List<Pais>(mainPanel) => [
+				width=40
 				modelObject.juego.getRecorrido()
 				(items <=> "juego.recorrido").adapter = new PropertyAdapter(Pais, "nombre")
 //				value <=> "paisSeleccionado"
@@ -50,6 +51,7 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 
 		new Titulo(mainPanel, "Destinos Fallidos")
 		new List<Pais>(mainPanel) => [
+				width=40
 				modelObject.juego.getFallidos()
 				(items <=> "juego.fallidos").adapter = new PropertyAdapter(Pais, "nombre")
 //				value <=> "paisSeleccionado"
@@ -58,19 +60,25 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	}
 	
 	def private armarAccionesPanel(Panel containerPanel) {
-		
 		val accionesPanel = new GroupPanel(containerPanel)
 		accionesPanel.layout = new VerticalLayout
 		accionesPanel.setTitle('Acciones')
 		
 		new Button(accionesPanel) => [
 			caption = "Orden De Arresto"
+			onClick [|
+				new EmitirOrdenDeArrestoWindow(this, this.modelObject).open
+				]
 		]
-		new LabeledLabel(accionesPanel) => [
+		
+		new Label(accionesPanel) => [
 			text = 'Orden emitida para: '
-			bindValueToProperty('juego.ordenDeArrestoString')
 		]
-
+		
+		new Label(accionesPanel) => [
+			bindValueToProperty('villanoDeNuevaOrdenDeArresto.nombre')
+		]
+		
 		new Button(accionesPanel) => [
 			caption = "Viajar"
 			onClick [|
@@ -81,6 +89,9 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 
 		new Button(accionesPanel) => [
 			caption = "Expedientes"
+			onClick [|
+				new ExpedienteWindow(this, this.modelObject).open
+				]
 		]
 		
 	}
@@ -89,7 +100,6 @@ class ResolviendoCasoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	 * Genera el listado de botones para ver los lugares
 	 */
 	def private armarLugaresPanel(Panel containerPanel) {
-		
 		val lugaresPanel = new GroupPanel(containerPanel)
 		lugaresPanel.layout = new VerticalLayout
 		lugaresPanel.setTitle('Lugares')

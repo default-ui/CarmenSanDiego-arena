@@ -18,7 +18,7 @@ class InicioDeJuegoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 		// esto seguro no se hace asi, pero como se hace entonces?
-		title = "Robo de: " + modelObject.juego.caso.objeto
+		//title = "Robo de: " + modelObject.juego.caso.objeto
 	}
 	
 	override protected addActions(Panel actionsPanel) {
@@ -39,7 +39,7 @@ class InicioDeJuegoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		new Label(editorPanel) =>[
 			text= modelObject.juego.caso.reporte
 			width = 400
-			height = 150
+			height = 100
 		]
 	}	
 }

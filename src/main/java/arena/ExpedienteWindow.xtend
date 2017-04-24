@@ -15,6 +15,7 @@ import org.uqbar.arena.widgets.Label
 import org.eclipse.xtend.lib.annotations.Accessors
 import components.VillanoCaracteristicasList
 import org.uqbar.arena.graphics.Image
+import org.uqbar.arena.windows.SimpleWindow
 
 class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	

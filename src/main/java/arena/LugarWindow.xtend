@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import carmenSanDiego.Pais
 
 class LugarWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 	
@@ -30,10 +31,11 @@ class LugarWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 		new Titulo(mainPanel, "Estas visitando: " + modelObject.lugarAbierto.nombre)
 
 		new Label(mainPanel) => [
+			val Pais proximo = modelObject.juego.getProximoPais()
 			text = modelObject.juego.pedirPista(
 				modelObject.lugarAbierto, 
 				modelObject.juego.caso.responsable,
-				modelObject.juego.proximoPais,
+				proximo,
 				modelObject.juego.ordenDeArresto
 			)
 			height = 150
