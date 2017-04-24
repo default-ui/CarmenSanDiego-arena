@@ -1,21 +1,20 @@
 package arena
 
-import components.CustomSimpleWindow
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Panel
 import appModel.CarmenSanDiegoAppModel
-import org.uqbar.arena.layout.ColumnLayout
-import components.Titulo
-import org.uqbar.arena.widgets.List
 import carmenSanDiego.Villano
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.bindings.PropertyAdapter
+import components.CustomSimpleWindow
 import components.LabeledLabel
-import org.uqbar.arena.widgets.Label
-import org.eclipse.xtend.lib.annotations.Accessors
+import components.Titulo
 import components.VillanoCaracteristicasList
-import org.uqbar.arena.graphics.Image
-import org.uqbar.arena.windows.SimpleWindow
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.List
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.WindowOwner
+
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	

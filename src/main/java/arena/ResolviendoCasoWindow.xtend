@@ -2,7 +2,6 @@ package arena
 
 import appModel.CarmenSanDiegoAppModel
 import carmenSanDiego.Pais
-import components.CustomSimpleWindow
 import components.Titulo
 import org.uqbar.arena.Application
 import org.uqbar.arena.bindings.PropertyAdapter
@@ -13,11 +12,10 @@ import org.uqbar.arena.widgets.GroupPanel
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import components.LabeledLabel
-import org.uqbar.arena.windows.SimpleWindow
 
 class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
