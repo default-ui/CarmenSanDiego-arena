@@ -25,6 +25,7 @@ class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 			caption = "Aceptar el caso"
 			setAsDefault 
 			onClick [ | 
+				this.close
 				new ResolviendoCasoWindow(this, this.modelObject).open
 			]
 			
