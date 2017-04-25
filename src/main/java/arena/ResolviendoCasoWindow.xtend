@@ -106,7 +106,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		lugaresPanel.setTitle('Lugares')
 		
 		
-		/*new Button(lugaresPanel) => [
+		new Button(lugaresPanel) => [
 				caption = modelObject.lugaresPistas.get(0).nombre
 				onClick [ | 
 					modelObject.setLugarAbierto(modelObject.lugaresPistas.get(0))
@@ -126,8 +126,8 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 					modelObject.setLugarAbierto(modelObject.lugaresPistas.get(2))
 					new LugarWindow(this, this.modelObject).open
 				]
-		]*/
-		for(lugar : modelObject.juego.paisActual.lugares) {
+		]
+		/*for(lugar : modelObject.juego.paisActual.lugares) {
 			
 			new Button(lugaresPanel) => [
 				caption = lugar.nombre
@@ -137,7 +137,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 				]
 			]
 			
-		}
+		}*/
 		
 	}	
 
