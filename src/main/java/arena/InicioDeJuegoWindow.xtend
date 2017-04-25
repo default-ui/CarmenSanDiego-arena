@@ -23,7 +23,7 @@ class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 			setAsDefault 
 			onClick [ | 
 				this.close
-				modelObject.traerPistas(modelObject.juego.proximoPais, modelObject.juego.caso.responsable)
+				
 				new ResolviendoCasoWindow(this, this.modelObject).open
 				
 			]
