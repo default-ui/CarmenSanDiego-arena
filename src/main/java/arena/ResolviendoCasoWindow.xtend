@@ -16,6 +16,8 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.graphics.Image
+import components.LabeledLabel
 
 class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -28,9 +30,17 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	}
 	
 	override createFormPanel(Panel mainPanel) {
+		
 		new Label(mainPanel) => [
-			text = 'Estás en: '
+			bindImageToProperty("pathImagenResolviendo", [ imagePath |
+				new Image(imagePath)
+			])
+			
+		]
+		new LabeledLabel(mainPanel) => [
+			text = "Estás en: "
 			bindValueToProperty('juego.paisActual.nombre')
+			
 		]
 
 		val upperPanel = new Panel(mainPanel)
@@ -127,33 +137,8 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 					new LugarWindow(this, this.modelObject).open
 				]
 		]
-		/*for(lugar : modelObject.juego.paisActual.lugares) {
-			
-			new Button(lugaresPanel) => [
-				caption = lugar.nombre
-				onClick [ | 
-					modelObject.setLugarAbierto(lugar)
-					new LugarWindow(this, this.modelObject).open
-				]
-			]
-			
-		}*/
+		
 		
 	}	
 
 }
-/***********
- * PRUEBA***
- ***********/
- /* 
-class ResolviendoCasoApp extends Application{
-	
-	override protected createMainWindow() {
-		new ResolviendoCasoWindow(this, new CarmenSanDiegoAppModel)		
-	}
-	
-	def static main(String[] args) {
-		new ResolviendoCasoApp().start
-	}
-	
-}*/

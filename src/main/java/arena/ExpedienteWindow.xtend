@@ -39,6 +39,7 @@ class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 	}
 			
 	def createMainPanelVillanos(Panel mainPanel){
+		
 		mainPanel.layout = new ColumnLayout(2)
 		mainPanel.width  = 600
 		

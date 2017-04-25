@@ -11,6 +11,8 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.graphics.Image
 
 class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -31,6 +33,12 @@ class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppMod
 	}
 	
 	override createFormPanel(Panel mainPanel) {
+		new Label(mainPanel) => [
+			bindImageToProperty("pathImagenOrden", [ imagePath |
+				new Image(imagePath)
+			])
+			
+		]
 
 		new LabeledLabel(mainPanel) => [
 			text = 'Orden emitida para: '

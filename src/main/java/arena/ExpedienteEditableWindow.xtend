@@ -7,6 +7,8 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import carmenSanDiego.Villano
 import appModel.ExpedienteAppModel
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.graphics.Image
 
 class ExpedienteEditableWindow extends ExpedienteWindow{
 	
@@ -14,7 +16,10 @@ class ExpedienteEditableWindow extends ExpedienteWindow{
 		super(parent, model)
 	}
 	
+		
+	
 	override createFormPanel(Panel mainPanel){
+		
 		mainPanel.layout = new ColumnLayout(2)
 		mainPanel.width  = 500
 		

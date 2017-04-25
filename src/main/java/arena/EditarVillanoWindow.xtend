@@ -11,6 +11,8 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
 import components.VillanoCaracteristicasList
 import appModel.ExpedienteAppModel
+import org.uqbar.arena.graphics.Image
+import org.uqbar.arena.layout.VerticalLayout
 
 class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 	
@@ -32,6 +34,13 @@ class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 	}
 	
 	override createFormPanel(Panel mainPanel) {
+		new Label(mainPanel) => [
+			
+			bindImageToProperty("pathImagenVillano", [ imagePath |
+				new Image(imagePath)
+			])
+			
+		]
 	/// Label nombre
 		new LabeledTextBox(mainPanel) => [
 			text = "Nombre:"
@@ -44,35 +53,26 @@ class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 			bindValueToProperty("villanoTemp.sexo")
 		]
 	/// Senas 
-	///// Horizontal panel
-		var senaPanel = new Panel(mainPanel)
-		senaPanel.layout = new HorizontalLayout
-	///// Label
-		new Label(senaPanel).text = "Señas particulares:"
-	///// Button
-		new Button(senaPanel) => [
+
+		
+		new Label(mainPanel).text = "Señas Particulares"
+		new VillanoCaracteristicasList(mainPanel,"villanoTemp.senasParticulares" )
+		
+		new Button(mainPanel) => [
 			caption = "Editar señas particulares"
 			onClick[| new EditarSenasParticularesWindow(this, modelObject, "pathImagenSenas", "Seña", "villanoTemp.senasParticulares").open]
 		] 
-	//// List label
-		new Label(mainPanel).text = "Señas"
-	//// Senas list
-		new VillanoCaracteristicasList(mainPanel,"villanoTemp.senasParticulares" )
+		
 	/// Hobbies 
-	//// Horizontal panel
-		var hobbiePanel = new Panel(mainPanel)
-		hobbiePanel.layout = new HorizontalLayout
-	//// Label
-		new Label(hobbiePanel).text = "Hobbies:"
-	//// Button
-		new Button(hobbiePanel) => [
+	
+		
+		new Label(mainPanel).text = "Hobbie"
+		new VillanoCaracteristicasList(mainPanel,"villanoTemp.hobbies" )
+		
+		new Button(mainPanel) => [
 			caption = "Editar hobbies"
 			onClick[| new EditarHobbiesWindow(this, modelObject, "pathImagenHobbies", "Hobbie", "villanoTemp.hobbies").open]
 		] 
-	//// List label
-		new Label(mainPanel).text = "Hobbie"
-	//// Hobbie list
-		new VillanoCaracteristicasList(mainPanel,"villanoTemp.hobbies" )
 	}
 
 }

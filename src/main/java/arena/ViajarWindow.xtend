@@ -12,6 +12,8 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.graphics.Image
 
 class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 		
@@ -50,6 +52,12 @@ class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 
 
 override protected createFormPanel(Panel mainPanel) {
+		new Label(mainPanel) => [
+				bindImageToProperty("pathImagenViajar", [ imagePath |
+					new Image(imagePath)
+				])
+				
+		]
 		
 		val editorPanel = new Panel(mainPanel)
 		editorPanel.layout = new VerticalLayout
