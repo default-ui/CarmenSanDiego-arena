@@ -27,9 +27,9 @@ abstract class EditarCaracteristicaVillanoWindow extends TransactionalDialog<Exp
 	@Accessors
 	Panel textBoxPanel
 	
-	new(WindowOwner owner, ExpedienteAppModel model, String pathTitle, String listLabel, String listSource) {
+	new(WindowOwner owner, ExpedienteAppModel model, String pathTitle, String listLabel, String listSource, String listValue) {
 		super(owner, model)
-		params = #[pathTitle, listLabel, listSource]
+		params = #[pathTitle, listLabel, listSource, listValue]
 	}
 	
 	
@@ -43,15 +43,18 @@ abstract class EditarCaracteristicaVillanoWindow extends TransactionalDialog<Exp
 		
 		/// Titulo (imagen)
 			new Label(mainPanel) => [
+			// obtengo parametro del path de la imagen
 			bindImageToProperty(params.get(0), [ imagePath |
 				new Image(imagePath)
 												])
 			]
 		/// List panel
 			listPanel = new Panel(mainPanel)
+			// obtengo parametro de titulo de lista
 			new Label(listPanel).text = params.get(1)
 		//// list
-			new VillanoCaracteristicasList(listPanel, params.get(2))
+			// obtengo parametro para la lista en particular y su valor seleccionado
+			new VillanoCaracteristicasList(listPanel, params.get(2), params.get(3))
 		/// text box panel
 			textBoxPanel = new Panel(mainPanel)
 			textBoxPanel.layout = new HorizontalLayout

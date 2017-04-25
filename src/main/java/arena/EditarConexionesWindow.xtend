@@ -15,6 +15,7 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.bindings.NotNullObservable
 
 class EditarConexionesWindow extends Dialog<CarmenSanDiegoAppModel>{
 	
@@ -56,13 +57,12 @@ override protected createFormPanel(Panel mainPanel) {
 				
 		new Button(mainPanel) => [
 			caption = "Eliminar"
+			var conexionAElim = new NotNullObservable("conexionAEliminar")
+			bindEnabled(conexionAElim)
 			setAsDefault 
 			onClick [ | 
-				if(this.modelObject.conexion==null){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
-				}
 				this.modelObject.eliminarConexion()
+
 			]
 			]
 			
@@ -72,6 +72,7 @@ override protected createFormPanel(Panel mainPanel) {
 				height = 60
 				width = 400
 				value <=> "conexion"
+				
 				
 			]
 		

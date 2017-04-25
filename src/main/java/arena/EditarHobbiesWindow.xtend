@@ -17,8 +17,8 @@ import appModel.ExpedienteAppModel
 
 class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 	
-	new(WindowOwner owner, ExpedienteAppModel model, String pathTitle, String listLabel, String listSource) {
-		super(owner, model, pathTitle, listLabel, listSource)
+	new(WindowOwner owner, ExpedienteAppModel model) {
+		super(owner, model, "pathImagenHobbies", "Hobbie", "villanoTemp.hobbies", "hobbieSeleccionado")
 	}
 	
 	override createFormPanel(Panel mainPanel) {
@@ -26,10 +26,10 @@ class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 		createMainPanelCaracVillano(mainPanel)
 	/// Boton eliminar
 		new Button(listPanel) => [
-			var senaSelec = new NotNullObservable("villanoCaracSeleccionada")
+			var caracSelec = new NotNullObservable("hobbieSeleccionado")
 			caption = "Eliminar"
 			onClick(|this.modelObject.eliminarHobbie)
-			bindEnabled(senaSelec)
+			bindEnabled(caracSelec)
 			width = 250
 			]
 	/// Boton agregar

@@ -65,10 +65,10 @@ class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 			]
 	//// Senas particulares
 		new Label(rightPanel).text = "Señas pasrticulares:"
-		new VillanoCaracteristicasList(rightPanel, "villanoTemp.senasParticulares")
+		new VillanoCaracteristicasList(rightPanel, "villanoTemp.senasParticulares", "senaSeleccionada")
 	//// Hobbbies
 		new Label(rightPanel).text = "Hobbies:"
-		new VillanoCaracteristicasList(rightPanel, "villanoTemp.hobbies")
+		new VillanoCaracteristicasList(rightPanel, "villanoTemp.hobbies", "hobbieSeleccionado")
 	}
 
 		def villanoList(Panel panel, String item, String propertyAdapter, String listValue){
@@ -88,9 +88,7 @@ class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 	}
 
 	def windowTitle(){
-		//// TODO factorizarlo en el appmodel porque estoy segura que s eusa en otro lado
-		//"Resolviendo: Robo de " + modelObject.objeto + " - Expedientes"
-		"Resolviendo"
+		"Resolviendo: Robo de " + modelObject.objeto + " - Expedientes"
 	}
 	
 	

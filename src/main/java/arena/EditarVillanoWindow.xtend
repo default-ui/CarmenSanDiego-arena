@@ -55,24 +55,21 @@ class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 	/// Senas 
 
 		
-		new Label(mainPanel).text = "Señas Particulares"
-		new VillanoCaracteristicasList(mainPanel,"villanoTemp.senasParticulares" )
-		
-		new Button(mainPanel) => [
-			caption = "Editar señas particulares"
-			onClick[| new EditarSenasParticularesWindow(this, modelObject, "pathImagenSenas", "Seña", "villanoTemp.senasParticulares").open]
-		] 
-		
+
+	//// List label
+		new Label(mainPanel).text = "Señas"
+	//// Senas list
+		new VillanoCaracteristicasList(mainPanel,"villanoTemp.senasParticulares", "senaSeleccionada")
+
 	/// Hobbies 
 	
 		
+
+	//// List label
 		new Label(mainPanel).text = "Hobbie"
-		new VillanoCaracteristicasList(mainPanel,"villanoTemp.hobbies" )
-		
-		new Button(mainPanel) => [
-			caption = "Editar hobbies"
-			onClick[| new EditarHobbiesWindow(this, modelObject, "pathImagenHobbies", "Hobbie", "villanoTemp.hobbies").open]
-		] 
+	//// Hobbie list
+		new VillanoCaracteristicasList(mainPanel,"villanoTemp.hobbies", "hobbieSeleccionado" )
+
 	}
 
 }
