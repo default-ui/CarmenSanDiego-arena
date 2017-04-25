@@ -14,12 +14,13 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.TextBox
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.eclipse.xtend.lib.annotations.Accessors
+import appModel.ExpedienteAppModel
 
 /*
  * Clase abstracta creada para refactorizar la ventana de edicion de caracteristicas (hobbies, senas particulares) en los villanos
  */
 
-abstract class EditarCaracteristicaVillanoWindow extends TransactionalDialog<CarmenSanDiegoAppModel>{
+abstract class EditarCaracteristicaVillanoWindow extends TransactionalDialog<ExpedienteAppModel>{
 	
 	List<String> params
 	@Accessors
@@ -27,7 +28,7 @@ abstract class EditarCaracteristicaVillanoWindow extends TransactionalDialog<Car
 	@Accessors
 	Panel textBoxPanel
 	
-	new(WindowOwner owner, CarmenSanDiegoAppModel model, String pathTitle, String listLabel, String listSource) {
+	new(WindowOwner owner, ExpedienteAppModel model, String pathTitle, String listLabel, String listSource) {
 		super(owner, model)
 		params = #[pathTitle, listLabel, listSource]
 	}

@@ -7,11 +7,11 @@ import org.uqbar.arena.widgets.Button
 
 import Exceptions.DatoNoIngresado
 import org.uqbar.arena.bindings.NotNullObservable
-
+import appModel.ExpedienteAppModel
 
 class EditarSenasParticularesWindow extends EditarCaracteristicaVillanoWindow{
 	
-	new(WindowOwner owner, CarmenSanDiegoAppModel model, String pathTitle, String listLabel, String listSource) {
+	new(WindowOwner owner, ExpedienteAppModel model, String pathTitle, String listLabel, String listSource) {
 		super(owner, model, pathTitle, listLabel, listSource)
 	}
 	

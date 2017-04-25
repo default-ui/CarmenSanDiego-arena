@@ -13,10 +13,11 @@ import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
 import components.VillanoCaracteristicasList
 import org.uqbar.arena.windows.Dialog
+import appModel.ExpedienteAppModel
 
 class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 	
-	new(WindowOwner owner, CarmenSanDiegoAppModel model, String pathTitle, String listLabel, String listSource) {
+	new(WindowOwner owner, ExpedienteAppModel model, String pathTitle, String listLabel, String listSource) {
 		super(owner, model, pathTitle, listLabel, listSource)
 	}
 	

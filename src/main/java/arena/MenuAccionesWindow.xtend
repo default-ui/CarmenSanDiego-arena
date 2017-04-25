@@ -7,7 +7,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.graphics.Image
-
+import appModel.ExpedienteAppModel
 
 /**
  * Ventana de menu principal de la aplicación
@@ -37,7 +37,7 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 
 		new Button(actionsPanel) => [
 			caption = "Expedientes"
-			onClick [ | new ExpedienteEditableWindow(this, this.modelObject).open ]
+			onClick [ | new ExpedienteEditableWindow(this, this.modelObject.expedienteAppModel).open ]
 		]
 
 	}

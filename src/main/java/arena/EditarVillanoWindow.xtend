@@ -10,11 +10,11 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
 import components.VillanoCaracteristicasList
+import appModel.ExpedienteAppModel
 
-
-class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
+class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model, String windowTitle) {
+	new(WindowOwner parent, ExpedienteAppModel model, String windowTitle) {
 		//TODO: El titulo deberia estar hardcodeado en un appModel
 		super(parent, model)
 		title = windowTitle

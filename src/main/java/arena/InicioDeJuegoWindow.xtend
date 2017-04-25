@@ -10,9 +10,6 @@ import org.uqbar.arena.windows.WindowOwner
 
 class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
-	// deberia ser un dialog??
-	// que feo que es el error viewer panel, no se puede sacar???
-	
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
