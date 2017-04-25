@@ -87,9 +87,7 @@ class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 	}
 
 	def windowTitle(){
-		//// TODO factorizarlo en el appmodel porque estoy segura que s eusa en otro lado
 		"Resolviendo: Robo de " + modelObject.objeto + " - Expedientes"
-		//"Resolviendo"
 	}
 	
 	

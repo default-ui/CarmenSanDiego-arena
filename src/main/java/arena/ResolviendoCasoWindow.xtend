@@ -22,6 +22,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 		title = "Resolviendo: Robo de " + model.juego.caso.objeto
+		
 	}
 	
 	override addActions(Panel actionsPanel) {
@@ -42,6 +43,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		new Titulo(mainPanel, "Recorrido Criminal")
 		new List<Pais>(mainPanel) => [
 				width=40
+				height =100 
 				modelObject.juego.getRecorrido()
 				(items <=> "juego.recorrido").adapter = new PropertyAdapter(Pais, "nombre")
 //				value <=> "paisSeleccionado"
@@ -50,6 +52,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		new Titulo(mainPanel, "Destinos Fallidos")
 		new List<Pais>(mainPanel) => [
 				width=40
+				height =100 
 				modelObject.juego.getFallidos()
 				(items <=> "juego.fallidos").adapter = new PropertyAdapter(Pais, "nombre")
 //				value <=> "paisSeleccionado"
