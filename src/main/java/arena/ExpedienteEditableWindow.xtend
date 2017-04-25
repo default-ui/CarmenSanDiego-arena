@@ -6,10 +6,11 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import carmenSanDiego.Villano
+import appModel.ExpedienteAppModel
 
 class ExpedienteEditableWindow extends ExpedienteWindow{
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, ExpedienteAppModel model) {
 		super(parent, model)
 	}
 	

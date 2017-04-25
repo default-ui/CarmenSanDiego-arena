@@ -88,7 +88,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		new Button(accionesPanel) => [
 			caption = "Expedientes"
 			onClick [|
-				new ExpedienteWindow(this, this.modelObject).open
+				new ExpedienteWindow(this, this.modelObject.expedienteAppModel).open
 				]
 		]
 		

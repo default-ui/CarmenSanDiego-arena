@@ -15,13 +15,14 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import appModel.ExpedienteAppModel
 
-class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
+class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 	
 	@Accessors
 	Panel editableLeftPanel
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, ExpedienteAppModel model) {
 		super(parent, model)
 		title = windowTitle
 		
@@ -47,7 +48,7 @@ class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 	//// Titulo
 		new Titulo(editableLeftPanel, "Villano")
 	//// Lista
-		villanoList(editableLeftPanel, "juego.expediente.villanos", "nombre", "villanoTemp")
+		villanoList(editableLeftPanel, "expediente.villanos", "nombre", "villanoTemp")
 	/// Right panel
 	//// Nombre
 		new LabeledLabel(rightPanel) => [
@@ -87,8 +88,8 @@ class ExpedienteWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 
 	def windowTitle(){
 		//// TODO factorizarlo en el appmodel porque estoy segura que s eusa en otro lado
-		"Resolviendo: Robo de " + modelObject.juego.obtenerObjeto + " - Expedientes"
-		
+		//"Resolviendo: Robo de " + modelObject.objeto + " - Expedientes"
+		"Resolviendo"
 	}
 	
 	

@@ -10,11 +10,11 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
 import components.VillanoCaracteristicasList
+import appModel.ExpedienteAppModel
 
-
-class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
+class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model, String windowTitle) {
+	new(WindowOwner parent, ExpedienteAppModel model, String windowTitle) {
 		//TODO: El titulo deberia estar hardcodeado en un appModel
 		super(parent, model)
 		title = windowTitle
@@ -52,7 +52,7 @@ class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	///// Button
 		new Button(senaPanel) => [
 			caption = "Editar señas particulares"
-			onClick[| new EditarSenasParticularesWindow(this, modelObject).open]
+			onClick[| new EditarSenasParticularesWindow(this, modelObject, "pathImagenSenas", "Seña", "villanoTemp.senasParticulares").open]
 		] 
 	//// List label
 		new Label(mainPanel).text = "Señas"
@@ -67,7 +67,7 @@ class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	//// Button
 		new Button(hobbiePanel) => [
 			caption = "Editar hobbies"
-			onClick[| new EditarHobbiesWindow(this, modelObject).open]
+			onClick[| new EditarHobbiesWindow(this, modelObject, "pathImagenHobbies", "Hobbie", "villanoTemp.hobbies").open]
 		] 
 	//// List label
 		new Label(mainPanel).text = "Hobbie"
