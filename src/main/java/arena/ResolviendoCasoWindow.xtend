@@ -98,6 +98,9 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	 * Genera el listado de botones para ver los lugares
 	 */
 	def private armarLugaresPanel(Panel containerPanel) {
+		//se setean los lugares accesibles en ese pais
+		modelObject.lugaresPistas = modelObject.juego.paisActual.lugares
+		
 		val lugaresPanel = new GroupPanel(containerPanel)
 		lugaresPanel.layout = new VerticalLayout
 		lugaresPanel.setTitle('Lugares')
