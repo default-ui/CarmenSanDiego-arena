@@ -52,7 +52,7 @@ class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	///// Button
 		new Button(senaPanel) => [
 			caption = "Editar señas particulares"
-			onClick[| new EditarSenasParticularesWindow(this, modelObject).open]
+			onClick[| new EditarSenasParticularesWindow(this, modelObject, "pathImagenSenas", "Seña", "villanoTemp.senasParticulares").open]
 		] 
 	//// List label
 		new Label(mainPanel).text = "Señas"
@@ -67,7 +67,7 @@ class EditarVillanoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	//// Button
 		new Button(hobbiePanel) => [
 			caption = "Editar hobbies"
-			onClick[| new EditarHobbiesWindow(this, modelObject).open]
+			onClick[| new EditarHobbiesWindow(this, modelObject, "pathImagenHobbies", "Hobbie", "villanoTemp.hobbies").open]
 		] 
 	//// List label
 		new Label(mainPanel).text = "Hobbie"

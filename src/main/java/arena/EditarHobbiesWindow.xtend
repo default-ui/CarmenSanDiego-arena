@@ -14,49 +14,25 @@ import org.uqbar.arena.graphics.Image
 import components.VillanoCaracteristicasList
 import org.uqbar.arena.windows.Dialog
 
-class EditarHobbiesWindow extends Dialog<CarmenSanDiegoAppModel>{
+class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
-		super(parent, model)
-	}
-	
-	override addActions(Panel actionsPanel) {
-		new Button(actionsPanel) => [
-			caption = "Aceptar"
-			setAsDefault 
-			onClick [ | this.close ]
-			]
+	new(WindowOwner owner, CarmenSanDiegoAppModel model, String pathTitle, String listLabel, String listSource) {
+		super(owner, model, pathTitle, listLabel, listSource)
 	}
 	
 	override createFormPanel(Panel mainPanel) {
-		////////// TITULO
-			new Label(mainPanel) => [
-			bindImageToProperty("pathImagenHobbies", [ imagePath |
-				new Image(imagePath)
-			])
-			
-		]
-			new Label(mainPanel).text = "Hobbie"
-		////////// LISTA
-			new VillanoCaracteristicasList(mainPanel, "villanoTemp.hobbies")
-			
-		//////// BOTON ELIMINAR
-			
-			new Button(mainPanel) => [
+	/// se crean las partes principales del panel	
+		createMainPanelCaracVillano(mainPanel)
+	/// Boton eliminar
+		new Button(listPanel) => [
 			var senaSelec = new NotNullObservable("villanoCaracSeleccionada")
 			caption = "Eliminar"
 			onClick(|this.modelObject.eliminarHobbie)
 			bindEnabled(senaSelec)
+			width = 250
 			]
-		///////PANEL HORIZONTAL
-			var textBoxPanel = new Panel(mainPanel).layout =  new HorizontalLayout
-		/////// TEXTBOX
-			new TextBox(textBoxPanel) => [
-					value <=> "inputValue"
-					width = 100
-			]
-		///// BOTON AGREGAR
-			new Button(textBoxPanel) => [
+	/// Boton agregar
+		new Button(textBoxPanel) => [
 			caption = "Agregar"
 			width = 100
 			onClick[|
@@ -66,8 +42,9 @@ class EditarHobbiesWindow extends Dialog<CarmenSanDiegoAppModel>{
 				}
 				this.modelObject.agregarHobbie
 					]
-			]		
+			]	
 	}
+	
 	
 }
 
