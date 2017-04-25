@@ -13,8 +13,7 @@ class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
-		// esto seguro no se hace asi, pero como se hace entonces?
-		//title = "Robo de: " + modelObject.juego.caso.objeto
+		title = modelObject.tituloInicioDeJuego
 	}
 	
 	override addActions(Panel actionsPanel) {
@@ -23,7 +22,7 @@ class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 			setAsDefault 
 			onClick [ | 
 				this.close
-				
+				modelObject.expedienteAppModel.objeto = modelObject.juego.caso.objeto
 				new ResolviendoCasoWindow(this, this.modelObject).open
 				
 			]
