@@ -26,7 +26,9 @@ class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 			caption = "Viajar"
 			setAsDefault 
 			onClick [ | 
+				modelObject.lugaresPistas=modelObject.juego.paisDestino.lugares
 				modelObject.juego.viajar(modelObject.juego.paisDestino)
+				
 				this.close
 			]
 			
