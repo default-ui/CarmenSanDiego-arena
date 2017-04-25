@@ -14,11 +14,11 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class VillanoCaracteristicasList extends Panel{
 	
-	new(Container container, String itemsList) {
+	new(Container container, String itemsList, String selecValue) {
 		super(container)
 		new List<Villano>(container) => [
 			items <=> itemsList
-			value <=> "villanoCaracSeleccionada"
+			value <=> selecValue
 			height = 100
 			width = 100
 		]

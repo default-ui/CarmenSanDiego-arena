@@ -11,8 +11,8 @@ import appModel.ExpedienteAppModel
 
 class EditarSenasParticularesWindow extends EditarCaracteristicaVillanoWindow{
 	
-	new(WindowOwner owner, ExpedienteAppModel model, String pathTitle, String listLabel, String listSource) {
-		super(owner, model, pathTitle, listLabel, listSource)
+	new(WindowOwner owner, ExpedienteAppModel model) {
+		super(owner, model, "pathImagenSenas", "Seña", "villanoTemp.senasParticulares", "senaSeleccionada")
 	}
 	
 	override createFormPanel(Panel mainPanel){
@@ -20,8 +20,8 @@ class EditarSenasParticularesWindow extends EditarCaracteristicaVillanoWindow{
 		createMainPanelCaracVillano(mainPanel)
 	/// Boton eliminar
 		new Button(listPanel) => [
-			var senaSelec = new NotNullObservable("villanoCaracSeleccionada")
-			bindEnabled(senaSelec)
+			var caracSelec = new NotNullObservable("senaSeleccionada")
+			bindEnabled(caracSelec)
 			caption = "Eliminar"
 			onClick(|this.modelObject.eliminarSena)
 			width = 250

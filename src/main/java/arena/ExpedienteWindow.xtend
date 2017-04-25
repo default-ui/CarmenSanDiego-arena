@@ -64,10 +64,10 @@ class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 			]
 	//// Senas particulares
 		new Label(rightPanel).text = "Señas pasrticulares:"
-		new VillanoCaracteristicasList(rightPanel, "villanoTemp.senasParticulares")
+		new VillanoCaracteristicasList(rightPanel, "villanoTemp.senasParticulares", "senaSeleccionada")
 	//// Hobbbies
 		new Label(rightPanel).text = "Hobbies:"
-		new VillanoCaracteristicasList(rightPanel, "villanoTemp.hobbies")
+		new VillanoCaracteristicasList(rightPanel, "villanoTemp.hobbies", "hobbieSeleccionado")
 	}
 
 		def villanoList(Panel panel, String item, String propertyAdapter, String listValue){
