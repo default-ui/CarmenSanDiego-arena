@@ -15,13 +15,16 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import appModel.ExpedienteAppModelNuevo
+import org.uqbar.arena.Application
+import carmenSanDiego.CarmenSanDiegoRepo
 
-class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
+class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModelNuevo> {
 	
 	@Accessors
 	Panel editableLeftPanel
 	
-	new(WindowOwner parent, ExpedienteAppModel model) {
+	new(WindowOwner parent, ExpedienteAppModelNuevo model) {
 		super(parent, model)
 		title = windowTitle
 		
@@ -48,7 +51,7 @@ class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 	//// Titulo
 		new Titulo(editableLeftPanel, "Villano")
 	//// Lista
-		villanoList(editableLeftPanel, "expediente.villanos", "nombre", "villanoTemp")
+		villanoList(editableLeftPanel, "repo.expediente.villanos", "nombre", "villanoTemp")
 	/// Right panel
 	//// Nombre
 		new LabeledLabel(rightPanel) => [
@@ -87,8 +90,26 @@ class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 	}
 
 	def windowTitle(){
-		"Resolviendo: Robo de " + modelObject.objeto + " - Expedientes"
+		//"Resolviendo: Robo de " + modelObject.objeto + " - Expedientes"
+		"Resolviendo: Robo de  - Expedientes"
 	}
 	
 	
 }
+
+class VilExpApp extends Application{
+	
+	override protected createMainWindow() {
+		//var appModel  = new CarmenSanDiegoAppModel
+		new ExpedienteWindow(this, new ExpedienteAppModelNuevo(new CarmenSanDiegoRepo))
+		
+	}
+	
+	def static main(String[] args) {
+		new VilExpApp().start
+	}
+	
+
+	
+	}
+

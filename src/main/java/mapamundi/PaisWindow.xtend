@@ -1,9 +1,13 @@
 package mapamundi
 
+
 import appModel.CaracteristicasAppModel
 import appModel.ConexionesAppModel
 import appModel.EditarLugaresAppModel
 import appModel.PaisAppModel
+
+import appModel.MapamundiAppModel
+
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import components.Titulo
@@ -20,6 +24,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.model.UserException
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.commons.model.UserException
 
 class PaisWindow extends Dialog<PaisAppModel> {
 
@@ -97,9 +102,12 @@ class PaisWindow extends Dialog<PaisAppModel> {
 		
 		new Button(mainPanel)=>[
 			caption = "Aceptar"
-			onClick [ |
-				if (this.modelObject.repo.nuevoPaisNombre=="") {
-					new UserException("El pais no tiene nombre")
+
+			onClick [
+				if (modelObject.repo.nuevoPaisNombre.empty) {
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Nombre de pais vacio')
+
 				} else {
 					modelObject.repo.mapa.eliminarPais(this.modelObject.repo.paisTemp.nombre)
 					this.modelObject.agregarPais()

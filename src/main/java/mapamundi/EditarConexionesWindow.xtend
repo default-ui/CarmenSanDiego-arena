@@ -2,8 +2,6 @@ package mapamundi
 
 import appModel.ConexionesAppModel
 import carmenSanDiego.Pais
-import csdExceptions.ConexionExistenteException
-import csdExceptions.NoSeleccionadoException
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.graphics.Image
@@ -14,6 +12,7 @@ import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.model.UserException
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
@@ -75,16 +74,19 @@ override protected createFormPanel(Panel mainPanel) {
 		
 		new Button(mainPanel) => [
 			caption = "Agregar"
-			onClick [ |
-			if(this.modelObject.conexion==null){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+			onClick [
+				
+				if(this.modelObject.conexion==null){
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Conexión vacia')
 				}
-			if (modelObject.repo.paisTemp.conexiones.contains(modelObject.conexion)){
-				new ConexionExistenteException().mostrarError
-				throw new Exception();
-			}
-			this.modelObject.agregarConexion()
+				
+				if (this.modelObject.repo.paisTemp.conexiones.contains(this.modelObject.conexion)){
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Conexión ya existente')
+				}		
+				this.modelObject.agregarConexion()
+			
 			]
 		]	
 	}
