@@ -16,10 +16,11 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import appModel.ConexionesAppModel
 
-class EditarConexionesWindow extends Dialog<MapamundiAppModel>{
+class EditarConexionesWindow extends Dialog<ConexionesAppModel>{
 	
-	new(WindowOwner parent, MapamundiAppModel model) {
+	new(WindowOwner parent, ConexionesAppModel model) {
 		super(parent, model)
 	}
 	

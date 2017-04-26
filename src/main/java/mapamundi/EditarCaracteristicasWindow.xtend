@@ -14,10 +14,11 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import appModel.CaracteristicasAppModel
 
-class EditarCaracteristicasWindow extends Dialog<MapamundiAppModel>{
+class EditarCaracteristicasWindow extends Dialog<CaracteristicasAppModel>{
 	
-	new(WindowOwner parent, MapamundiAppModel model) {
+	new(WindowOwner parent, CaracteristicasAppModel model) {
 		super(parent, model)
 	}
 	
