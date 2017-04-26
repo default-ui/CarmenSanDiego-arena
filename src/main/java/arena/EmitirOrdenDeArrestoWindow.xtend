@@ -12,6 +12,7 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import appModel.OrdenDeArrestoAppModel
 
 class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<OrdenDeArrestoAppModel>{
 	
@@ -42,11 +43,11 @@ class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<OrdenDeArrestoAppMod
 
 		new LabeledLabel(mainPanel) => [
 			text = 'Orden emitida para: '
-			bindValueToProperty('juego.ordenDeArrestoString')
+			bindValueToProperty('repo.juego.ordenDeArrestoString')
 		]
 		
 		new LabeledSelector(mainPanel) => [
-			bindValueToProperty('villanoDeNuevaOrdenDeArresto')
+			bindValueToProperty('repo.villanoDeNuevaOrdenDeArresto')
 			
 			val binding = bindItemsToProperty('expediente.villanos')
 			binding.adapter = new PropertyAdapter(typeof(Villano), "nombre")

@@ -21,6 +21,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import appModel.ViajarAppModel
 
 class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 	
@@ -43,7 +44,7 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 		]
 		new LabeledLabel(mainPanel) => [
 			text = "Estás en: "
-			bindValueToProperty('juego.paisActual.nombre')
+			bindValueToProperty('repo.juego.paisActual.nombre')
 			
 		]
 
@@ -58,7 +59,7 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 				width=40
 				height =100 
 				modelObject.repo.juego.getRecorrido()
-				(items <=> "juego.recorrido").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.juego.recorrido").adapter = new PropertyAdapter(Pais, "nombre")
 			]
 
 		new Titulo(mainPanel, "Destinos Fallidos")
@@ -66,7 +67,7 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 				width=40
 				height =100 
 				modelObject.repo.juego.getFallidos()
-				(items <=> "juego.fallidos").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.juego.fallidos").adapter = new PropertyAdapter(Pais, "nombre")
 			]
 
 	}
@@ -79,7 +80,7 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 		new Button(accionesPanel) => [
 			caption = "Orden De Arresto"
 			onClick [|
-				new EmitirOrdenDeArrestoWindow(this, new OrdenDeArrestoAppModel(repo)).open
+				new EmitirOrdenDeArrestoWindow(this, new OrdenDeArrestoAppModel(modelObject.repo)).open
 				]
 		]
 		
@@ -88,13 +89,13 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 		]
 		
 		new Label(accionesPanel) => [
-			bindValueToProperty('villanoDeNuevaOrdenDeArresto.nombre')
+			bindValueToProperty('repo.villanoDeNuevaOrdenDeArresto.nombre')
 		]
 		
 		new Button(accionesPanel) => [
 			caption = "Viajar"
 			onClick [|
-				new ViajarWindow(this, this.modelObject).open
+				new ViajarWindow(this, new ViajarAppModel(modelObject.repo)).open
 				]
 		]
 		
@@ -102,7 +103,7 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 		new Button(accionesPanel) => [
 			caption = "Expedientes"
 			onClick [|
-				new ExpedienteWindow(this, this.modelObject.expedienteAppModel).open
+				//new ExpedienteWindow(this, this.modelObject.expedienteAppModel).open
 				]
 		]
 		

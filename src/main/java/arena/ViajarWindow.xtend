@@ -61,10 +61,10 @@ override protected createFormPanel(Panel mainPanel) {
 		val Panel panelDeConexiones = new Panel(mainPanel)
 		
 		new List<Pais>(panelDeConexiones) => [
-				(items <=> "juego.paisActual.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.juego.paisActual.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 60
 				width = 400
-				value <=> "juego.paisDestino"
+				value <=> "repo.juego.paisDestino"
 				
 			]
 				
