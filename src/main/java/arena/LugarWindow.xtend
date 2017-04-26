@@ -30,18 +30,16 @@ class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 						if(modelObject.lugarAbierto.seEncuentraVillano == true){
 														// caso sin orden
 							if(modelObject.juego.ordenDeArresto == null){
-								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota).open
-								
-								
+								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota, "pathImagenLost").open
 							}
 							// caso victoria
 							if(modelObject.lugarAbierto.detenido){
-								new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria).open
+								new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria, "pathImagenWon").open
 							}
 
 							// caso incorrecto
 							else{
-								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorrecto, modelObject.buttonDerrota).open
+								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorrecto, modelObject.buttonDerrota, "pathImagenLost").open
 							
 							
 							}
