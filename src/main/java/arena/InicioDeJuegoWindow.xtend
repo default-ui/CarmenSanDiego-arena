@@ -26,7 +26,7 @@ class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 			setAsDefault 
 			onClick [ | 
 				this.close
-				modelObject.expedienteAppModel.objeto = modelObject.juego.caso.objeto
+				//modelObject.expedienteAppModel.objeto = modelObject.juego.caso.objeto
 				modelObject.pedirTodasLasPistas
 				new ResolviendoCasoWindow(this, new ResolviendoCasoAppModel(modelObject.repo)).open
 				

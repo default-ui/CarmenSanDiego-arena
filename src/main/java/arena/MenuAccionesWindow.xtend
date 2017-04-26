@@ -9,6 +9,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import mapamundi.MapamundiWindow
 import expediente.ExpedienteEditableWindow
+import appModel.MapamundiAppModel
 
 /**
  * Ventana de menu principal de la aplicación
@@ -34,14 +35,15 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		new Button(actionsPanel) => [
 			caption = "Mapamundi"
 			onClick [
-				new MapamundiWindow(this, this.modelObject.mapamundiAppModel).open
+				val mapamundiAppModel=new MapamundiAppModel(modelObject.repositorio)
+				new MapamundiWindow(this, mapamundiAppModel).open
 			]
 		]
 
 		new Button(actionsPanel) => [
 			caption = "Expedientes"
 			onClick [
-				new ExpedienteEditableWindow(this, this.modelObject.expedienteAppModel).open
+				//new ExpedienteEditableWindow(this, this.modelObject.expedienteAppModel).open
 			]
 		]
 

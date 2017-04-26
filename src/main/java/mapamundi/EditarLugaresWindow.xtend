@@ -1,9 +1,6 @@
 package mapamundi
 
-import csdExceptions.DemasiadosLugaresException
-import csdExceptions.LugarExistenteException
-import csdExceptions.NoSeleccionadoException
-import appModel.MapamundiAppModel
+import appModel.EditarLugaresAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.PropertyAdapter
@@ -15,13 +12,14 @@ import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.model.UserException
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class EditarLugaresWindow extends Dialog<MapamundiAppModel>{
+class EditarLugaresWindow extends Dialog<EditarLugaresAppModel>{
 
 	
-	new(WindowOwner parent, MapamundiAppModel model) {
+	new(WindowOwner parent, EditarLugaresAppModel model) {
 		super(parent, model)
 	}
 	
@@ -50,7 +48,7 @@ override protected createFormPanel(Panel mainPanel) {
 		val Panel panelDeLugares1 = new Panel(mainPanel)
 		
 		new List<Pais>(panelDeLugares1) => [
-				(items <=> "temp.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
+				(items <=> "repo.paisTemp.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
 				height = 60
 				width = 400
 				value <=> "lugarAEliminar"
@@ -62,8 +60,8 @@ override protected createFormPanel(Panel mainPanel) {
 			setAsDefault 
 			onClick [ | 
 				if (this.modelObject.lugar==null) {
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+					//new ErrorDialog(this, modelObject).open
+					throw new UserException('Lugar vacío')
 				}
 				this.modelObject.eliminarLugar()
 			]
@@ -71,7 +69,7 @@ override protected createFormPanel(Panel mainPanel) {
 			
 		val Panel panelDeLugares2 = new Panel(mainPanel)	
 		new List<Pais>(panelDeLugares2) => [
-				(items <=> "lugares").adapter = new PropertyAdapter(Lugar, "nombre")
+				(items <=> "repo.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
 				height = 60
 				width = 400
 				value <=> "lugar"
@@ -81,17 +79,24 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Agregar"
 			onClick [ |
-				if(this.modelObject.temp.lugares.size()>=3){
-					new DemasiadosLugaresException().mostrarError
-					throw new Exception();
+
+
+				if(this.modelObject.repo.paisTemp.lugares.size()>=3){
+					//new ErrorDialog(this, modelObject).open
+
+					throw new UserException('Ya hay lugares suficientes')
+
 				}
 				if(this.modelObject.lugar==null){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+					//new ErrorDialog(this, modelObject).open
+					throw new UserException('No hay lugar seleccionado')
 				}
-				if (this.modelObject.temp.lugarExiste(this.modelObject.lugar.nombre)){
-					new LugarExistenteException().mostrarError
-					throw new Exception()
+
+				if (this.modelObject.repo.paisTemp.lugarExiste(this.modelObject.lugar.nombre)){
+					//new ErrorDialog(this, modelObject).open
+
+					throw new UserException('Ya existe el lugar')
+
 				}
 				this.modelObject.agregarLugar()
 			]
