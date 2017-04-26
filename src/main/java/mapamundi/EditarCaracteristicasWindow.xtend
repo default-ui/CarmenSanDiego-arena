@@ -1,6 +1,6 @@
-package arena
+package mapamundi
 
-import Exceptions.DatoNoIngresado
+import csdExceptions.DatoNoIngresado
 import appModel.MapamundiAppModel
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image

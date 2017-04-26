@@ -1,8 +1,8 @@
-package arena
+package mapamundi
 
-import Exceptions.DemasiadosLugaresException
-import Exceptions.LugarExistenteException
-import Exceptions.NoSeleccionadoException
+import csdExceptions.DemasiadosLugaresException
+import csdExceptions.LugarExistenteException
+import csdExceptions.NoSeleccionadoException
 import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais

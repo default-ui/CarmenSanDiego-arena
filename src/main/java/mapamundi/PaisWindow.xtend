@@ -1,6 +1,6 @@
-package arena
+package mapamundi
 
-import Exceptions.NombreDePaisNoIngresado
+import csdExceptions.NombreDePaisNoIngresado
 import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais

@@ -1,7 +1,7 @@
-package arena
+package mapamundi
 
-import Exceptions.ConexionExistenteException
-import Exceptions.NoSeleccionadoException
+import csdExceptions.ConexionExistenteException
+import csdExceptions.NoSeleccionadoException
 import appModel.MapamundiAppModel
 import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.NotNullObservable

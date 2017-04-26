@@ -1,4 +1,4 @@
-package Exceptions
+package csdExceptions
 
 import java.awt.Color
 import javax.swing.ImageIcon
@@ -9,14 +9,14 @@ import org.uqbar.commons.utils.Observable
 
 @Observable
 @Accessors
-class ConexionExistenteException {
+class NoSeleccionadoException {
 	JFrame panel = new JFrame()
 	ImageIcon icon = new ImageIcon("src/main/resources/iconsd.png")
 	
 	def mostrarError(){
 		panel.setBackground = Color.WHITE
 		JOptionPane.showMessageDialog(panel,
-        "El pais ya está entre tus conexiones!!!",
+        "No has seleccionado ningún dato!!!",
         "Hey!!",
         JOptionPane.ERROR_MESSAGE,
         icon)

@@ -1,6 +1,6 @@
-package arena
+package mapamundi
 
-import Exceptions.NoSeleccionadoException
+import csdExceptions.NoSeleccionadoException
 import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
@@ -84,7 +84,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 				}
 				this.modelObject.temp=this.modelObject.paisSeleccionado
 				this.modelObject.nuevoPaisNombre=this.modelObject.temp.nombre
-				new PaisWindow(this, this.modelObject).open
+				new mapamundi.PaisWindow(this, this.modelObject).open
 			]
 		] 
 		new Button(panelDeListadoDePaises) =>[
@@ -92,7 +92,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 			onClick [ | 
 				this.modelObject.temp= new Pais("temp")
 				this.modelObject.nuevoPaisNombre=""
-				new PaisWindow(this, this.modelObject).open
+				new mapamundi.PaisWindow(this, this.modelObject).open
 			]
 		] 
 	}

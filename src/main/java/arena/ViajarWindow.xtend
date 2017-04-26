@@ -1,6 +1,6 @@
 package arena
 
-import Exceptions.NombreDePaisNoIngresado
+import csdExceptions.NombreDePaisNoIngresado
 import appModel.CarmenSanDiegoAppModel
 import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.PropertyAdapter

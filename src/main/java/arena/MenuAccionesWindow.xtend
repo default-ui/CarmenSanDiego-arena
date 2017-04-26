@@ -7,6 +7,7 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import mapamundi.MapamundiWindow
 
 /**
  * Ventana de menu principal de la aplicación
