@@ -106,7 +106,8 @@ class PaisWindow extends Dialog<PaisAppModel> {
 			onClick [
 				if (modelObject.repo.nuevoPaisNombre.empty) {
 					//new ErrorDialog(this, modelObject).open
-					new UserException('Nombre de pais vacio')
+
+					throw new UserException('Nombre de pais vacio')
 
 				} else {
 					modelObject.repo.mapa.eliminarPais(this.modelObject.repo.paisTemp.nombre)

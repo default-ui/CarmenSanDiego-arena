@@ -76,7 +76,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 			onClick [ | 
 				if (this.modelObject.paisSeleccionado==null) {
 					//new ErrorDialog(this, modelObject).open
-					new UserException('No hay país seleccionado')
+					throw new UserException('No hay país seleccionado')
 				} else {
 					modelObject.mapa.eliminarPais(modelObject.paisSeleccionado.nombre)					
 				}
@@ -87,7 +87,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 			onClick [ |
 				if (this.modelObject.paisSeleccionado==null) {
 					//new ErrorDialog(this, modelObject).open
-					new UserException('No hay país seleccionado')
+					throw new UserException('No hay país seleccionado')
 				}
 				this.modelObject.repo.paisTemp=this.modelObject.paisSeleccionado
 				this.modelObject.repo.nuevoPaisNombre=this.modelObject.repo.paisTemp.nombre

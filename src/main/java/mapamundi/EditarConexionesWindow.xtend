@@ -78,13 +78,15 @@ override protected createFormPanel(Panel mainPanel) {
 				
 				if(this.modelObject.conexion==null){
 					//new ErrorDialog(this, modelObject).open
-					new UserException('Conexión vacia')
+					throw new UserException('Conexión vacia')
 				}
 				
 				if (this.modelObject.repo.paisTemp.conexiones.contains(this.modelObject.conexion)){
 					//new ErrorDialog(this, modelObject).open
-					new UserException('Conexión ya existente')
-				}		
+
+					throw new UserException('Conexión ya existente')
+				}
+
 				this.modelObject.agregarConexion()
 			
 			]
