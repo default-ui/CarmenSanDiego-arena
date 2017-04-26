@@ -18,6 +18,8 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import expediente.ExpedienteWindow
+import carmenSanDiego.Lugar
+import appModel.LugarAppModel
 
 class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -120,25 +122,26 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		new Button(lugaresPanel) => [
 				caption = modelObject.lugaresPistas.get(0).nombre
 				onClick [ | 
-					modelObject.setLugarAbierto(modelObject.lugaresPistas.get(0))
-					new LugarWindow(this, this.modelObject).open
+					new LugarWindow(this, crearLugarAppModel(modelObject.lugaresPistas.get(0))).open
 				]
 		]
 		new Button(lugaresPanel) => [
 				caption = modelObject.lugaresPistas.get(1).nombre
 				onClick [ | 
-					modelObject.setLugarAbierto(modelObject.lugaresPistas.get(1))
-					new LugarWindow(this, this.modelObject).open
+					new LugarWindow(this, crearLugarAppModel(modelObject.lugaresPistas.get(1))).open
 				]
 		]
 		new Button(lugaresPanel) => [
 				caption = modelObject.lugaresPistas.get(2).nombre
 				onClick [ | 
-					modelObject.setLugarAbierto(modelObject.lugaresPistas.get(2))
-					new LugarWindow(this, this.modelObject).open
+					new LugarWindow(this, crearLugarAppModel(modelObject.lugaresPistas.get(2))).open
 				]
 		]
 		
-	}	
+	}
+	
+	def private crearLugarAppModel(Lugar lugarAbierto) {
+		new LugarAppModel(modelObject.repo, lugarAbierto)
+	}
 
 }
