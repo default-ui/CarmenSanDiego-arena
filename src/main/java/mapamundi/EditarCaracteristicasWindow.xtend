@@ -48,7 +48,7 @@ override protected createFormPanel(Panel mainPanel) {
 		editorPanel.layout = new VerticalLayout
 		val Panel panelDeCaracteristicas = new Panel(mainPanel)
 		new List<String>(panelDeCaracteristicas) => [
-				items <=> "temp.caracteristicas"
+				items <=> "repo.paisTemp.caracteristicas"
 				height = 60
 				width = 400
 				value <=> "caracteristicaAEliminar"

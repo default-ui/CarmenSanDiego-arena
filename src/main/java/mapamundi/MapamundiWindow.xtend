@@ -78,7 +78,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 					//new ErrorDialog(this, modelObject).open
 					throw new UserException('No hay país seleccionado')
 				} else {
-					modelObject.mapa.eliminarPais(modelObject.paisSeleccionado.nombre)					
+					modelObject.repo.mapa.eliminarPais(modelObject.paisSeleccionado.nombre)					
 				}
 			]
 		] 

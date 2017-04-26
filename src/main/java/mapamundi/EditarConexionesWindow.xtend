@@ -47,7 +47,7 @@ override protected createFormPanel(Panel mainPanel) {
 		val Panel panelDeConexiones1 = new Panel(mainPanel)
 		
 		new List<Pais>(panelDeConexiones1) => [
-				(items <=> "temp.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.paisTemp.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 60
 				width = 400
 				value <=> "conexionAEliminar"
@@ -66,7 +66,7 @@ override protected createFormPanel(Panel mainPanel) {
 			
 		val Panel panelDeConexiones2 = new Panel(mainPanel)	
 		new List<Pais>(panelDeConexiones2) => [
-				(items <=> "mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 60
 				width = 400
 				value <=> "conexion"	

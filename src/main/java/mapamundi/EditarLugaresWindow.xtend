@@ -48,7 +48,7 @@ override protected createFormPanel(Panel mainPanel) {
 		val Panel panelDeLugares1 = new Panel(mainPanel)
 		
 		new List<Pais>(panelDeLugares1) => [
-				(items <=> "temp.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
+				(items <=> "repo.paisTemp.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
 				height = 60
 				width = 400
 				value <=> "lugarAEliminar"
@@ -69,7 +69,7 @@ override protected createFormPanel(Panel mainPanel) {
 			
 		val Panel panelDeLugares2 = new Panel(mainPanel)	
 		new List<Pais>(panelDeLugares2) => [
-				(items <=> "lugares").adapter = new PropertyAdapter(Lugar, "nombre")
+				(items <=> "repo.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
 				height = 60
 				width = 400
 				value <=> "lugar"

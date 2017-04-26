@@ -45,7 +45,7 @@ class PaisWindow extends Dialog<PaisAppModel> {
 		]
 		new Titulo(mainPanel, "Nombre")
 		new TextBox(mainPanel) => [
-			value <=> "nuevoPaisNombre"
+			value <=> "repo.nuevoPaisNombre"
 			width = 200
 		]
 		
