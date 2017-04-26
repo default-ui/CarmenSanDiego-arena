@@ -9,18 +9,48 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 
+
 class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
+	
 	
 	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
 		super(parent, model)
 	}
+	
+	
 	
 	override addActions(Panel actionsPanel) {
 
 		new Button(actionsPanel) => [
 			caption = "Continuar"
 			setAsDefault 
-			onClick [ | this.close ]
+			onClick [ |
+						this.close
+						// Victoria
+						if(modelObject.lugarAbierto.seEncuentraVillano == true){
+														// caso sin orden
+							if(modelObject.juego.ordenDeArresto == null){
+								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota).open
+								
+								
+							}
+							// caso victoria
+							if(modelObject.lugarAbierto.detenido){
+								new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria).open
+							}
+
+							// caso incorrecto
+							else{
+								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorercto, modelObject.buttonDerrota).open
+							
+							
+							}
+							
+							}
+						
+						
+						
+			]
 		]
 	}
 	
@@ -30,7 +60,7 @@ class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		new Titulo(mainPanel, "Estas visitando: " + modelObject.lugarAbierto.nombre)
 
 		new Label(mainPanel) => [
-			text = modelObject.pedirPista
+			text = modelObject.pistaActual
 		]
 	}
 

@@ -25,6 +25,7 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 			caption = "Resolver Misterio"
 			onClick [ | 
 				modelObject.juego.crearCaso()
+				modelObject.lugaresPistas = modelObject.juego.paisActual.lugares
 				new InicioDeJuegoWindow(this, this.modelObject).open 
 			]
 			setAsDefault
