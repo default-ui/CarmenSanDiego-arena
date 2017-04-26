@@ -9,11 +9,15 @@ import org.uqbar.arena.windows.WindowOwner
 import appModel.ExpedienteAppModelNuevo
 import org.uqbar.arena.Application
 import carmenSanDiego.CarmenSanDiegoRepo
+import appModel.EditarVillanoAppModel
 
 class ExpedienteEditableWindow extends ExpedienteWindow{
 	
-	new(WindowOwner parent, ExpedienteAppModelNuevo model) {
+	CarmenSanDiegoRepo repo
+	
+	new(WindowOwner parent, ExpedienteAppModelNuevo model, CarmenSanDiegoRepo juegoRepo) {
 		super(parent, model)
+		repo = juegoRepo
 	}
 	
 		
@@ -29,14 +33,16 @@ class ExpedienteEditableWindow extends ExpedienteWindow{
 			caption = "Nuevo"
 			onClick[|
 				this.modelObject.villanoTemp = modelObject.crearNuevoVillano
-				new EditarVillanoWindow(this, new ExpedienteAppModel(modelObject.repo.expediente), "Expediente - Nuevo villano").open
+				new EditarVillanoWindow(this, 
+					new EditarVillanoAppModel(repo, new Villano("")), "Expediente - Nuevo villano", repo
+				).open
 			]
 		]
 		// Editar villano button
 		new Button(editableLeftPanel) => [
 			caption = "Editar"
 			onClick[|
-				new EditarVillanoWindow(this, new ExpedienteAppModel(modelObject.repo.expediente), "Expediente - Editar villano").open
+				new EditarVillanoWindow(this, new EditarVillanoAppModel(repo, modelObject.villanoTemp), "Expediente - Editar villano", repo).open
 			]
 		]
 		
@@ -50,9 +56,10 @@ class ExpedienteEditableWindow extends ExpedienteWindow{
 	
 	class VilExpAppp extends Application{
 	
-	override protected createMainWindow() {
+override protected createMainWindow() {
 		//var appModel  = new CarmenSanDiegoAppModel
-		new ExpedienteEditableWindow(this, new ExpedienteAppModelNuevo(new CarmenSanDiegoRepo))
+		var  repo = new CarmenSanDiegoRepo
+		new ExpedienteEditableWindow(this, new ExpedienteAppModelNuevo(repo), repo)
 		
 	}
 	

@@ -1,6 +1,6 @@
 package expediente
 
-import appModel.ExpedienteAppModel
+import appModel.EditarCaracteristicaVillanoAppModel
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
@@ -9,7 +9,7 @@ import org.uqbar.commons.model.UserException
 
 class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 	
-	new(WindowOwner owner, ExpedienteAppModel model) {
+	new(WindowOwner owner, EditarCaracteristicaVillanoAppModel model) {
 		super(owner, model, "pathImagenHobbies", "Hobbie", "villanoTemp.hobbies", "hobbieSeleccionado")
 	}
 	
