@@ -26,7 +26,6 @@ class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppMod
 			setAsDefault
 			onClick [
 				modelObject.juego.ordenDeArresto = new OrdenDeArresto(modelObject.villanoDeNuevaOrdenDeArresto)
-				modelObject.pedirTodasLasPistas
 				this.close
 			]
 		]
