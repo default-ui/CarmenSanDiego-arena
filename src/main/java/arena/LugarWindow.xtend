@@ -1,6 +1,5 @@
 package arena
 
-import appModel.CarmenSanDiegoAppModel
 import components.CustomSimpleWindow
 import components.Titulo
 import org.uqbar.arena.layout.VerticalLayout
@@ -8,16 +7,15 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import appModel.LugarAppModel
+import appModel.FinDeJuegoAppModel
 
-
-class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
+class LugarWindow extends CustomSimpleWindow<LugarAppModel> {
 	
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, LugarAppModel model) {
 		super(parent, model)
 	}
-	
-	
 	
 	override addActions(Panel actionsPanel) {
 
@@ -32,17 +30,17 @@ class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 					
 					// caso victoria
 					if(modelObject.lugarAbierto.detenido){
-						new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria, "pathImagenWon").open
+						new FinDeJuegoWindow(this, new FinDeJuegoAppModel(modelObject.repo), modelObject.victoria, modelObject.buttonVictoria, "pathImagenWon").open
 					}
 					
-					// caso derrota por no villaon equivocado
-					if(!modelObject.lugarAbierto.detenido && modelObject.juego.ordenDeArresto != null){
-						new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorrecto, modelObject.buttonDerrota, "pathImagenLost").open						
+					// caso derrota por villano equivocado
+					if(modelObject.villanoEquivocado){
+						new FinDeJuegoWindow(this, new FinDeJuegoAppModel(modelObject.repo), modelObject.derrotaPorVillanoIncorrecto, modelObject.buttonDerrota, "pathImagenLost").open						
 					}
 					
 					// caso sin orden de arresto
-					if(modelObject.juego.ordenDeArresto == null){
-						new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota, "pathImagenLost").open
+					if(modelObject.sinOrdenDeArresto){
+						new FinDeJuegoWindow(this, new FinDeJuegoAppModel(modelObject.repo), modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota, "pathImagenLost").open
 					}
 				
 				}						
