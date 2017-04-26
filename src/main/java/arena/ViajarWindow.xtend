@@ -1,6 +1,6 @@
 package arena
 
-import appModel.CarmenSanDiegoAppModel
+import appModel.ViajarAppModel
 import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.graphics.Image
@@ -14,9 +14,9 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
+class ViajarWindow extends Dialog<ViajarAppModel>{
 		
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, ViajarAppModel model) {
 		super(parent, model)
 	}
 	
@@ -27,8 +27,8 @@ class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 			caption = "Viajar"
 			setAsDefault 
 			onClick [ | 
-				modelObject.lugaresPistas=modelObject.juego.paisDestino.lugares
-				modelObject.juego.viajar(modelObject.juego.paisDestino)
+				modelObject.repo.lugaresPistas=modelObject.repo.juego.paisDestino.lugares
+				modelObject.repo.juego.viajar(modelObject.repo.juego.paisDestino)
 				modelObject.pedirTodasLasPistas
 				this.close
 			]
@@ -39,7 +39,7 @@ class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 			caption = "Volver al país anterior"
 			bindEnabledToProperty("puedeVolver")
 			onClick [
-				modelObject.juego.viajar(modelObject.juego.paisAnterior)
+				modelObject.repo.juego.viajar(modelObject.repo.juego.paisAnterior)
 				modelObject.pedirTodasLasPistas
 				this.close
 			]

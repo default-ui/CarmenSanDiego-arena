@@ -1,6 +1,6 @@
 package arena
 
-import appModel.OrdenDeArrestoAppModel
+
 import carmenSanDiego.OrdenDeArresto
 import carmenSanDiego.Villano
 import components.CustomSimpleWindow
