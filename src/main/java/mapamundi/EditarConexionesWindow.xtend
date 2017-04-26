@@ -1,7 +1,5 @@
 package mapamundi
 
-import csdExceptions.ConexionExistenteException
-import csdExceptions.NoSeleccionadoException
 import appModel.MapamundiAppModel
 import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.NotNullObservable
@@ -17,6 +15,7 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import appModel.ConexionesAppModel
+import org.uqbar.commons.model.UserException
 
 class EditarConexionesWindow extends Dialog<ConexionesAppModel>{
 	
@@ -79,16 +78,20 @@ override protected createFormPanel(Panel mainPanel) {
 		
 		new Button(mainPanel) => [
 			caption = "Agregar"
-			onClick [ |
-			if(this.modelObject.conexion==null){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+			onClick [
+				
+				if(this.modelObject.conexion==null){
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Conexión vacia')
 				}
-			if (this.modelObject.temp.conexiones.contains(this.modelObject.conexion)){
-				new ConexionExistenteException().mostrarError
-				throw new Exception();
-			}
-			this.modelObject.agregarConexion()
+				
+				if (this.modelObject.temp.conexiones.contains(this.modelObject.conexion)){
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Conexión ya existente')
+				}
+				
+				this.modelObject.agregarConexion()
+			
 			]
 		]	
 	}

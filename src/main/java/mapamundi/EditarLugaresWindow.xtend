@@ -1,8 +1,5 @@
 package mapamundi
 
-import csdExceptions.DemasiadosLugaresException
-import csdExceptions.LugarExistenteException
-import csdExceptions.NoSeleccionadoException
 import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
@@ -17,6 +14,7 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.commons.model.UserException
 
 class EditarLugaresWindow extends Dialog<MapamundiAppModel>{
 
@@ -62,8 +60,8 @@ override protected createFormPanel(Panel mainPanel) {
 			setAsDefault 
 			onClick [ | 
 				if (this.modelObject.lugar==null) {
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Lugar vacío')
 				}
 				this.modelObject.eliminarLugar()
 			]
@@ -82,16 +80,16 @@ override protected createFormPanel(Panel mainPanel) {
 			caption = "Agregar"
 			onClick [ |
 				if(this.modelObject.temp.lugares.size()>=3){
-					new DemasiadosLugaresException().mostrarError
-					throw new Exception();
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Ya hay lugares suficientes')
 				}
 				if(this.modelObject.lugar==null){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+					//new ErrorDialog(this, modelObject).open
+					new UserException('No hay lugar seleccionado')
 				}
 				if (this.modelObject.temp.lugarExiste(this.modelObject.lugar.nombre)){
-					new LugarExistenteException().mostrarError
-					throw new Exception()
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Ya existe el lugar')
 				}
 				this.modelObject.agregarLugar()
 			]

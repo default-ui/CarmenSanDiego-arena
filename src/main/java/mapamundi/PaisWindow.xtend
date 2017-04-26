@@ -1,6 +1,5 @@
 package mapamundi
 
-import csdExceptions.NombreDePaisNoIngresado
 import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
@@ -17,6 +16,7 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.commons.model.UserException
 
 class PaisWindow extends Dialog<MapamundiAppModel> {
 
@@ -90,9 +90,10 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 		
 		new Button(mainPanel)=>[
 			caption = "Aceptar"
-			onClick [ |
-				if (this.modelObject.nuevoPaisNombre=="") {
-					new NombreDePaisNoIngresado(this, modelObject).open
+			onClick [
+				if (modelObject.nuevoPaisNombre.empty) {
+					//new ErrorDialog(this, modelObject).open
+					new UserException('Nombre de pais vacio')
 				} else {
 					this.modelObject.mapa.eliminarPais(this.modelObject.temp.nombre)
 					this.modelObject.agregarPais()

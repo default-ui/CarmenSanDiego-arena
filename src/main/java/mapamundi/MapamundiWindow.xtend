@@ -1,6 +1,5 @@
 package mapamundi
 
-import csdExceptions.NoSeleccionadoException
 import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
@@ -18,6 +17,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.commons.model.UserException
 
 class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 
@@ -69,18 +69,19 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 			caption = "Eliminar"
 			onClick [ | 
 				if (this.modelObject.paisSeleccionado==null) {
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+					//new ErrorDialog(this, modelObject).open
+					new UserException('No hay país seleccionado')
+				} else {
+					modelObject.mapa.eliminarPais(modelObject.paisSeleccionado.nombre)					
 				}
-				modelObject.mapa.eliminarPais(modelObject.paisSeleccionado.nombre)
 			]
 		] 
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Editar"
 			onClick [ |
 				if (this.modelObject.paisSeleccionado==null) {
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+					//new ErrorDialog(this, modelObject).open
+					new UserException('No hay país seleccionado')
 				}
 				this.modelObject.temp=this.modelObject.paisSeleccionado
 				this.modelObject.nuevoPaisNombre=this.modelObject.temp.nombre
