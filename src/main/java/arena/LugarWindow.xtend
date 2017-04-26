@@ -28,20 +28,27 @@ class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 						this.close
 						// Victoria
 						if(modelObject.lugarAbierto.seEncuentraVillano == true){
-							// caso victoria
-							if(modelObject.lugarAbierto.detenido){
-							new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria).open
-							}
-							// caso derrota por no villaon equivocado
-							if(modelObject.juego.ordenDeArresto != null){
-								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorercto, modelObject.buttonDerrota).open
+														// caso sin orden
+							if(modelObject.juego.ordenDeArresto == null){
+								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota).open
+								
 								
 							}
-							// caso sin orden de arresto
-							else{
-								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota).open
+							// caso victoria
+							if(modelObject.lugarAbierto.detenido){
+								new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria).open
 							}
-						}
+
+							// caso incorrecto
+							else{
+								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorercto, modelObject.buttonDerrota).open
+							
+							
+							}
+							
+							}
+						
+						
 						
 			]
 		]
