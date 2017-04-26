@@ -1,19 +1,18 @@
 package arena
 
-import csdExceptions.NombreDePaisNoIngresado
 import appModel.CarmenSanDiegoAppModel
 import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.graphics.Image
 
 class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 		
@@ -34,22 +33,18 @@ class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 				this.close
 			]
 			
-			]
+		]
 		
 		new Button(actionsPanel) => [
 			caption = "Volver al país anterior"
-			setAsDefault 
-			onClick [ | 
-				if (modelObject.juego.caso.paisDelRobo.nombre==modelObject.juego.paisActual){
-					new NombreDePaisNoIngresado().mostrarError
-					throw new Exception();
-				}
+			bindEnabledToProperty("puedeVolver")
+			onClick [
 				modelObject.juego.viajar(modelObject.juego.paisAnterior)
 				modelObject.pedirTodasLasPistas
 				this.close
 			]
-			
-			]
+		]
+		
 	}
 
 
