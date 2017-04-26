@@ -74,23 +74,13 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Eliminar"
 			onClick [ | 
-				if (this.modelObject.paisSeleccionado==null) {
-					//new ErrorDialog(this, modelObject).open
-					throw new UserException('No hay país seleccionado')
-				} else {
-					modelObject.repo.mapa.eliminarPais(modelObject.paisSeleccionado.nombre)					
-				}
+				modelObject.eliminarPais
 			]
 		] 
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Editar"
 			onClick [ |
-				if (this.modelObject.paisSeleccionado==null) {
-					//new ErrorDialog(this, modelObject).open
-					throw new UserException('No hay país seleccionado')
-				}
-				this.modelObject.repo.paisTemp=this.modelObject.paisSeleccionado
-				this.modelObject.repo.nuevoPaisNombre=this.modelObject.repo.paisTemp.nombre
+				modelObject.editarPais
 				val paisAppModel=new PaisAppModel(modelObject.repo, paisSeleccionado)
 				new PaisWindow(this, paisAppModel).open
 			]
