@@ -29,10 +29,10 @@ class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 			caption = "Agregar"
 			width = 100
 			onClick[|
-				if (this.modelObject.inputValue=="" || this.modelObject.inputValue==null) {
-					new DatoNoIngresado().mostrarError
-					throw new Exception()
-				}
+//				if (this.modelObject.inputValue=="" || this.modelObject.inputValue==null) {
+//					new DatoNoIngresado().mostrarError
+//					throw new Exception()
+//				}
 				this.modelObject.agregarHobbie
 					]
 			]	
