@@ -30,7 +30,7 @@ class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		new Titulo(mainPanel, "Estas visitando: " + modelObject.lugarAbierto.nombre)
 
 		new Label(mainPanel) => [
-			text = modelObject.pedirPista
+			text = modelObject.pistaActual
 		]
 	}
 

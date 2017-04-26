@@ -30,6 +30,7 @@ class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 			onClick [ | 
 				modelObject.lugaresPistas=modelObject.juego.paisDestino.lugares
 				modelObject.juego.viajar(modelObject.juego.paisDestino)
+				modelObject.pedirTodasLasPistas
 				this.close
 			]
 			
