@@ -71,8 +71,7 @@ override protected createFormPanel(Panel mainPanel) {
 			caption = "Agregar"
 			onClick [ |
 			if (this.modelObject.caracteristica=="" || this.modelObject.caracteristica == null) {
-					new DatoNoIngresado().mostrarError
-					throw new Exception();
+					new DatoNoIngresado(this, modelObject).open
 				}
 			this.modelObject.agregarCaracteristica()
 			]

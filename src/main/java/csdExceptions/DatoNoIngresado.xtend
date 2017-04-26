@@ -1,24 +1,25 @@
 package csdExceptions
 
-import java.awt.Color
+import appModel.MapamundiAppModel
 import javax.swing.ImageIcon
 import javax.swing.JFrame
-import javax.swing.JOptionPane
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.commons.utils.Observable
 
 @Observable
 @Accessors
-class DatoNoIngresado {
+class DatoNoIngresado extends Dialog<MapamundiAppModel>{
 	JFrame panel = new JFrame()
 	ImageIcon icon = new ImageIcon("src/main/resources/iconsd.png")
 	
-	def mostrarError(){
-		panel.setBackground = Color.WHITE
-		JOptionPane.showMessageDialog(panel,
-        "No has ingresado ningún dato!!",
-        "Hey!!",
-        JOptionPane.ERROR_MESSAGE,
-        icon)
+		override addActions(Panel actionsPanel) {
 		}
+		
+		override createFormPanel(Panel mainPanel) {
+			new Label(mainPanel).text = "No has ingresado ningún dato!"
+		}
+		
 	}

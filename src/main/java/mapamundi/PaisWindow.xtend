@@ -92,8 +92,7 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 			caption = "Aceptar"
 			onClick [ |
 				if (this.modelObject.nuevoPaisNombre=="") {
-					new NombreDePaisNoIngresado().mostrarError
-					throw new Exception();
+					new NombreDePaisNoIngresado(this, modelObject).open
 				} else {
 					this.modelObject.mapa.eliminarPais(this.modelObject.temp.nombre)
 					this.modelObject.agregarPais()
