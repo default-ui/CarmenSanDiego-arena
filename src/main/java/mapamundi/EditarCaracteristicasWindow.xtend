@@ -77,5 +77,5 @@ override protected createFormPanel(Panel mainPanel) {
 			this.modelObject.agregarCaracteristica()
 			]
 		]	
-}
+	}
 }

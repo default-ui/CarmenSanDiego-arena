@@ -36,8 +36,6 @@ class FinDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 			new Label(mainPanel) =>[
 				text = linea
 			]
+		}
 	}
-	
-}
-
 }

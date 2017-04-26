@@ -132,7 +132,6 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 				(items <=> "paisSeleccionado.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 50
 				width = 400
-				//value <=> "paisSeleccionado.caracteristicas"
 			]
 		
 		new Titulo(panelDeLugares, "Lugares de interes")
@@ -140,7 +139,6 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 				(items <=> "paisSeleccionado.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
 				height = 50
 				width = 400
-				//value <=> "paisSeleccionado.caracteristicas"
 			]	
 		}	
 }

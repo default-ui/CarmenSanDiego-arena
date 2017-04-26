@@ -1,23 +1,19 @@
-package arena
+package expediente
 
-import components.CustomSimpleWindow
-import appModel.CarmenSanDiegoAppModel
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Panel
-import components.LabeledTextBox
-import components.LabeledSelector
-import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.Button
-import components.VillanoCaracteristicasList
 import appModel.ExpedienteAppModel
+import components.CustomSimpleWindow
+import components.LabeledSelector
+import components.LabeledTextBox
+import components.VillanoCaracteristicasList
 import org.uqbar.arena.graphics.Image
-import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.WindowOwner
 
 class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 	
 	new(WindowOwner parent, ExpedienteAppModel model, String windowTitle) {
-		//TODO: El titulo deberia estar hardcodeado en un appModel
 		super(parent, model)
 		title = windowTitle
 	}
@@ -52,18 +48,11 @@ class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 			bindItemsToProperty("gender")
 			bindValueToProperty("villanoTemp.sexo")
 		]
-	/// Senas 
-
-		
 
 	//// List label
 		new Label(mainPanel).text = "Señas"
 	//// Senas list
 		new VillanoCaracteristicasList(mainPanel,"villanoTemp.senasParticulares", "senaSeleccionada")
-
-	/// Hobbies 
-	
-		
 
 	//// List label
 		new Label(mainPanel).text = "Hobbie"

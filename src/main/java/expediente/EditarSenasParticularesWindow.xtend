@@ -1,4 +1,4 @@
-package arena
+package expediente
 
 import appModel.ExpedienteAppModel
 import csdExceptions.DatoNoIngresado
@@ -35,10 +35,6 @@ class EditarSenasParticularesWindow extends EditarCaracteristicaVillanoWindow{
 				}
 				modelObject.agregarSena
 					]
-			]	
-		
-	}
-	
-	
-	
+			]		
+	}	
 }

@@ -6,13 +6,12 @@ import carmenSanDiego.Villano
 import components.CustomSimpleWindow
 import components.LabeledLabel
 import components.LabeledSelector
-import org.uqbar.arena.Application
 import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.graphics.Image
 
 class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -54,22 +53,6 @@ class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppMod
 
 		]
 		
-	}
-	
-}
-
-/***********
- * PRUEBA***
- ***********/
- 
-class EmitirOrdenDeArrestoApp extends Application{
-	
-	override protected createMainWindow() {
-		new EmitirOrdenDeArrestoWindow(this, new CarmenSanDiegoAppModel)		
-	}
-	
-	def static main(String[] args) {
-		new EmitirOrdenDeArrestoApp().start
 	}
 	
 }

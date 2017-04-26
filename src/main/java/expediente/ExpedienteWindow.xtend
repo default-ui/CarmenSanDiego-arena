@@ -1,6 +1,6 @@
-package arena
+package expediente
 
-import appModel.CarmenSanDiegoAppModel
+import appModel.ExpedienteAppModel
 import carmenSanDiego.Villano
 import components.CustomSimpleWindow
 import components.LabeledLabel
@@ -15,7 +15,6 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import appModel.ExpedienteAppModel
 
 class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModel> {
 	

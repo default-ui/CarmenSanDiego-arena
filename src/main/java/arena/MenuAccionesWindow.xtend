@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import mapamundi.MapamundiWindow
+import expediente.ExpedienteEditableWindow
 
 /**
  * Ventana de menu principal de la aplicación

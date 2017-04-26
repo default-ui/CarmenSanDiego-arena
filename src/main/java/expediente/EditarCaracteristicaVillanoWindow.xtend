@@ -1,4 +1,4 @@
-package arena
+package expediente
 
 import appModel.ExpedienteAppModel
 import components.VillanoCaracteristicasList
@@ -72,6 +72,4 @@ abstract class EditarCaracteristicaVillanoWindow extends TransactionalDialog<Exp
 			onClick [ | this.close ]
 			]
 	}
-
-	
 }

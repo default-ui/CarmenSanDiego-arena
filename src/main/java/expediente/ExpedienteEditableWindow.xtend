@@ -1,14 +1,11 @@
-package arena
+package expediente
 
-import org.uqbar.arena.windows.WindowOwner
-import appModel.CarmenSanDiegoAppModel
-import org.uqbar.arena.widgets.Panel
+import appModel.ExpedienteAppModel
+import carmenSanDiego.Villano
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
-import carmenSanDiego.Villano
-import appModel.ExpedienteAppModel
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.graphics.Image
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.WindowOwner
 
 class ExpedienteEditableWindow extends ExpedienteWindow{
 	

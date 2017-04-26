@@ -17,6 +17,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import expediente.ExpedienteWindow
 
 class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -55,7 +56,6 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 				height =100 
 				modelObject.juego.getRecorrido()
 				(items <=> "juego.recorrido").adapter = new PropertyAdapter(Pais, "nombre")
-//				value <=> "paisSeleccionado"
 			]
 
 		new Titulo(mainPanel, "Destinos Fallidos")
@@ -64,7 +64,6 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 				height =100 
 				modelObject.juego.getFallidos()
 				(items <=> "juego.fallidos").adapter = new PropertyAdapter(Pais, "nombre")
-//				value <=> "paisSeleccionado"
 			]
 
 	}

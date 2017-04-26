@@ -1,4 +1,4 @@
-package arena
+package expediente
 
 import appModel.ExpedienteAppModel
 import csdExceptions.DatoNoIngresado
@@ -36,9 +36,6 @@ class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 				this.modelObject.agregarHobbie
 					]
 			]	
-	}
-	
-	
+	}	
 }
-
 	

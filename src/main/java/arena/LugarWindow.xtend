@@ -41,7 +41,7 @@ class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 
 							// caso incorrecto
 							else{
-								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorercto, modelObject.buttonDerrota).open
+								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorrecto, modelObject.buttonDerrota).open
 							
 							
 							}

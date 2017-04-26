@@ -60,7 +60,6 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 				(items <=> "temp.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 50
 				width = 400
-				//value <=> "paisSeleccionado.caracteristicas"
 			]
 			
 			]
@@ -76,7 +75,6 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 				(items <=> "temp.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
 				height = 50
 				width = 400
-				//value <=> "paisSeleccionado.caracteristicas"
 			]	
 			
 		new Button(mainPanel)=>[
