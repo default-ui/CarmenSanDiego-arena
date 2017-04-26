@@ -24,45 +24,28 @@ class LugarWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		new Button(actionsPanel) => [
 			caption = "Continuar"
 			setAsDefault 
-			onClick [ |
-						this.close
-//						// Victoria
-//						if(modelObject.lugarAbierto.seEncuentraVillano == true){
-//														// caso sin orden
-//							if(modelObject.juego.ordenDeArresto == null){
-//								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota, "pathImagenLost").open
-//							}
-//							// caso victoria
-//							if(modelObject.lugarAbierto.detenido){
-//								new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria, "pathImagenWon").open
-//							}
-//
-//							// caso incorrecto
-//							else{
-//								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorrecto, modelObject.buttonDerrota, "pathImagenLost").open
-//							
-//							
-//							}
-//							
-//							}
-							if(modelObject.lugarAbierto.seEncuentraVillano == true){
- 							// caso victoria
- 							if(modelObject.lugarAbierto.detenido){
- 							new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria, "pathImagenWon").open
- 							}
- 							// caso derrota por no villaon equivocado
- 							if(!modelObject.lugarAbierto.detenido && modelObject.juego.ordenDeArresto != null){
- 								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorrecto, modelObject.buttonDerrota, "pathImagenLost").open
- 								
- 							}
- 							// caso sin orden de arresto
- 							if(modelObject.juego.ordenDeArresto == null){
- 								new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota, "pathImagenLost").open
- 							}
- 						}
-						
-						
-						
+			onClick [
+				
+				this.close
+				
+				if(modelObject.lugarAbierto.seEncuentraVillano){
+					
+					// caso victoria
+					if(modelObject.lugarAbierto.detenido){
+						new FinDeJuegoWindow(this, modelObject, modelObject.victoria, modelObject.buttonVictoria, "pathImagenWon").open
+					}
+					
+					// caso derrota por no villaon equivocado
+					if(!modelObject.lugarAbierto.detenido && modelObject.juego.ordenDeArresto != null){
+						new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorVillanoIncorrecto, modelObject.buttonDerrota, "pathImagenLost").open						
+					}
+					
+					// caso sin orden de arresto
+					if(modelObject.juego.ordenDeArresto == null){
+						new FinDeJuegoWindow(this, modelObject, modelObject.derrotaPorNoOrdenDeArresto, modelObject.buttonDerrota, "pathImagenLost").open
+					}
+				
+				}						
 			]
 		]
 	}
