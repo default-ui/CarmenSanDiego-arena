@@ -28,6 +28,7 @@ class FinDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 			caption = buttonCaption
 			setAsDefault 
 			onClick [ | this.close
+						
 
 						
 			]
