@@ -61,7 +61,7 @@ override protected createFormPanel(Panel mainPanel) {
 			onClick [ | 
 				if (this.modelObject.lugar==null) {
 					//new ErrorDialog(this, modelObject).open
-					new UserException('Lugar vacío')
+					throw new UserException('Lugar vacío')
 				}
 				this.modelObject.eliminarLugar()
 			]
@@ -81,15 +81,15 @@ override protected createFormPanel(Panel mainPanel) {
 			onClick [ |
 				if(this.modelObject.temp.lugares.size()>=3){
 					//new ErrorDialog(this, modelObject).open
-					new UserException('Ya hay lugares suficientes')
+					throw new UserException('Ya hay lugares suficientes')
 				}
 				if(this.modelObject.lugar==null){
 					//new ErrorDialog(this, modelObject).open
-					new UserException('No hay lugar seleccionado')
+					throw new UserException('No hay lugar seleccionado')
 				}
 				if (this.modelObject.temp.lugarExiste(this.modelObject.lugar.nombre)){
 					//new ErrorDialog(this, modelObject).open
-					new UserException('Ya existe el lugar')
+					throw new UserException('Ya existe el lugar')
 				}
 				this.modelObject.agregarLugar()
 			]

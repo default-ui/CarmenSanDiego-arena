@@ -31,7 +31,7 @@ class EditarSenasParticularesWindow extends EditarCaracteristicaVillanoWindow{
 			onClick[|
 				if (this.modelObject.inputValue=="" || this.modelObject.inputValue==null) {
 					//new ErrorDialog(this, modelObject).open
-					new UserException('Señas particulares vacia')
+					throw new UserException('Señas particulares vacia')
 				}
 				modelObject.agregarSena
 			]

@@ -93,7 +93,7 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 			onClick [
 				if (modelObject.nuevoPaisNombre.empty) {
 					//new ErrorDialog(this, modelObject).open
-					new UserException('Nombre de pais vacio')
+					throw new UserException('Nombre de pais vacio')
 				} else {
 					this.modelObject.mapa.eliminarPais(this.modelObject.temp.nombre)
 					this.modelObject.agregarPais()

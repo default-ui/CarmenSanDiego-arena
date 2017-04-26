@@ -31,7 +31,7 @@ class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 			onClick[|
 				if (this.modelObject.inputValue=="" || this.modelObject.inputValue==null) {
 					//new ErrorDialog(this, modelObject, 'Sin Datos').open
-					new UserException('Señas particulares vacia')
+					throw new UserException('Señas particulares vacia')
 				} else {
 					this.modelObject.agregarHobbie					
 				}
