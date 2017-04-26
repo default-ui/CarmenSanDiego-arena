@@ -1,11 +1,11 @@
 package mapamundi
 
+import appModel.EditarLugaresAppModel
+import carmenSanDiego.Lugar
+import carmenSanDiego.Pais
 import csdExceptions.DemasiadosLugaresException
 import csdExceptions.LugarExistenteException
 import csdExceptions.NoSeleccionadoException
-import appModel.MapamundiAppModel
-import carmenSanDiego.Lugar
-import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.VerticalLayout
@@ -18,10 +18,10 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class EditarLugaresWindow extends Dialog<MapamundiAppModel>{
+class EditarLugaresWindow extends Dialog<EditarLugaresAppModel>{
 
 	
-	new(WindowOwner parent, MapamundiAppModel model) {
+	new(WindowOwner parent, EditarLugaresAppModel model) {
 		super(parent, model)
 	}
 	
@@ -81,7 +81,7 @@ override protected createFormPanel(Panel mainPanel) {
 		new Button(mainPanel) => [
 			caption = "Agregar"
 			onClick [ |
-				if(this.modelObject.temp.lugares.size()>=3){
+				if(modelObject.repo.paisTemp.lugares.size()>=3){
 					new DemasiadosLugaresException().mostrarError
 					throw new Exception();
 				}
@@ -89,7 +89,7 @@ override protected createFormPanel(Panel mainPanel) {
 					new NoSeleccionadoException().mostrarError
 					throw new Exception();
 				}
-				if (this.modelObject.temp.lugarExiste(this.modelObject.lugar.nombre)){
+				if (this.modelObject.repo.paisTemp.lugarExiste(this.modelObject.lugar.nombre)){
 					new LugarExistenteException().mostrarError
 					throw new Exception()
 				}

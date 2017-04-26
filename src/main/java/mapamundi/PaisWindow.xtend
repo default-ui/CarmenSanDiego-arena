@@ -1,7 +1,9 @@
 package mapamundi
 
-import csdExceptions.NombreDePaisNoIngresado
-import appModel.MapamundiAppModel
+import appModel.CaracteristicasAppModel
+import appModel.ConexionesAppModel
+import appModel.EditarLugaresAppModel
+import appModel.PaisAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import components.Titulo
@@ -15,12 +17,14 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.model.UserException
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class PaisWindow extends Dialog<MapamundiAppModel> {
+class PaisWindow extends Dialog<PaisAppModel> {
 
-	new(WindowOwner owner, MapamundiAppModel model) {
+	
+	new(WindowOwner owner, PaisAppModel model) {
 		super(owner, model)
 	}
 	
@@ -43,7 +47,7 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 		val Panel panelDeCaracteristicas = new Panel(mainPanel)
 		new Titulo(panelDeCaracteristicas, "Caracteristicas")
 		new List<String>(panelDeCaracteristicas) => [
-				items <=> "temp.caracteristicas"
+				items <=> "repo.paisTemp.caracteristicas"
 				height = 60
 				width = 400	
 			]
@@ -51,13 +55,14 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 		new Button(mainPanel)=>[
 			caption = "Editar Caracteristicas"
 			onClick [ |
-				new EditarCaracteristicasWindow(this, this.modelObject).open
+				val caracteristicasAppModel=new CaracteristicasAppModel(modelObject.repo)
+				new EditarCaracteristicasWindow(this, caracteristicasAppModel).open
 			]
 			
 		val Panel panelDeConexiones = new Panel(mainPanel)
 		new Titulo(panelDeConexiones, "Conexiones")
 		new List<Pais>(panelDeConexiones) => [
-				(items <=> "temp.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.paisTemp.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 50
 				width = 400
 			]
@@ -66,13 +71,14 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 		new Button(mainPanel)=>[
 			caption = "Editar Conexiones"
 			onClick [ |
-				new EditarConexionesWindow(this, this.modelObject).open
+				val conexionesAppModel = new ConexionesAppModel(modelObject.repo)
+				new EditarConexionesWindow(this, conexionesAppModel).open
 			]
 			
 		val Panel panelDeLugares = new Panel(mainPanel)
 		new Titulo(panelDeLugares, "Lugares de interes")
 		new List<Pais>(panelDeLugares) => [
-				(items <=> "temp.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
+				(items <=> "repo.paisTemp.lugares").adapter = new PropertyAdapter(Lugar, "nombre")
 				height = 50
 				width = 400
 			]	
@@ -80,7 +86,8 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 		new Button(mainPanel)=>[
 			caption = "Editar Lugares"
 			onClick [ |
-				new EditarLugaresWindow(this, this.modelObject).open
+				val editarLugaresAppModel = new EditarLugaresAppModel(modelObject.repo)
+				new EditarLugaresWindow(this, editarLugaresAppModel).open
 			]
 			
 			]
@@ -91,12 +98,12 @@ class PaisWindow extends Dialog<MapamundiAppModel> {
 		new Button(mainPanel)=>[
 			caption = "Aceptar"
 			onClick [ |
-				if (this.modelObject.nuevoPaisNombre=="") {
-					new NombreDePaisNoIngresado(this, modelObject).open
+				if (this.modelObject.repo.nuevoPaisNombre=="") {
+					new UserException("El pais no tiene nombre")
 				} else {
-					this.modelObject.mapa.eliminarPais(this.modelObject.temp.nombre)
+					modelObject.repo.mapa.eliminarPais(this.modelObject.repo.paisTemp.nombre)
 					this.modelObject.agregarPais()
-					this.modelObject.paisSeleccionado=this.modelObject.temp
+					this.modelObject.paisSeleccionado=this.modelObject.repo.paisTemp
 					this.close
 				}
 					

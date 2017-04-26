@@ -18,9 +18,12 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import appModel.PaisAppModel
 
 class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 
+	Pais paisSeleccionado
+	
 	new(WindowOwner parent, MapamundiAppModel model) {
 		super(parent, model)
 	}
@@ -58,7 +61,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 
 		new Titulo(panelDeListadoDePaises, "Paises")
 		new List<Pais>(panelDeListadoDePaises) => [
-				(items <=> "mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 290
 				width = 150
 				value <=> "paisSeleccionado"
@@ -82,17 +85,19 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 					new NoSeleccionadoException().mostrarError
 					throw new Exception();
 				}
-				this.modelObject.temp=this.modelObject.paisSeleccionado
-				this.modelObject.nuevoPaisNombre=this.modelObject.temp.nombre
-				new mapamundi.PaisWindow(this, this.modelObject).open
+				this.modelObject.repo.paisTemp=this.modelObject.paisSeleccionado
+				this.modelObject.repo.nuevoPaisNombre=this.modelObject.repo.paisTemp.nombre
+				val paisWindow=new PaisAppModel(modelObject.repo, paisSeleccionado)
+				new mapamundi.PaisWindow(this, paisWindow).open
 			]
 		] 
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Nuevo"
 			onClick [ | 
-				this.modelObject.temp= new Pais("temp")
-				this.modelObject.nuevoPaisNombre=""
-				new mapamundi.PaisWindow(this, this.modelObject).open
+				this.modelObject.repo.paisTemp= new Pais("temp")
+				this.modelObject.repo.nuevoPaisNombre=""
+				val paisAppModel=new PaisAppModel(modelObject.repo, paisSeleccionado)
+				new mapamundi.PaisWindow(this, paisAppModel).open
 			]
 		] 
 	}

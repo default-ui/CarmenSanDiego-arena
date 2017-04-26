@@ -15,6 +15,7 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import appModel.CaracteristicasAppModel
+import org.uqbar.commons.model.UserException
 
 class EditarCaracteristicasWindow extends Dialog<CaracteristicasAppModel>{
 	
@@ -72,7 +73,7 @@ override protected createFormPanel(Panel mainPanel) {
 			caption = "Agregar"
 			onClick [ |
 			if (this.modelObject.caracteristica=="" || this.modelObject.caracteristica == null) {
-					new DatoNoIngresado(this, modelObject).open
+					new UserException("No ha selecionado ninguna característica")
 				}
 			this.modelObject.agregarCaracteristica()
 			]

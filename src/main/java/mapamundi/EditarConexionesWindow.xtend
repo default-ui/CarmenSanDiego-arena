@@ -1,9 +1,9 @@
 package mapamundi
 
+import appModel.ConexionesAppModel
+import carmenSanDiego.Pais
 import csdExceptions.ConexionExistenteException
 import csdExceptions.NoSeleccionadoException
-import appModel.MapamundiAppModel
-import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.graphics.Image
@@ -16,7 +16,6 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import appModel.ConexionesAppModel
 
 class EditarConexionesWindow extends Dialog<ConexionesAppModel>{
 	
@@ -63,8 +62,7 @@ override protected createFormPanel(Panel mainPanel) {
 			setAsDefault 
 			onClick [ | 
 				this.modelObject.eliminarConexion()
-
-			]
+				]
 			]
 			
 		val Panel panelDeConexiones2 = new Panel(mainPanel)	
@@ -72,9 +70,7 @@ override protected createFormPanel(Panel mainPanel) {
 				(items <=> "mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 60
 				width = 400
-				value <=> "conexion"
-				
-				
+				value <=> "conexion"	
 			]
 		
 		new Button(mainPanel) => [
@@ -84,7 +80,7 @@ override protected createFormPanel(Panel mainPanel) {
 					new NoSeleccionadoException().mostrarError
 					throw new Exception();
 				}
-			if (this.modelObject.temp.conexiones.contains(this.modelObject.conexion)){
+			if (modelObject.repo.paisTemp.conexiones.contains(modelObject.conexion)){
 				new ConexionExistenteException().mostrarError
 				throw new Exception();
 			}
