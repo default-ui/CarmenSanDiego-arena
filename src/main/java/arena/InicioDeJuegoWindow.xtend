@@ -9,6 +9,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import java.awt.Color
 import org.uqbar.arena.graphics.Image
+import appModel.ResolviendoCasoAppModel
 
 class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -27,7 +28,7 @@ class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 				this.close
 				modelObject.expedienteAppModel.objeto = modelObject.juego.caso.objeto
 				modelObject.pedirTodasLasPistas
-				new ResolviendoCasoWindow(this, this.modelObject).open
+				new ResolviendoCasoWindow(this, new ResolviendoCasoAppModel(modelObject.repo)).open
 				
 			]
 			
