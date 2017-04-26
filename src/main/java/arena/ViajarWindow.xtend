@@ -45,6 +45,7 @@ class ViajarWindow extends Dialog<CarmenSanDiegoAppModel>{
 					throw new Exception();
 				}
 				modelObject.juego.viajar(modelObject.juego.paisAnterior)
+				modelObject.pedirTodasLasPistas
 				this.close
 			]
 			
