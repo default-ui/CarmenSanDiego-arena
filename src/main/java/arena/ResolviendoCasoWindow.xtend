@@ -2,9 +2,10 @@ package arena
 
 import appModel.CarmenSanDiegoAppModel
 import carmenSanDiego.Pais
+import components.LabeledLabel
 import components.Titulo
-import org.uqbar.arena.Application
 import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
@@ -16,8 +17,6 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.graphics.Image
-import components.LabeledLabel
 
 class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	
@@ -140,7 +139,6 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 					new LugarWindow(this, this.modelObject).open
 				]
 		]
-		
 		
 	}	
 
