@@ -1,8 +1,9 @@
 package arena
 
+import Exceptions.DemasiadosLugaresException
 import Exceptions.LugarExistenteException
 import Exceptions.NoSeleccionadoException
-import appModel.CarmenSanDiegoAppModel
+import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.PropertyAdapter
@@ -16,12 +17,11 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import Exceptions.DemasiadosLugaresException
 
-class EditarLugaresWindow extends Dialog<CarmenSanDiegoAppModel>{
+class EditarLugaresWindow extends Dialog<MapamundiAppModel>{
 
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, MapamundiAppModel model) {
 		super(parent, model)
 	}
 	

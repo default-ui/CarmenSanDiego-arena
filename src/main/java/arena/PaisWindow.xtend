@@ -1,7 +1,7 @@
 package arena
 
 import Exceptions.NombreDePaisNoIngresado
-import appModel.CarmenSanDiegoAppModel
+import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import components.Titulo
@@ -18,9 +18,9 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class PaisWindow extends Dialog<CarmenSanDiegoAppModel> {
+class PaisWindow extends Dialog<MapamundiAppModel> {
 
-	new(WindowOwner owner, CarmenSanDiegoAppModel model) {
+	new(WindowOwner owner, MapamundiAppModel model) {
 		super(owner, model)
 	}
 	
@@ -45,10 +45,9 @@ class PaisWindow extends Dialog<CarmenSanDiegoAppModel> {
 		new List<String>(panelDeCaracteristicas) => [
 				items <=> "temp.caracteristicas"
 				height = 60
-				width = 400
-				//value <=> "mapa.getPaisFromName(tempPais).caracteristicas"
-				
+				width = 400	
 			]
+			
 		new Button(mainPanel)=>[
 			caption = "Editar Caracteristicas"
 			onClick [ |

@@ -1,6 +1,8 @@
 package arena
 
-import appModel.CarmenSanDiegoAppModel
+import Exceptions.DatoNoIngresado
+import appModel.MapamundiAppModel
+import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
@@ -10,13 +12,12 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import Exceptions.DatoNoIngresado
-import org.uqbar.arena.bindings.NotNullObservable
 
-class EditarCaracteristicasWindow extends Dialog<CarmenSanDiegoAppModel>{
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+
+class EditarCaracteristicasWindow extends Dialog<MapamundiAppModel>{
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, MapamundiAppModel model) {
 		super(parent, model)
 	}
 	

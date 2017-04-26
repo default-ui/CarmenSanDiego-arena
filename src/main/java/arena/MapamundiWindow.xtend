@@ -1,10 +1,13 @@
 package arena
 
+import Exceptions.NoSeleccionadoException
+import appModel.MapamundiAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import components.Titulo
 import java.awt.Color
 import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
@@ -15,14 +18,10 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.graphics.Image
-import appModel.CarmenSanDiegoAppModel
-import Exceptions.NoSeleccionadoException
-import org.uqbar.arena.Application
 
-class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
+class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, MapamundiAppModel model) {
 		super(parent, model)
 	}
 
@@ -144,20 +143,4 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiegoAppModel> {
 				//value <=> "paisSeleccionado.caracteristicas"
 			]	
 		}	
-}
-
-/***********
- * PRUEBA***
- ***********/
- 
-class MapamundiApp extends Application{
-	
-	override protected createMainWindow() {
-		new MapamundiWindow(this, new CarmenSanDiegoAppModel)		
-	}
-	
-	def static main(String[] args) {
-		new MapamundiApp().start
-	}
-	
 }

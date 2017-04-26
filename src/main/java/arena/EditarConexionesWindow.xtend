@@ -2,8 +2,9 @@ package arena
 
 import Exceptions.ConexionExistenteException
 import Exceptions.NoSeleccionadoException
-import appModel.CarmenSanDiegoAppModel
+import appModel.MapamundiAppModel
 import carmenSanDiego.Pais
+import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.VerticalLayout
@@ -15,11 +16,10 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.bindings.NotNullObservable
 
-class EditarConexionesWindow extends Dialog<CarmenSanDiegoAppModel>{
+class EditarConexionesWindow extends Dialog<MapamundiAppModel>{
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, MapamundiAppModel model) {
 		super(parent, model)
 	}
 	

@@ -2,12 +2,11 @@ package arena
 
 import appModel.CarmenSanDiegoAppModel
 import components.CustomSimpleWindow
+import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.graphics.Image
-import appModel.ExpedienteAppModel
 
 /**
  * Ventana de menu principal de la aplicación
@@ -25,7 +24,6 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 			caption = "Resolver Misterio"
 			onClick [ | 
 				modelObject.juego.crearCaso()
-				//modelObject.lugaresPistas = modelObject.juego.paisActual.lugares
 				new InicioDeJuegoWindow(this, this.modelObject).open 
 			]
 			setAsDefault
@@ -33,7 +31,7 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 
 		new Button(actionsPanel) => [
 			caption = "Mapamundi"
-			onClick [ | new MapamundiWindow(this, this.modelObject).open ]
+			onClick [ | new MapamundiWindow(this, this.modelObject.mapamundiAppModel).open ]
 		]
 
 		new Button(actionsPanel) => [
