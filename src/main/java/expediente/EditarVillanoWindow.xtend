@@ -10,12 +10,21 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import appModel.EditarVillanoAppModel
+import appModel.EditarHobbieAppModel
+import carmenSanDiego.CarmenSanDiegoRepo
+import org.uqbar.arena.Application
+import appModel.EditarCaracteristicaVillanoAppModel
+import appModel.ExpedienteAppModelNuevo
 
-class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
+class EditarVillanoWindow extends CustomSimpleWindow<EditarVillanoAppModel>{
 	
-	new(WindowOwner parent, ExpedienteAppModel model, String windowTitle) {
+	CarmenSanDiegoRepo repo;
+	
+	new(WindowOwner parent, EditarVillanoAppModel model, String windowTitle, CarmenSanDiegoRepo juegoRepo) {
 		super(parent, model)
 		title = windowTitle
+		repo = juegoRepo
 	}
 	
 	override addActions(Panel actionsPanel) {
@@ -56,7 +65,7 @@ class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 			///// Button
 		new Button(mainPanel) => [
 			caption = "Editar señas particulares"
-			onClick[| new EditarSenasParticularesWindow(this, modelObject).open]
+			onClick[| new EditarSenasParticularesWindow(this, new EditarCaracteristicaVillanoAppModel(repo, modelObject.villanoTemp)).open]
 		] 
 
 	//// List label
@@ -66,8 +75,23 @@ class EditarVillanoWindow extends CustomSimpleWindow<ExpedienteAppModel>{
 	//// Button
 		new Button(mainPanel) => [
 			caption = "Editar hobbies"
-			onClick[| new EditarHobbiesWindow(this, modelObject).open]
+			onClick[| new EditarHobbiesWindow(this, new EditarCaracteristicaVillanoAppModel(repo, modelObject.villanoTemp)).open]
 			]
 	}
+}	
 
-}
+class EditarVilApp extends Application{
+	
+	override protected createMainWindow() {
+		//var vil = appModel.expediente.villanos.get(0)
+		var  repo = new CarmenSanDiegoRepo
+		new ExpedienteEditableWindow(this, new ExpedienteAppModelNuevo(repo), repo)
+		
+	}
+	
+	def static main(String[] args) {
+		new EditarVilApp().start
+	}
+	}
+
+

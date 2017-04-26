@@ -6,10 +6,11 @@ import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import appModel.EditarCaracteristicaVillanoAppModel
 
 class EditarHobbiesWindow extends EditarCaracteristicaVillanoWindow{
 	
-	new(WindowOwner owner, ExpedienteAppModel model) {
+	new(WindowOwner owner, EditarCaracteristicaVillanoAppModel model) {
 		super(owner, model, "pathImagenHobbies", "Hobbie", "villanoTemp.hobbies", "hobbieSeleccionado")
 	}
 	
