@@ -24,9 +24,8 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		
 		new Button(actionsPanel) => [
 			caption = "Resolver Misterio"
-			onClick [ | 
-				modelObject.juego.crearCaso()
-				modelObject.lugaresPistas = modelObject.juego.paisActual.lugares
+			onClick [
+				modelObject.iniciarNuevaPartida
 				new InicioDeJuegoWindow(this, this.modelObject).open 
 			]
 			setAsDefault
@@ -34,12 +33,16 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 
 		new Button(actionsPanel) => [
 			caption = "Mapamundi"
-			onClick [ | new MapamundiWindow(this, this.modelObject.mapamundiAppModel).open ]
+			onClick [
+				new MapamundiWindow(this, this.modelObject.mapamundiAppModel).open
+			]
 		]
 
 		new Button(actionsPanel) => [
 			caption = "Expedientes"
-			onClick [ | new ExpedienteEditableWindow(this, this.modelObject.expedienteAppModel).open ]
+			onClick [
+				new ExpedienteEditableWindow(this, this.modelObject.expedienteAppModel).open
+			]
 		]
 
 	}
