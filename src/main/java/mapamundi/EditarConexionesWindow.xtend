@@ -1,8 +1,6 @@
 package mapamundi
 
-import csdExceptions.ConexionExistenteException
-import csdExceptions.NoSeleccionadoException
-import appModel.MapamundiAppModel
+import appModel.ConexionesAppModel
 import carmenSanDiego.Pais
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.bindings.PropertyAdapter
@@ -14,9 +12,9 @@ import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.model.UserException
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import appModel.ConexionesAppModel
 
 class EditarConexionesWindow extends Dialog<ConexionesAppModel>{
 	
@@ -49,7 +47,7 @@ override protected createFormPanel(Panel mainPanel) {
 		val Panel panelDeConexiones1 = new Panel(mainPanel)
 		
 		new List<Pais>(panelDeConexiones1) => [
-				(items <=> "temp.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.paisTemp.conexiones").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 60
 				width = 400
 				value <=> "conexionAEliminar"
@@ -63,32 +61,34 @@ override protected createFormPanel(Panel mainPanel) {
 			setAsDefault 
 			onClick [ | 
 				this.modelObject.eliminarConexion()
-
-			]
+				]
 			]
 			
 		val Panel panelDeConexiones2 = new Panel(mainPanel)	
 		new List<Pais>(panelDeConexiones2) => [
-				(items <=> "mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
+				(items <=> "repo.mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 60
 				width = 400
-				value <=> "conexion"
-				
-				
+				value <=> "conexion"	
 			]
 		
 		new Button(mainPanel) => [
 			caption = "Agregar"
-			onClick [ |
-			if(this.modelObject.conexion==null){
-					new NoSeleccionadoException().mostrarError
-					throw new Exception();
+			onClick [
+				
+				if(this.modelObject.conexion==null){
+					//new ErrorDialog(this, modelObject).open
+					throw new UserException('Conexión vacia')
 				}
-			if (this.modelObject.temp.conexiones.contains(this.modelObject.conexion)){
-				new ConexionExistenteException().mostrarError
-				throw new Exception();
-			}
-			this.modelObject.agregarConexion()
+				
+				if (this.modelObject.repo.paisTemp.conexiones.contains(this.modelObject.conexion)){
+					//new ErrorDialog(this, modelObject).open
+
+					throw new UserException('Conexión ya existente')
+				}
+
+				this.modelObject.agregarConexion()
+			
 			]
 		]	
 	}

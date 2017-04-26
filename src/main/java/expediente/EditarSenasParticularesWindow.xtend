@@ -1,12 +1,11 @@
 package expediente
 
-import appModel.ExpedienteAppModel
-import csdExceptions.DatoNoIngresado
+import appModel.EditarCaracteristicaVillanoAppModel
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
-import appModel.EditarCaracteristicaVillanoAppModel
+import org.uqbar.commons.model.UserException
 
 class EditarSenasParticularesWindow extends EditarCaracteristicaVillanoWindow{
 	
@@ -30,12 +29,12 @@ class EditarSenasParticularesWindow extends EditarCaracteristicaVillanoWindow{
 			caption = "Agregar"
 			width = 100
 			onClick[|
-//				if (this.modelObject.inputValue=="" || this.modelObject.inputValue==null) {
-//					new DatoNoIngresado().mostrarError
-//					throw new Exception()
-//				}
+				if (this.modelObject.inputValue=="" || this.modelObject.inputValue==null) {
+					//new ErrorDialog(this, modelObject).open
+					throw new UserException('Señas particulares vacia')
+				}
 				modelObject.agregarSena
-					]
-			]		
+			]
+		]		
 	}	
 }

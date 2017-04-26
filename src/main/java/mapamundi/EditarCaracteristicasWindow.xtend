@@ -1,7 +1,5 @@
 package mapamundi
 
-import csdExceptions.DatoNoIngresado
-import appModel.MapamundiAppModel
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.VerticalLayout
@@ -12,9 +10,13 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.model.UserException
+import appModel.CaracteristicasAppModel
+
+import org.uqbar.commons.model.UserException
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import appModel.CaracteristicasAppModel
+
 
 class EditarCaracteristicasWindow extends Dialog<CaracteristicasAppModel>{
 	
@@ -46,7 +48,7 @@ override protected createFormPanel(Panel mainPanel) {
 		editorPanel.layout = new VerticalLayout
 		val Panel panelDeCaracteristicas = new Panel(mainPanel)
 		new List<String>(panelDeCaracteristicas) => [
-				items <=> "temp.caracteristicas"
+				items <=> "repo.paisTemp.caracteristicas"
 				height = 60
 				width = 400
 				value <=> "caracteristicaAEliminar"
@@ -57,10 +59,10 @@ override protected createFormPanel(Panel mainPanel) {
 			var caracSelec = new NotNullObservable("caracteristicaAEliminar")
 			bindEnabled(caracSelec)
 			onClick [ | 
-				this.modelObject.eliminarCaracteristica()
+				this.modelObject.eliminarCaracteristica()		
 				
 			]
-			]
+		]
 			
 		new Label(mainPanel).text = ""
 		new TextBox(mainPanel) => [
@@ -70,11 +72,14 @@ override protected createFormPanel(Panel mainPanel) {
 		
 		new Button(mainPanel) => [
 			caption = "Agregar"
-			onClick [ |
-			if (this.modelObject.caracteristica=="" || this.modelObject.caracteristica == null) {
-					new DatoNoIngresado(this, modelObject).open
+
+			onClick [
+				if (this.modelObject.caracteristica=="" || this.modelObject.caracteristica == null) {
+						throw new UserException('Caracteristicas vacia')
+						//new ErrorDialog(this, modelObject).open
+
 				}
-			this.modelObject.agregarCaracteristica()
+				this.modelObject.agregarCaracteristica()
 			]
 		]	
 	}

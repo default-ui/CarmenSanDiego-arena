@@ -1,6 +1,6 @@
 package arena
 
-import appModel.CarmenSanDiegoAppModel
+
 import carmenSanDiego.OrdenDeArresto
 import carmenSanDiego.Villano
 import components.CustomSimpleWindow
@@ -13,9 +13,9 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 
-class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
+class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<OrdenDeArrestoAppModel>{
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, OrdenDeArrestoAppModel model) {
 		super(parent, model)
 		title = "Nueva Orden de Arresto"
 	}
@@ -25,7 +25,7 @@ class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<CarmenSanDiegoAppMod
 			caption = "Emitir Orden De Arresto"
 			setAsDefault
 			onClick [
-				modelObject.juego.ordenDeArresto = new OrdenDeArresto(modelObject.villanoDeNuevaOrdenDeArresto)
+				modelObject.repo.juego.ordenDeArresto = new OrdenDeArresto(modelObject.repo.villanoDeNuevaOrdenDeArresto)
 				modelObject.pedirTodasLasPistas
 				this.close
 			]
