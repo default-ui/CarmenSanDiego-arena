@@ -1,9 +1,13 @@
 package arena
 
-import appModel.CarmenSanDiegoAppModel
+import appModel.LugarAppModel
+import appModel.OrdenDeArrestoAppModel
+import appModel.ResolviendoCasoAppModel
+import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import components.LabeledLabel
 import components.Titulo
+import expediente.ExpedienteWindow
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.HorizontalLayout
@@ -17,13 +21,12 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import expediente.ExpedienteWindow
 
-class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
+class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, ResolviendoCasoAppModel model) {
 		super(parent, model)
-		title = "Resolviendo: Robo de " + model.juego.caso.objeto
+		title = "Resolviendo: Robo de " + model.repo.juego.caso.objeto
 		
 	}
 	
@@ -54,7 +57,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		new List<Pais>(mainPanel) => [
 				width=40
 				height =100 
-				modelObject.juego.getRecorrido()
+				modelObject.repo.juego.getRecorrido()
 				(items <=> "juego.recorrido").adapter = new PropertyAdapter(Pais, "nombre")
 			]
 
@@ -62,7 +65,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		new List<Pais>(mainPanel) => [
 				width=40
 				height =100 
-				modelObject.juego.getFallidos()
+				modelObject.repo.juego.getFallidos()
 				(items <=> "juego.fallidos").adapter = new PropertyAdapter(Pais, "nombre")
 			]
 
@@ -76,7 +79,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		new Button(accionesPanel) => [
 			caption = "Orden De Arresto"
 			onClick [|
-				new EmitirOrdenDeArrestoWindow(this, this.modelObject).open
+				new EmitirOrdenDeArrestoWindow(this, new OrdenDeArrestoAppModel(repo)).open
 				]
 		]
 		
@@ -110,7 +113,7 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 	 */
 	def private armarLugaresPanel(Panel containerPanel) {
 		//se setean los lugares accesibles en ese pais
-		modelObject.lugaresPistas = modelObject.juego.paisActual.lugares
+		modelObject.repo.lugaresPistas = modelObject.repo.juego.paisActual.lugares
 		
 		val lugaresPanel = new GroupPanel(containerPanel)
 		lugaresPanel.layout = new VerticalLayout
@@ -118,27 +121,28 @@ class ResolviendoCasoWindow extends SimpleWindow<CarmenSanDiegoAppModel>{
 		
 		
 		new Button(lugaresPanel) => [
-				caption = modelObject.lugaresPistas.get(0).nombre
+				caption = modelObject.repo.lugaresPistas.get(0).nombre
 				onClick [ | 
-					modelObject.setLugarAbierto(modelObject.lugaresPistas.get(0))
-					new LugarWindow(this, this.modelObject).open
+					new LugarWindow(this, crearLugarAppModel(modelObject.repo.lugaresPistas.get(0))).open
 				]
 		]
 		new Button(lugaresPanel) => [
-				caption = modelObject.lugaresPistas.get(1).nombre
+				caption = modelObject.repo.lugaresPistas.get(1).nombre
 				onClick [ | 
-					modelObject.setLugarAbierto(modelObject.lugaresPistas.get(1))
-					new LugarWindow(this, this.modelObject).open
+					new LugarWindow(this, crearLugarAppModel(modelObject.repo.lugaresPistas.get(1))).open
 				]
 		]
 		new Button(lugaresPanel) => [
-				caption = modelObject.lugaresPistas.get(2).nombre
+				caption = modelObject.repo.lugaresPistas.get(2).nombre
 				onClick [ | 
-					modelObject.setLugarAbierto(modelObject.lugaresPistas.get(2))
-					new LugarWindow(this, this.modelObject).open
+					new LugarWindow(this, crearLugarAppModel(modelObject.repo.lugaresPistas.get(2))).open
 				]
 		]
 		
-	}	
+	}
+	
+	def private crearLugarAppModel(Lugar lugarAbierto) {
+		new LugarAppModel(modelObject.repo, lugarAbierto)
+	}
 
 }

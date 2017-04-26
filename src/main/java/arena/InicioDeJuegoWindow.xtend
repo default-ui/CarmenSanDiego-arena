@@ -1,19 +1,20 @@
 package arena
 
-import appModel.CarmenSanDiegoAppModel
+import appModel.InicioDeJuegoAppModel
+import appModel.ResolviendoCasoAppModel
 import components.CustomSimpleWindow
+import java.awt.Color
+import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
-import java.awt.Color
-import org.uqbar.arena.graphics.Image
 
-class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
+class InicioDeJuegoWindow extends CustomSimpleWindow<InicioDeJuegoAppModel>{
 	
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, InicioDeJuegoAppModel model) {
 		super(parent, model)
 		title = modelObject.tituloInicioDeJuego
 	}
@@ -27,8 +28,7 @@ class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 				this.close
 				//modelObject.expedienteAppModel.objeto = modelObject.juego.caso.objeto
 				modelObject.pedirTodasLasPistas
-				var resolviendoCasoAppModel = new ResolviendoCasoAppModel(repo)
-				new ResolviendoCasoWindow(this, resolviendoCasoAppModel).open
+				new ResolviendoCasoWindow(this, new ResolviendoCasoAppModel(modelObject.repo)).open
 				
 			]
 			
@@ -48,7 +48,7 @@ class InicioDeJuegoWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel>{
 		new Label(editorPanel).text = "Detective, tenemos un caso para usted:"
 		
 		// cada una de las lineas del reporte
-		for (lineaReporte : modelObject.juego.caso.reporte) {
+		for (lineaReporte : modelObject.repo.juego.caso.reporte) {
 			new Label(editorPanel) =>[
 				text = lineaReporte
 			]			

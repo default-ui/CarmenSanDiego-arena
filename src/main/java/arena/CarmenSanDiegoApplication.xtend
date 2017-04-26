@@ -1,7 +1,8 @@
 package arena
 
+import appModel.MenuDeAccionesAppModel
+import carmenSanDiego.CarmenSanDiegoRepo
 import org.uqbar.arena.Application
-import appModel.CarmenSanDiegoAppModel
 
 /**
  * Punto de entrada de la aplicación
@@ -10,7 +11,7 @@ class CarmenSanDiegoApplication extends Application {
 	
 	override protected createMainWindow() {
 		
-		new MenuAccionesWindow(this, new CarmenSanDiegoAppModel)
+		new MenuAccionesWindow(this, new MenuDeAccionesAppModel(new CarmenSanDiegoRepo))
 	}
 	
 	def static main(String[] args) {

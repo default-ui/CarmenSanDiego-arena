@@ -1,22 +1,22 @@
 package arena
 
-import appModel.CarmenSanDiegoAppModel
+import appModel.InicioDeJuegoAppModel
+import appModel.MapamundiAppModel
+import appModel.MenuDeAccionesAppModel
 import components.CustomSimpleWindow
+import mapamundi.MapamundiWindow
 import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
-import mapamundi.MapamundiWindow
-import expediente.ExpedienteEditableWindow
-import appModel.MapamundiAppModel
 
 /**
  * Ventana de menu principal de la aplicación
  */
-class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
+class MenuAccionesWindow extends CustomSimpleWindow<MenuDeAccionesAppModel> {
 	
-	new(WindowOwner parent, CarmenSanDiegoAppModel model) {
+	new(WindowOwner parent, MenuDeAccionesAppModel model) {
 		super(parent, model)
 		title = "¿Dónde Está Carmen SanDiego?"
 	}
@@ -27,7 +27,7 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 			caption = "Resolver Misterio"
 			onClick [
 				modelObject.iniciarNuevaPartida
-				new InicioDeJuegoWindow(this, this.modelObject).open 
+				new InicioDeJuegoWindow(this, new InicioDeJuegoAppModel(modelObject.repo)).open 
 			]
 			setAsDefault
 		]
@@ -35,7 +35,7 @@ class MenuAccionesWindow extends CustomSimpleWindow<CarmenSanDiegoAppModel> {
 		new Button(actionsPanel) => [
 			caption = "Mapamundi"
 			onClick [
-				val mapamundiAppModel=new MapamundiAppModel(modelObject.repositorio)
+				val mapamundiAppModel=new MapamundiAppModel(modelObject.repo)
 				new MapamundiWindow(this, mapamundiAppModel).open
 			]
 		]
