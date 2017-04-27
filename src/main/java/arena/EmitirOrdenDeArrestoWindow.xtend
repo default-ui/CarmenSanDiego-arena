@@ -49,7 +49,7 @@ class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<OrdenDeArrestoAppMod
 		new LabeledSelector(mainPanel) => [
 			bindValueToProperty('repo.villanoDeNuevaOrdenDeArresto')
 			
-			val binding = bindItemsToProperty('expediente.villanos')
+			val binding = bindItemsToProperty('repo.expediente.villanos')
 			binding.adapter = new PropertyAdapter(typeof(Villano), "nombre")
 
 		]
