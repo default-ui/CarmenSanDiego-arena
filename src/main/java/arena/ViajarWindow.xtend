@@ -27,9 +27,7 @@ class ViajarWindow extends Dialog<ViajarAppModel>{
 			caption = "Viajar"
 			setAsDefault 
 			onClick [ | 
-				modelObject.repo.lugaresPistas=modelObject.repo.juego.paisDestino.lugares
-				modelObject.repo.juego.viajar(modelObject.repo.juego.paisDestino)
-				modelObject.pedirTodasLasPistas
+				modelObject.viajar
 				this.close
 			]
 			
@@ -39,8 +37,7 @@ class ViajarWindow extends Dialog<ViajarAppModel>{
 			caption = "Volver al país anterior"
 			bindEnabledToProperty("puedeVolver")
 			onClick [
-				modelObject.repo.juego.viajar(modelObject.repo.juego.paisAnterior)
-				modelObject.pedirTodasLasPistas
+				modelObject.volverAlPaisAnterior
 				this.close
 			]
 		]

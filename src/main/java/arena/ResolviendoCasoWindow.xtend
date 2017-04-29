@@ -22,6 +22,7 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import appModel.ViajarAppModel
+import appModel.ExpedienteAppModelNuevo
 
 class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 	
@@ -95,7 +96,8 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 		new Button(accionesPanel) => [
 			caption = "Viajar"
 			onClick [|
-				new ViajarWindow(this, new ViajarAppModel(modelObject.repo)).open
+				val viajarAppM=new ViajarAppModel(modelObject.repo)
+				new ViajarWindow(this, viajarAppM).open
 				]
 		]
 		
@@ -103,7 +105,8 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 		new Button(accionesPanel) => [
 			caption = "Expedientes"
 			onClick [|
-				//new ExpedienteWindow(this, this.modelObject.expedienteAppModel).open
+				val expedAppModel=new ExpedienteAppModelNuevo(modelObject.repo)
+				new ExpedienteWindow(this, expedAppModel).open
 				]
 		]
 		
@@ -122,19 +125,19 @@ class ResolviendoCasoWindow extends SimpleWindow<ResolviendoCasoAppModel>{
 		
 		
 		new Button(lugaresPanel) => [
-				caption = modelObject.repo.lugaresPistas.get(0).nombre
+				bindCaptionToProperty("repo.lugar1.nombre")
 				onClick [ | 
 					new LugarWindow(this, crearLugarAppModel(modelObject.repo.lugaresPistas.get(0))).open
 				]
 		]
 		new Button(lugaresPanel) => [
-				caption = modelObject.repo.lugaresPistas.get(1).nombre
+				bindCaptionToProperty("repo.lugar2.nombre")
 				onClick [ | 
 					new LugarWindow(this, crearLugarAppModel(modelObject.repo.lugaresPistas.get(1))).open
 				]
 		]
 		new Button(lugaresPanel) => [
-				caption = modelObject.repo.lugaresPistas.get(2).nombre
+				bindCaptionToProperty("repo.lugar3.nombre")
 				onClick [ | 
 					new LugarWindow(this, crearLugarAppModel(modelObject.repo.lugaresPistas.get(2))).open
 				]

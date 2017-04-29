@@ -1,6 +1,6 @@
 package expediente
 
-import appModel.ExpedienteAppModel
+import appModel.EditarCaracteristicaVillanoAppModel
 import components.VillanoCaracteristicasList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -14,7 +14,6 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import appModel.EditarCaracteristicaVillanoAppModel
 
 /*
  * Clase abstracta creada para refactorizar la ventana de edicion de caracteristicas (hobbies, senas particulares) en los villanos

@@ -10,6 +10,8 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import expediente.ExpedienteEditableWindow
+import appModel.ExpedienteAppModelNuevo
 
 /**
  * Ventana de menu principal de la aplicación
@@ -43,7 +45,8 @@ class MenuAccionesWindow extends CustomSimpleWindow<MenuDeAccionesAppModel> {
 		new Button(actionsPanel) => [
 			caption = "Expedientes"
 			onClick [
-				//new ExpedienteEditableWindow(this, this.modelObject.expedienteAppModel).open
+				val expedienteAppModel = new ExpedienteAppModelNuevo(modelObject.repo)
+				new ExpedienteEditableWindow(this, expedienteAppModel).open
 			]
 		]
 

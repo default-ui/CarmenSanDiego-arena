@@ -42,17 +42,11 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 	override createMainTemplate(Panel mainPanel) {
 		this.title = "Mapamundi"
 		mainPanel.layout = new VerticalLayout
-		
 		new Label(mainPanel) => [
-			
 			bindImageToProperty("pathImagenMapamundi", [ imagePath |
 				new Image(imagePath)
 			])
-			
 		]
-		//new Titulo(mainPanel, "Mapamundi", 20)
-
-		//Agregamos el contenido
 		val Panel contentPanel = new Panel(mainPanel)
 		contentPanel.layout = new ColumnLayout(2)
 		this.crearListadoDePaises(contentPanel)
@@ -61,14 +55,12 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 
 	def crearListadoDePaises(Panel owner) {
 		val Panel panelDeListadoDePaises = new Panel(owner)
-
 		new Titulo(panelDeListadoDePaises, "Paises")
 		new List<Pais>(panelDeListadoDePaises) => [
 				(items <=> "repo.mapa.paises").adapter = new PropertyAdapter(Pais, "nombre")
 				height = 290
 				width = 150
 				value <=> "paisSeleccionado"
-				
 			]
 			
 		new Button(panelDeListadoDePaises) =>[
@@ -77,6 +69,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 				modelObject.eliminarPais
 			]
 		] 
+		
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Editar"
 			onClick [ |
@@ -85,11 +78,11 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 				new PaisWindow(this, paisAppModel).open
 			]
 		] 
+		
 		new Button(panelDeListadoDePaises) =>[
 			caption = "Nuevo"
 			onClick [ | 
-				this.modelObject.repo.paisTemp= new Pais("temp")
-				this.modelObject.repo.nuevoPaisNombre=""
+				modelObject.nuevoPais
 				val paisAppModel=new PaisAppModel(modelObject.repo, paisSeleccionado)
 				new mapamundi.PaisWindow(this, paisAppModel).open
 			]
@@ -99,18 +92,14 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 	def crearEdicionDePaisSeleccionado(Panel owner) {
 		val Panel paisCompletoPanel = new Panel(owner)
 		paisCompletoPanel.layout = new VerticalLayout
-		
-		
 		new Label(paisCompletoPanel)=>[
 			foreground = Color.WHITE
 			background = Color.BLACK
 			value <=> "paisSeleccionado.nombre"
 			fontSize = 17
 		]
-		
 		crearListadoDeCaracteristicasDePaisSeleccionado(paisCompletoPanel)
 	}
-	
 	
 	def crearListadoDeCaracteristicasDePaisSeleccionado(Panel owner) {
 		val panelDeConexiones = new Panel(owner)

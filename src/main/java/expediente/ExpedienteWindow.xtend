@@ -1,6 +1,6 @@
 package expediente
 
-import appModel.ExpedienteAppModel
+
 import carmenSanDiego.Villano
 import components.CustomSimpleWindow
 import components.LabeledLabel
@@ -35,8 +35,8 @@ class ExpedienteWindow extends CustomSimpleWindow<ExpedienteAppModelNuevo> {
 	}
 	
 	override createFormPanel(Panel mainPanel) {
-		mainPanel.layout = new ColumnLayout(2)
-		mainPanel.width  = 600
+		//mainPanel.layout = new ColumnLayout(1)
+		//mainPanel.width  = 1600
 		createMainPanelVillanos(mainPanel)
 	}
 			
