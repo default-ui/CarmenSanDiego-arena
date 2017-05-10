@@ -26,7 +26,7 @@ class EmitirOrdenDeArrestoWindow extends CustomSimpleWindow<OrdenDeArrestoAppMod
 			caption = "Emitir Orden De Arresto"
 			setAsDefault
 			onClick [
-				modelObject.repo.juego.ordenDeArresto = new OrdenDeArresto(modelObject.repo.villanoDeNuevaOrdenDeArresto)
+				modelObject.emitirOrdenDeArresto
 				modelObject.pedirTodasLasPistas
 				this.close
 			]
