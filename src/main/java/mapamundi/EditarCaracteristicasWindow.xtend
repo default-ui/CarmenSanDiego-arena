@@ -1,5 +1,6 @@
 package mapamundi
 
+import appModel.CaracteristicasAppModel
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.graphics.Image
 import org.uqbar.arena.layout.VerticalLayout
@@ -11,12 +12,8 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.model.UserException
-import appModel.CaracteristicasAppModel
-
-import org.uqbar.commons.model.UserException
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-
 
 class EditarCaracteristicasWindow extends Dialog<CaracteristicasAppModel>{
 	

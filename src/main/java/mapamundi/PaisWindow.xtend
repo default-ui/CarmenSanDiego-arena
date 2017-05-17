@@ -1,13 +1,9 @@
 package mapamundi
 
-
 import appModel.CaracteristicasAppModel
 import appModel.ConexionesAppModel
 import appModel.EditarLugaresAppModel
 import appModel.PaisAppModel
-
-import appModel.MapamundiAppModel
-
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import components.Titulo
@@ -24,7 +20,6 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.model.UserException
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.commons.model.UserException
 
 class PaisWindow extends Dialog<PaisAppModel> {
 

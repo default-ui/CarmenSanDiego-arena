@@ -1,20 +1,15 @@
 package arena
 
-
-import carmenSanDiego.Villano
-import org.uqbar.arena.widgets.tables.Table
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.Application
 import carmenSanDiego.Sexo
-
+import carmenSanDiego.Villano
+import org.uqbar.arena.Application
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.List
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.List
-import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.TextBox
 
 class EditarHobbieWindow extends SimpleWindow<Villano>{
 	

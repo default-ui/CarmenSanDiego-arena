@@ -1,6 +1,7 @@
 package mapamundi
 
 import appModel.MapamundiAppModel
+import appModel.PaisAppModel
 import carmenSanDiego.Lugar
 import carmenSanDiego.Pais
 import components.Titulo
@@ -17,11 +18,6 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-
-import appModel.PaisAppModel
-
-import org.uqbar.commons.model.UserException
-
 
 class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 
@@ -84,7 +80,7 @@ class MapamundiWindow extends SimpleWindow<MapamundiAppModel> {
 			onClick [ | 
 				modelObject.nuevoPais
 				val paisAppModel=new PaisAppModel(modelObject.repo, paisSeleccionado)
-				new mapamundi.PaisWindow(this, paisAppModel).open
+				new PaisWindow(this, paisAppModel).open
 			]
 		] 
 	}
