@@ -74,7 +74,7 @@ class EditarHobbieWindow extends SimpleWindow<Villano>{
 class EditarHobbieApp extends Application{
 	
 	override protected createMainWindow() {
-		var villano = new Villano("El Gato", Sexo.Masculino)
+		var villano = new Villano(0, "El Gato", Sexo.Masculino)
 		villano.agregarHobbie("Tomar matecocido")
 		
 	

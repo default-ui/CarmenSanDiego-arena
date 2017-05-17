@@ -24,7 +24,7 @@ class ExpedienteEditableWindow extends ExpedienteWindow{
 			caption = "Nuevo"
 			onClick[|
 				this.modelObject.villanoTemp = modelObject.crearNuevoVillano
-				val editarVillanoAppModel=new EditarVillanoAppModel(modelObject.repo, new Villano(""))
+				val editarVillanoAppModel=new EditarVillanoAppModel(modelObject.repo, new Villano(0, ""))
 				new EditarVillanoWindow(this, editarVillanoAppModel, "Expediente - Nuevo villano").open
 			]
 		]
